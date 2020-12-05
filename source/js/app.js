@@ -1,33 +1,43 @@
-const frequencies = {
-    aFreq: 440,
-    eFreq() {return this.aFreq*1.5},
-    dFreq() {return this.aFreq/1.5},
-    gFreq() {return this.aFreq/1.5/1.5},
-}
+let x = 0;
+let aFreq = 440;
+let eFreq = aFreq * 1.5;
+let dFreq = aFreq / 1.5;
+let gFreq = aFreq / 1.5 / 1.5;
+let freqArr = [eFreq, aFreq, dFreq, gFreq];
+let indexPlaying;
 
-console.log(frequencies.eFreq());
-
-const eEl = document.querySelector(".e");
+const mainEl = document.querySelector("main");
 
 const context = new AudioContext();
 const oscillator = context.createOscillator();
-oscillator.type = "sine";
-
-oscillator.frequency.value = 440;
+oscillator.type = "triangle";
 const gainNode = context.createGain();
-
+oscillator.start(0);
 oscillator.connect(gainNode);
+oscillator.disconnect(gainNode);
 gainNode.connect(context.destination);
 
-const duration = 2;
+// const duration = 2;
 
-// oscillator.start(0);
-
-gainNode.gain.linearRampToValueAtTime(0.1, context.currentTime + duration);
-oscillator.stop(context.currentTime + duration);
-
-const listeners = _ => {
-    eEl.addEventListener("click", play)
+const play = index => {
+    oscillator.frequency.value = index;
+    oscillator.connect(gainNode);
 }
 
-listerens();
+const action = _ => {
+    mainEl.addEventListener("click", event => {
+        const list = [...event.target.parentNode.children];
+        let index = list.indexOf(event.target);
+
+        if (indexPlaying === index) {
+            oscillator.disconnect(gainNode);
+            indexPlaying = null;
+        } else {
+            play(freqArr[index]);
+            indexPlaying = index;
+        }
+
+    })
+}
+
+action();
