@@ -16,22 +16,31 @@
 
 nav {
   width: calc(100% - 80%);
+  font-family: monospace;
+}
+
+.hz {
+  height: 25%;
+  background: rgba(69, 105, 60, 0.8);
+  font-size: 1.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .reset {
   height: 25%;
-  background: rgba(69, 105, 60, 0.2);
+  font-size: 1.4em;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .tune {
-  height: calc(100% - 25%);
-  background: rgba(69, 105, 60, 0.4);
+  height: calc(100% - 25%*2);
+  font-size: 4em;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
 }
 
 .tune div {
@@ -39,6 +48,14 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.up {
+  background: rgba(69, 105, 60, 0.3);
+}
+
+.down {
+  background: rgba(69, 105, 60, 0.25);
 }
 
 main {
@@ -53,7 +70,6 @@ li {
   font-size: 5em;
   list-style: none;
   height: 25%;
-  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,6 +90,23 @@ li.d {
 
 li.g {
   background: rgba(69, 105, 60, 0.6);
+}
+
+li:hover {
+  border: 10px solid #45693c;
+  cursor: pointer;
+}
+
+.up:hover,
+.down:hover,
+.reset:hover {
+  border: 10px solid #45693c;
+  cursor: pointer;
+}
+
+li.active {
+  background: #300e25;
+  transition: all ease 0.3s;
 }
 
 /*# sourceMappingURL=main.css.map */
