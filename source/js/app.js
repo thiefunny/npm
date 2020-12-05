@@ -3,10 +3,20 @@ let eFreq = aFreq * 1.5;
 let dFreq = aFreq / 1.5;
 let gFreq = aFreq / 1.5 / 1.5;
 let freqArr = [eFreq, aFreq, dFreq, gFreq];
-let freqChange = 2;
-
+let freqChange = 1;
 let indexPlaying;
 let indexCurrent;
+
+const reCalc = _ => {
+    eFreq = aFreq * 1.5;
+    dFreq = aFreq / 1.5;
+    gFreq = aFreq / 1.5 / 1.5;
+    freqArr = [eFreq, aFreq, dFreq, gFreq];
+}
+
+const setFreq = _ => {
+    oscillator.frequency.value = freqArr[indexCurrent];
+}
 
 const mainEl = document.querySelector("main");
 const upEl = document.querySelector(".up");
@@ -42,12 +52,11 @@ const action = _ => {
             event.target.classList.remove("active");
             indexPlaying = null;
         } else {
-            oscillator.frequency.value = freqArr[indexCurrent];
+            setFreq();
             on();
             for (let elem of list) {
                 elem.classList.remove("active");
             }
-
             event.target.classList.add("active");
             indexPlaying = indexCurrent;
         }
@@ -58,35 +67,21 @@ const action = _ => {
 const tune = _ => {
     upEl.addEventListener("click", _ => {
         aFreq += freqChange;
-        eFreq = aFreq * 1.5;
-        dFreq = aFreq / 1.5;
-        gFreq = aFreq / 1.5 / 1.5;
-        freqArr = [eFreq, aFreq, dFreq, gFreq];
+        reCalc();
         infoEl.innerHTML = aFreq;
-
-        oscillator.frequency.value = freqArr[indexCurrent];
+        setFreq();
     })
     downEl.addEventListener("click", _ => {
         aFreq -= freqChange;
-        eFreq = aFreq * 1.5;
-        dFreq = aFreq / 1.5;
-        gFreq = aFreq / 1.5 / 1.5;
-        freqArr = [eFreq, aFreq, dFreq, gFreq];
+        reCalc();
         infoEl.innerHTML = aFreq;
-
-        oscillator.frequency.value = freqArr[indexCurrent];
-
+        setFreq();
     })
     resetEl.addEventListener("click", _ => {
         aFreq = 440;
-        eFreq = aFreq * 1.5;
-        dFreq = aFreq / 1.5;
-        gFreq = aFreq / 1.5 / 1.5;
-        freqArr = [eFreq, aFreq, dFreq, gFreq];
+        reCalc();
         infoEl.innerHTML = aFreq;
-
-        oscillator.frequency.value = freqArr[indexCurrent];
-
+        setFreq();
     })
 
 }
