@@ -1,0 +1,22 @@
+{
+  "name": "violin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiefunny/violin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thiefunny/violin/issues"
+  },
+  "homepage": "https://github.com/thiefunny/violin#readme",
+  "dependencies": {
+    "sass": "^1.30.0"
+  }
+}
