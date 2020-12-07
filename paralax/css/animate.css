@@ -1,6 +1,6 @@
-@keyframes entermik {
+@keyframes on {
   from {
-    left: -200px;
+    left: -700px;
     opacity: 0;
   }
   to {
@@ -8,15 +8,28 @@
     opacity: 1;
   }
 }
-.animation {
-  animation-name: entermik;
-  animation-duration: 1s;
+@keyframes off {
+  from {
+    left: 0px;
+    opacity: 1;
+  }
+  to {
+    left: 700px;
+    opacity: 0;
+  }
+}
+.animation-on {
+  animation: on 0.5s;
+}
+
+.animation-off {
+  animation: off 0.5s;
 }
 
 .animate-one {
   position: relative;
-  padding-top: 5em;
-  font-size: 2em;
+  padding-top: 1em;
+  font-size: 1.5em;
 }
 
 .hidden {

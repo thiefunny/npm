@@ -1,19 +1,46 @@
-const animateEl = document.querySelector(".animate-one");
+const animateEl = document.querySelectorAll("li");
+const mainEl = document.querySelector(".a");
+
 let y;
 
-window.addEventListener("scroll", _ => {
-    console.log(window.innerHeight)
-    console.log(y)
-    y = animateEl.getBoundingClientRect().y;
+const on = _ => {
+}
 
-    if (y < window.innerHeight * 0.6) {
-        animateEl.classList.add("animation")
-        animateEl.classList.remove("hidden")
+const off = _ => {
+}
 
-    } else {
-        animateEl.classList.remove("animation")
-        animateEl.classList.add("hidden")
 
+
+for (let elem of animateEl) {
+    elem.classList.add("animate-one")
+    elem.classList.add("animation-off")
+}
+
+const anim = _ => {
+    for (let elem of animateEl) {
+
+        y = elem.getBoundingClientRect().y;
+
+        if (y < window.innerHeight*0.9) {
+            elem.classList.add("animation-on")
+            elem.classList.remove("animation-off")
+            elem.classList.remove("hidden")
+
+        } else {
+            elem.classList.remove("animation-on")
+            elem.classList.add("animation-off")
+            elem.classList.add("hidden")
+        }
     }
+}
+
+
+
+window.addEventListener("scroll", _ => {
+    // console.log(window.innerHeight)
+    // console.log(y)
+    console.log(mainEl.scrollTop)
+
+    anim();
 
 })
