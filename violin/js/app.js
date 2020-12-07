@@ -44,6 +44,7 @@ const off = _ => {
 
 const action = _ => {
     mainEl.addEventListener("click", event => {
+        ctx.resume();
         const list = [...event.target.parentNode.children];
         indexCurrent = list.indexOf(event.target);
 

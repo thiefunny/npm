@@ -1,0 +1,12 @@
+.hidden {
+  opacity: 0;
+}
+
+ul {
+  padding-top: 5em;
+  font-size: 2em;
+  opacity: 1;
+  transition: all ease 1s;
+}
+
+/*# sourceMappingURL=animate.css.map */
