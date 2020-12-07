@@ -1,0 +1,98 @@
+@use "../../node_modules/normalize.css/normalize.css";
+
+@keyframes top-right {
+    from {
+        left: 0px;
+        top: 0px;
+        background-color: rgba(222, 178, 10, 1);
+    }
+
+    to {
+        left: 30px;
+        top: -30px;
+        // width: calc(50% - 30px);
+        background-color: rgb(255, 178, 10);
+    }
+}
+
+@keyframes top-right-return {
+    from {
+        left: 30px;
+        top: -30px;
+        // width: calc(50% - 30px);
+        background-color: rgb(255, 178, 10);
+    }
+
+    to {
+        left: 0px;
+        top: 0px;
+        background-color: rgba(222, 178, 10, 1);
+    }
+}
+
+main {
+    // z-index: 5;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.square {
+    width: 50%;
+}
+
+.one {
+    background-color: rgba(220, 180, 10, 1);
+    position: relative;
+
+}
+
+.two {
+    background-color: rgba(222, 178, 10, 1);
+    position: relative;
+    animation: top-right-return 1s ease;
+}
+
+.two:hover {
+    animation: top-right 0.3s ease;
+    left: 30px;
+    top: -30px;
+    background-color: rgb(255, 178, 10);
+}
+
+.three {
+    background-color: rgba(224, 176, 10, 1);
+    position: relative;
+    animation: top-right-return 1s ease;
+}
+
+.three:hover {
+    animation: top-right 0.3s ease;
+    left: 30px;
+    top: -30px;
+    background-color: rgb(255, 178, 10);
+}
+
+.four {
+    background-color: rgba(226, 174, 10, 1);
+    position: relative;
+
+}
+
+.bottom {
+    z-index: 0;
+}
+
+.bottomone {
+    z-index: 5;
+    background-color: hotpink;
+    position: absolute;
+    // left: 0px;
+    width: 100vw;
+    height: 100vh;
+    left: 50%;
+    top: 50%;
+    // translate: -50%;
+    rotate: 45deg;
+}
