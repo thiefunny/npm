@@ -2,16 +2,10 @@ const animateEl = document.querySelectorAll("li");
 const mainEl = document.querySelector(".a");
 
 let y;
+let scrollDown = true;
+let minWindow = 0;
 
-const on = _ => {
-}
-
-const off = _ => {
-}
-
-
-
-for (let elem of animateEl) {
+(_ => {for (let elem of animateEl) {
     elem.classList.add("animate-one")
     elem.classList.add("animation-off")
 }
@@ -21,12 +15,12 @@ const anim = _ => {
 
         y = elem.getBoundingClientRect().y;
 
-        if (y < window.innerHeight*0.9) {
+        if (y < window.innerHeight * 0.9 && scrollDown) {
             elem.classList.add("animation-on")
             elem.classList.remove("animation-off")
             elem.classList.remove("hidden")
 
-        } else {
+        } else if (y > window.innerHeight * 0.8 && !scrollDown) {
             elem.classList.remove("animation-on")
             elem.classList.add("animation-off")
             elem.classList.add("hidden")
@@ -34,13 +28,22 @@ const anim = _ => {
     }
 }
 
-
-
 window.addEventListener("scroll", _ => {
-    // console.log(window.innerHeight)
-    // console.log(y)
-    console.log(mainEl.scrollTop)
+    console.log(window.pageYOffset)
+    let x = window.pageYOffset;
+
+    if (x > minWindow) {
+        console.log('w górę');
+scrollDown = true;
+
+        minWindow = x;
+    } else {
+        console.log('w dół');
+        scrollDown = false;
+
+        minWindow = x;
+    }
 
     anim();
 
-})
+})})()

@@ -398,9 +398,10 @@ header {
 }
 
 .b {
-  background: #325032;
   background-attachment: fixed;
-  height: 100vh;
+  background-image: url("/paralax/images/alan.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   position: fixed;
   z-index: -1;
   top: 0;

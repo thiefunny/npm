@@ -24,9 +24,12 @@ header {
 }
 
 .b {
-    background: rgb(50, 80, 50);
+    // background: rgb(50, 80, 50);
     background-attachment: fixed;
-    height: 100vh;
+    background-image: url("/paralax/images/alan.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    // height: 100vh;
     position: fixed;
     z-index: -1;
     top: 0
