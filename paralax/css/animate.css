@@ -1,12 +1,26 @@
-.hidden {
-  opacity: 0;
+@keyframes entermik {
+  from {
+    left: -200px;
+    opacity: 0;
+  }
+  to {
+    left: 0px;
+    opacity: 1;
+  }
+}
+.animation {
+  animation-name: entermik;
+  animation-duration: 1s;
 }
 
-ul {
+.animate-one {
+  position: relative;
   padding-top: 5em;
   font-size: 2em;
-  opacity: 1;
-  transition: all ease 1s;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 /*# sourceMappingURL=animate.css.map */
