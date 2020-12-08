@@ -341,28 +341,61 @@ template {
   from {
     left: 0px;
     top: 0px;
-    background-color: #deb20a;
+    background-color: #f3ba1c;
   }
   to {
     left: 30px;
     top: -30px;
-    background-color: #ffb20a;
+    background-color: #fdcf00;
   }
 }
 @keyframes top-right-return {
   from {
     left: 30px;
     top: -30px;
-    background-color: #ffb20a;
+    background-color: #fdcf00;
   }
   to {
     left: 0px;
     top: 0px;
-    background-color: #deb20a;
+    background-color: #f3ba1c;
   }
 }
+@keyframes bottom-left {
+  from {
+    left: 0px;
+    top: 0px;
+    background-color: #f3ba1c;
+  }
+  to {
+    left: -30px;
+    top: 30px;
+    background-color: #fdcf00;
+  }
+}
+@keyframes bottom-left-return {
+  from {
+    left: -30px;
+    top: 30px;
+    background-color: #fdcf00;
+  }
+  to {
+    left: 0px;
+    top: 0px;
+    background-color: #f3ba1c;
+  }
+}
+:root {
+  font-family: monospace;
+  font-size: 3em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
 main {
   height: 100vh;
+  z-index: 5;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
@@ -370,57 +403,79 @@ main {
 
 .square {
   width: 50%;
+  background-color: #f3ba1c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .one {
-  background-color: #dcb40a;
   position: relative;
 }
 
 .two {
-  background-color: #deb20a;
   position: relative;
-  animation: top-right-return 1s ease;
+  animation: top-right-return 0.4s ease;
 }
 
 .two:hover {
-  animation: top-right 0.3s ease;
+  animation: top-right 0.2s ease;
   left: 30px;
   top: -30px;
-  background-color: #ffb20a;
+  background-color: #fdcf00;
 }
 
 .three {
-  background-color: #e0b00a;
+  z-index: 6;
   position: relative;
-  animation: top-right-return 1s ease;
+  animation: bottom-left-return 0.4s ease;
 }
 
 .three:hover {
-  animation: top-right 0.3s ease;
-  left: 30px;
-  top: -30px;
-  background-color: #ffb20a;
+  z-index: 6;
+  animation: bottom-left 0.2s ease;
+  left: -30px;
+  top: 30px;
+  background-color: #fdcf00;
 }
 
 .four {
-  background-color: #e2ae0a;
   position: relative;
 }
 
 .bottom {
-  z-index: 0;
+  z-index: -1;
+  position: absolute;
+  background-color: #be9933;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 
-.bottomone {
-  z-index: 5;
-  background-color: hotpink;
+.squarebottom {
+  width: 50%;
+}
+
+.squaregradient {
+  width: 50vh;
+  height: 50vh;
+  background-image: linear-gradient(135deg, #daaa28 50%, #be9933 50%);
+}
+
+.bottomthree {
+  background-color: #be9933;
+  height: 50vh;
+  position: relative;
+}
+
+.squaregradientbottom {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
-  left: 50%;
-  top: 50%;
-  rotate: 45deg;
+  right: 0px;
+  width: 50vh;
+  height: 50vh;
+  background-image: linear-gradient(135deg, #be9933 50%, #daaa28 50%);
 }
 
 /*# sourceMappingURL=main.css.map */

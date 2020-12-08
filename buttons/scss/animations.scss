@@ -1,0 +1,63 @@
+$color-main: rgba(243, 186, 28, 1);
+$color-hover: rgb(253, 207, 0);
+$color-box-bottom: rgb(190, 153, 51);
+$color-box-left: rgb(218, 170, 40);
+$hover-distance: 30px;
+$bottom-background: $color-box-bottom;
+
+
+@keyframes top-right {
+    from {
+        left: 0px;
+        top: 0px;
+        background-color: $color-main;
+    }
+
+    to {
+        left: $hover-distance;
+        top: -$hover-distance;
+        background-color: $color-hover;
+    }
+}
+
+@keyframes top-right-return {
+    from {
+        left: $hover-distance;
+        top: -$hover-distance;
+        background-color: $color-hover;
+    }
+
+    to {
+        left: 0px;
+        top: 0px;
+        background-color: $color-main;
+    }
+}
+
+@keyframes bottom-left {
+    from {
+        left: 0px;
+        top: 0px;
+        background-color: $color-main;
+    }
+
+    to {
+        left: -$hover-distance;
+        top: $hover-distance;
+        background-color: $color-hover;
+    }
+}
+
+@keyframes bottom-left-return {
+    from {
+        left: -$hover-distance;
+        top: $hover-distance;
+        background-color: $color-hover;
+    }
+
+    to {
+        left: 0px;
+        top: 0px;
+        background-color: $color-main;
+    }
+}

@@ -1,98 +1,100 @@
-@use "../../node_modules/normalize.css/normalize.css";
+@use "../../node_modules/normalize.css/normalize";
+@use "animations.scss";
+// @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
-@keyframes top-right {
-    from {
-        left: 0px;
-        top: 0px;
-        background-color: rgba(222, 178, 10, 1);
-    }
-
-    to {
-        left: 30px;
-        top: -30px;
-        // width: calc(50% - 30px);
-        background-color: rgb(255, 178, 10);
-    }
-}
-
-@keyframes top-right-return {
-    from {
-        left: 30px;
-        top: -30px;
-        // width: calc(50% - 30px);
-        background-color: rgb(255, 178, 10);
-    }
-
-    to {
-        left: 0px;
-        top: 0px;
-        background-color: rgba(222, 178, 10, 1);
-    }
+:root {
+    // font-family: "Do Hyeon";
+    font-family: monospace;
+    font-size: 3em;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
 }
 
 main {
-    // z-index: 5;
     height: 100vh;
+    z-index: 5;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
+
 }
 
 .square {
     width: 50%;
+    background-color: animations.$color-main;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .one {
-    background-color: rgba(220, 180, 10, 1);
     position: relative;
 
 }
 
 .two {
-    background-color: rgba(222, 178, 10, 1);
     position: relative;
-    animation: top-right-return 1s ease;
+    animation: top-right-return 0.4s ease;
+
 }
 
 .two:hover {
-    animation: top-right 0.3s ease;
-    left: 30px;
-    top: -30px;
-    background-color: rgb(255, 178, 10);
+    animation: top-right 0.2s ease;
+    left: animations.$hover-distance;
+    top: -(animations.$hover-distance);
+    background-color: animations.$color-hover;
 }
 
 .three {
-    background-color: rgba(224, 176, 10, 1);
+    z-index: 6;
     position: relative;
-    animation: top-right-return 1s ease;
+    animation: bottom-left-return 0.4s ease;
 }
 
 .three:hover {
-    animation: top-right 0.3s ease;
-    left: 30px;
-    top: -30px;
-    background-color: rgb(255, 178, 10);
+    z-index: 6;
+    animation: bottom-left 0.2s ease;
+    left: -(animations.$hover-distance);
+    top: animations.$hover-distance;
+    background-color: animations.$color-hover;
 }
 
 .four {
-    background-color: rgba(226, 174, 10, 1);
     position: relative;
-
 }
 
 .bottom {
-    z-index: 0;
+    z-index: -1;
+    position: absolute;
+    background-color: animations.$bottom-background;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
 }
 
-.bottomone {
-    z-index: 5;
-    background-color: hotpink;
+.squarebottom {
+    width: 50%;
+}
+
+.squaregradient {
+    width: 50vh;
+    height: 50vh;
+    background-image: linear-gradient(135deg, animations.$color-box-left 50%, animations.$color-box-bottom 50%);
+}
+
+.bottomthree {
+    background-color: animations.$color-box-bottom;
+    height: 50vh;
+    position: relative;
+}
+
+.squaregradientbottom {
     position: absolute;
-    // left: 0px;
-    width: 100vw;
-    height: 100vh;
-    left: 50%;
-    top: 50%;
-    // translate: -50%;
-    rotate: 45deg;
+    right: 0px;
+    width: 50vh;
+    height: 50vh;
+    background-image: linear-gradient(135deg, animations.$color-box-bottom 50%, animations.$color-box-left 50%);
 }

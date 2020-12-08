@@ -1,0 +1,50 @@
+@keyframes top-right {
+  from {
+    left: 0px;
+    top: 0px;
+    background-color: #f3ba1c;
+  }
+  to {
+    left: 30px;
+    top: -30px;
+    background-color: #fdcf00;
+  }
+}
+@keyframes top-right-return {
+  from {
+    left: 30px;
+    top: -30px;
+    background-color: #fdcf00;
+  }
+  to {
+    left: 0px;
+    top: 0px;
+    background-color: #f3ba1c;
+  }
+}
+@keyframes bottom-left {
+  from {
+    left: 0px;
+    top: 0px;
+    background-color: #f3ba1c;
+  }
+  to {
+    left: -30px;
+    top: 30px;
+    background-color: #fdcf00;
+  }
+}
+@keyframes bottom-left-return {
+  from {
+    left: -30px;
+    top: 30px;
+    background-color: #fdcf00;
+  }
+  to {
+    left: 0px;
+    top: 0px;
+    background-color: #f3ba1c;
+  }
+}
+
+/*# sourceMappingURL=animations.css.map */
