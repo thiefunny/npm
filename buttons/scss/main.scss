@@ -35,8 +35,14 @@ main {
 
 .two {
     position: relative;
-    animation: top-right-return 0.4s ease;
+}
 
+.animstart-top-right {
+    animation: top-right-return 0.4s ease;
+}
+
+.animstart-bottom-left {
+    animation: bottom-left-return 0.4s ease;
 }
 
 .two:hover {
@@ -49,7 +55,7 @@ main {
 .three {
     z-index: 6;
     position: relative;
-    animation: bottom-left-return 0.4s ease;
+  
 }
 
 .three:hover {
