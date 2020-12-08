@@ -1,11 +1,11 @@
 @use "../../node_modules/normalize.css/normalize";
 @use "animations.scss";
-// @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
 :root {
-    // font-family: "Do Hyeon";
-    font-family: monospace;
-    font-size: 3em;
+    font-family: "JetBrains Mono";
+    // font-family: 
+    font-size: 2em;
     color: white;
     text-transform: uppercase;
     letter-spacing: 0.3em;
