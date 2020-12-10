@@ -1,0 +1,13 @@
+@use "../../node_modules/normalize.css/normalize.css";
+
+
+.wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: red;
+}
+
+#map {
+    height: 100%;
+}
