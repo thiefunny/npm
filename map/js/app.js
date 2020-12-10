@@ -1,7 +1,7 @@
 const URL_ENDPOINT = "https://geo.ipify.org/api/v1?apiKey=at_UEQ7IsyTi637Yk7jJMWci4P5uS9A0&ipAddress="
 const URL_GET_IP = 'https://api.ipify.org?format=json'
 
-const drawMap = (lat, lng) => {
+const drawMap = (lat, lng, city) => {
 
     const map = L.map('map').setView([lat, lng], 13);
     const marker = L.marker([lat, lng]).addTo(map);
@@ -15,10 +15,15 @@ const drawMap = (lat, lng) => {
         accessToken: 'pk.eyJ1IjoidGhpZWZ1bm55IiwiYSI6ImNraWl4Zjl4eDI5dDUycm81Z3JpdXh3bzgifQ.7C-6wjgHn76s7D0F1Q9dxg'
     }).addTo(map);
 
-    marker.bindPopup(`GOT YA!!! ${lat}, ${lng} ASDBJKASHDJKADHAJKasdasdasdasdasdSHD DKAJSDHKAJSDHK HAJKSD HJASKD HJASDK HJASDK HJASDK`).openPopup();
+    let roundlat = lat.toPrecision(3);
+    let roundlng = lng.toPrecision(3);
+    let miklatlng = L.latLng(lat, lng);
+    let mikpopup = L.popup({maxWidth:500}).setLatLng(miklatlng).setContent(`MAM CIĘ!!! Jesteś w ${city}!!! (mniej więcej ${roundlat}, ${roundlng})`);
+    marker.bindPopup(mikpopup).openPopup();
+
 }
 
-    fetch(URL_GET_IP)
+fetch(URL_GET_IP)
     .then((resolve) => resolve.json())
     .then((getip) => getip.ip)
     .then((resolvedip) => {
@@ -26,9 +31,9 @@ const drawMap = (lat, lng) => {
     })
     .then((resolve) => resolve.json())
     .then((resolve) => {
-        // console.log(resolve)
+        console.log(resolve)
         console.log(resolve.location.lat)
         console.log(resolve.location.lng)
-        drawMap(resolve.location.lat, resolve.location.lng)
+        drawMap(resolve.location.lat, resolve.location.lng, resolve.location.city)
     })
     .catch((err) => console.log(err));
