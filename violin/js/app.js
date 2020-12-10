@@ -63,6 +63,58 @@ const action = _ => {
         }
 
     })
+    window.addEventListener("keypress", event => {
+
+        if (event.key === "4" || event.key === "e" ) {
+            if (indexPlaying === 0) {
+                off();
+                indexPlaying = null;
+            } else {
+                indexCurrent = 0;
+                setFreq();
+                on();
+                indexPlaying = indexCurrent;
+            }
+        } 
+
+        if (event.key === "3" || event.key === "a") {
+            if (indexPlaying === 1) {
+                off();
+                indexPlaying = null;
+            } else {
+                indexCurrent = 1;
+                setFreq();
+                on();
+                indexPlaying = indexCurrent;
+            }
+        } 
+
+        if (event.key === "2" || event.key === "d") {
+            if (indexPlaying === 2) {
+                off();
+                indexPlaying = null;
+            } else {
+                indexCurrent = 2;
+                setFreq();
+                on();
+                indexPlaying = indexCurrent;
+            }
+        } 
+
+        if (event.key === "1" || event.key === "g") {
+            if (indexPlaying === 3) {
+                off();
+                indexPlaying = null;
+            } else {
+                indexCurrent = 3;
+                setFreq();
+                on();
+                indexPlaying = indexCurrent;
+            }
+        } 
+       
+
+    })
 }
 
 const tune = _ => {
