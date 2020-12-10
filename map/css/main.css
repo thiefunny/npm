@@ -341,11 +341,14 @@ template {
   position: absolute;
   height: 100%;
   width: 100%;
-  background: red;
+  background: whitesmoke;
 }
 
 #map {
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=main.css.map */
