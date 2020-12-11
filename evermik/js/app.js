@@ -28,21 +28,30 @@ const addCurrentNoteToList = (noteNumber) => {
 }
 
 const evermik = _ => {
-    
+
     buttonAddEl.addEventListener("click", _ => {
         addNote(formNoteTitleEl.value, formNoteContentEl.value);
-        // clearForm(formNoteContentEl, formNoteTitleEl);
+        buttonAddEl.blur();
+        clearForm(formNoteContentEl, formNoteTitleEl);
     });
     buttonSaveEl.addEventListener("click",
         _ => {
-            download(`${notesArr[notesArr.length - 1]['time'].getTime()}.txt`, JSON.stringify(notesArr));
+            saveFile(`${notesArr[notesArr.length - 1]['time'].getTime()}.txt`, JSON.stringify(notesArr));
+            
+        }
+    )
+    window.addEventListener("keypress",
+        event => {
+            if (event.key === "Enter" && event.ctrlKey) {
+                saveFile(`${notesArr[notesArr.length - 1]['time'].getTime()}.txt`, JSON.stringify(notesArr));
+            }
         }
     )
 }
 
 evermik();
 
-function download(filename, text) {
+function saveFile(filename, text) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
