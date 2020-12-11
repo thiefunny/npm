@@ -7,7 +7,7 @@ textarea {
   resize: none;
 }
 
-form * {
+* {
   display: block;
   margin: 10px;
 }

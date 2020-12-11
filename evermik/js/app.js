@@ -1,18 +1,15 @@
 import {
     notesArr,
     Note,
-    // pushNote,
     clearForm
 } from './declarations.js';
 import {
     buttonAddEl,
     formNoteContentEl,
     formNoteTitleEl,
-    notesListNoteTitle,
-    notesListNoteContent,
     notesListUlEL,
+    buttonSaveEl,
     formEL,
-    buttonSaveEl
 } from './dom.js'
 
 const addNote = (title, content) => {
@@ -31,9 +28,10 @@ const addCurrentNoteToList = (noteNumber) => {
 }
 
 const evermik = _ => {
+    
     buttonAddEl.addEventListener("click", _ => {
         addNote(formNoteTitleEl.value, formNoteContentEl.value);
-        clearForm(formNoteContentEl, formNoteTitleEl);
+        // clearForm(formNoteContentEl, formNoteTitleEl);
     });
     buttonSaveEl.addEventListener("click",
         _ => {

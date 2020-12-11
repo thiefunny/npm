@@ -11,10 +11,6 @@ export class Note {
     }
 }
 
-// export const pushNote = (note) => {
-//     notesArr.push(note);
-// }
-
 export const clearForm = (...formEls) => {
     for (let elem of formEls) {
         elem.value = null
