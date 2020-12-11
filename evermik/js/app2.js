@@ -33,7 +33,7 @@ const addCurrentNoteToList = (noteNumber) => {
 const evermik = _ => {
     buttonAddEl.addEventListener("click", _ => {
         addNote(formNoteTitleEl.value, formNoteContentEl.value);
-        clearForm(formNoteContentEl, formNoteTitleEl);
+        // clearForm(formNoteContentEl, formNoteTitleEl);
     });
     buttonSaveEl.addEventListener("click",
         _ => {
@@ -54,5 +54,5 @@ function download(filename, text) {
     element.style.height = '100px';
     document.body.appendChild(element);
     element.click();
-    document.body.removeChild(element);
+    // document.body.removeChild(element);
 }
