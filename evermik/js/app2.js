@@ -1,15 +1,18 @@
 import {
     notesArr,
     Note,
+    // pushNote,
     clearForm
 } from './declarations.js';
 import {
     buttonAddEl,
     formNoteContentEl,
     formNoteTitleEl,
+    notesListNoteTitle,
+    notesListNoteContent,
     notesListUlEL,
-    buttonSaveEl,
     formEL,
+    buttonSaveEl
 } from './dom.js'
 
 const addNote = (title, content) => {
@@ -28,7 +31,6 @@ const addCurrentNoteToList = (noteNumber) => {
 }
 
 const evermik = _ => {
-    
     buttonAddEl.addEventListener("click", _ => {
         addNote(formNoteTitleEl.value, formNoteContentEl.value);
         // clearForm(formNoteContentEl, formNoteTitleEl);
@@ -52,5 +54,5 @@ function download(filename, text) {
     element.style.height = '100px';
     document.body.appendChild(element);
     element.click();
-    document.body.removeChild(element);
+    // document.body.removeChild(element);
 }
