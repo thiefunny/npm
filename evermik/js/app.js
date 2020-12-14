@@ -1,12 +1,12 @@
 import {
     notesArr,
-    Note,
     clearForm,
     addNote,
-    addCurrentNoteToHTMLList,
+    editCurrentNoteInHTMLList,
+    showNoteToEdit,
     saveFile,
-    // showNoteToEdit
-} from './declarations.js';
+    editCurrentNoteInArray
+} from './declarations3.js';
 import {
     buttonAddEl,
     formNoteContentEl,
@@ -14,25 +14,14 @@ import {
     notesListUlEL,
     buttonSaveEl,
     formEL,
-    buttonEditEl
+    buttonEditEl,
+    
 } from './dom.js'
 
 
 const evermik = _ => {
     
     let currentNoteIndex;
-
-    buttonEditEl.addEventListener("click", _ => {
-        notesArr[currentNoteIndex].title = formNoteTitleEl.value;
-        notesArr[currentNoteIndex].content = formNoteContentEl.value;
-        console.log(notesArr)
-    })
-
-    const showNoteToEdit = () => {
-        formNoteTitleEl.value = notesArr[currentNoteIndex].title;
-        formNoteContentEl.value = notesArr[currentNoteIndex].content;
-        buttonEditEl.classList.remove("hidden");
-    }
 
     ///////////// ADD NOTE    
 
@@ -41,10 +30,9 @@ const evermik = _ => {
         buttonAddEl.blur();
         formNoteTitleEl.focus();
         // clearForm(formNoteContentEl, formNoteTitleEl);
-        // print()
     });
 
-    ///////////// FIND INDEX OF NOTE
+    ///////////// FIND INDEX OF NOTE AND SHOW NOTE TO EDIT
 
     notesListUlEL.addEventListener("click", event => {
         let parent, eventtarget;
@@ -57,9 +45,16 @@ const evermik = _ => {
         }
         let arr = [...parent.children]
         currentNoteIndex = arr.indexOf(eventtarget);
-        showNoteToEdit();
+        showNoteToEdit(currentNoteIndex);
     })
 
+    ///////////// EDIT NOTE    
+
+    buttonEditEl.addEventListener("click", _ => {
+        editCurrentNoteInArray(currentNoteIndex);
+        editCurrentNoteInHTMLList(currentNoteIndex);
+    })
+    
     ///////////// SAVE FILE    
 
     buttonSaveEl.addEventListener("click",

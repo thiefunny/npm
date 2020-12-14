@@ -5,8 +5,6 @@ import {
     buttonEditEl
 } from './dom.js'
 
-// import {currentNoteIndex} from './app.js'
-
 export const notesArr = [];
 
 export class Note {
@@ -35,12 +33,21 @@ export const addCurrentNoteToHTMLList = (noteIndex) => {
     notesListUlEL.innerHTML += markup;
 }
 
-
-
 export const addNote = (title, content) => {
     let note = new Note(title, content);
     note.pushNote();
     addCurrentNoteToHTMLList(notesArr.length - 1);
+}
+
+export const showNoteToEdit = (noteIndex) => {
+    formNoteTitleEl.value = notesArr[noteIndex].title;
+    formNoteContentEl.value = notesArr[noteIndex].content;
+    buttonEditEl.classList.remove("hidden");
+}
+
+export const editCurrentNoteInArray = noteIndex => {
+    notesArr[noteIndex].title = formNoteTitleEl.value;
+    notesArr[noteIndex].content = formNoteContentEl.value;
 }
 
 export const editCurrentNoteInHTMLList = noteIndex => {
@@ -60,6 +67,12 @@ export const editCurrentNoteInHTMLList = noteIndex => {
 
 
 
+
+
+
+
+
+
 export const saveFile = (filename, text) => {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -72,5 +85,3 @@ export const saveFile = (filename, text) => {
     element.click();
     document.body.removeChild(element);
 }
-
-

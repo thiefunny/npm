@@ -1,15 +1,12 @@
 import {
     notesArr,
-    Note,
     clearForm,
     addNote,
-    addCurrentNoteToHTMLList,
     editCurrentNoteInHTMLList,
     showNoteToEdit,
     saveFile,
     editCurrentNoteInArray
-    // showNoteToEdit
-} from './declarations2.js';
+} from './declarations3.js';
 import {
     buttonAddEl,
     formNoteContentEl,
