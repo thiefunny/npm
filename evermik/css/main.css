@@ -7,9 +7,20 @@ textarea {
   resize: none;
 }
 
-button, label, input, textarea {
+button,
+label,
+input,
+textarea {
   display: block;
   margin: 10px;
+}
+
+.notes-list-element:hover {
+  background: #e6e6e6;
+}
+
+.hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,3 +1,5 @@
+$hover: rgba(230, 230, 230, 1);
+
 input {
     border: 1px dashed grey;
 }
@@ -7,7 +9,16 @@ textarea {
     resize: none
 }
 
-button, label, input, textarea {
+button,
+label,
+input,
+textarea {
     display: block;
     margin: 10px;
-  }
+}
+
+.notes-list-element:hover {
+    background: $hover;
+}
+
+.hidden {display: none;}

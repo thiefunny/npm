@@ -1,7 +1,8 @@
 export const buttonAddEl = document.querySelector(".add-note");
 
-export const buttonSaveEl = document.querySelector(".save-notes");
+export const buttonEditEl = document.querySelector(".edit-note");
 
+export const buttonSaveEl = document.querySelector(".save-notes");
 
 export const formNoteTitleEl = document.querySelector("#form-note-title");
 

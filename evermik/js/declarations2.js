@@ -5,8 +5,6 @@ import {
     buttonEditEl
 } from './dom.js'
 
-// import {currentNoteIndex} from './app.js'
-
 export const notesArr = [];
 
 export class Note {
@@ -57,6 +55,20 @@ export const editCurrentNoteInHTMLList = noteIndex => {
     // console.log(markup);
     notesListUlEL.innerHTML = markup;
 };
+
+export const showNoteToEdit = (noteIndex) => {
+        formNoteTitleEl.value = notesArr[noteIndex].title;
+        formNoteContentEl.value = notesArr[noteIndex].content;
+        buttonEditEl.classList.remove("hidden");
+    }
+
+
+
+
+
+
+
+
 
 
 
