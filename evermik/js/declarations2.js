@@ -41,7 +41,7 @@ export const addNote = (title, content) => {
     addCurrentNoteToHTMLList(notesArr.length - 1);
 }
 
-export const editCurrentNoteInHTMLList = noteIndex => {
+export const updateCurrentNoteInHTMLList = noteIndex => {
     let markup = '';
     let partialMarkup = '';
     notesArr.forEach(note => {

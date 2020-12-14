@@ -2,11 +2,13 @@ import {
     notesArr,
     clearForm,
     addNote,
-    editCurrentNoteInHTMLList,
+    updateCurrentNoteInHTMLList,
+    editCurrentNoteInArray,
+    // deleteCurrentNoteInHTMLList,
+    deleteCurrentNoteInArray,
     showNoteToEdit,
     saveFile,
-    editCurrentNoteInArray
-} from './declarations3.js';
+} from './declarations.js';
 import {
     buttonAddEl,
     formNoteContentEl,
@@ -15,12 +17,12 @@ import {
     buttonSaveEl,
     formEL,
     buttonEditEl,
-    
+    buttonDeleteEl
 } from './dom.js'
 
 
 const evermik = _ => {
-    
+
     let currentNoteIndex;
 
     ///////////// ADD NOTE    
@@ -52,9 +54,16 @@ const evermik = _ => {
 
     buttonEditEl.addEventListener("click", _ => {
         editCurrentNoteInArray(currentNoteIndex);
-        editCurrentNoteInHTMLList(currentNoteIndex);
+        updateCurrentNoteInHTMLList(currentNoteIndex);
     })
-    
+
+    ///////////// DELETE NOTE    
+
+    buttonDeleteEl.addEventListener("click", _ => {
+        deleteCurrentNoteInArray(currentNoteIndex);
+        updateCurrentNoteInHTMLList(currentNoteIndex);
+    })
+
     ///////////// SAVE FILE    
 
     buttonSaveEl.addEventListener("click",

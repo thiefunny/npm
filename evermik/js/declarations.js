@@ -2,7 +2,8 @@ import {
     formNoteTitleEl,
     formNoteContentEl,
     notesListUlEL,
-    buttonEditEl
+    buttonEditEl,
+    buttonDeleteEl
 } from './dom.js'
 
 export const notesArr = [];
@@ -43,6 +44,7 @@ export const showNoteToEdit = (noteIndex) => {
     formNoteTitleEl.value = notesArr[noteIndex].title;
     formNoteContentEl.value = notesArr[noteIndex].content;
     buttonEditEl.classList.remove("hidden");
+    buttonDeleteEl.classList.remove("hidden");
 }
 
 export const editCurrentNoteInArray = noteIndex => {
@@ -50,7 +52,12 @@ export const editCurrentNoteInArray = noteIndex => {
     notesArr[noteIndex].content = formNoteContentEl.value;
 }
 
-export const editCurrentNoteInHTMLList = noteIndex => {
+export const deleteCurrentNoteInArray = noteIndex => {
+    notesArr.splice(noteIndex,1);
+    
+}
+
+export const updateCurrentNoteInHTMLList = noteIndex => {
     let markup = '';
     let partialMarkup = '';
     notesArr.forEach(note => {

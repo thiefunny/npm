@@ -4,7 +4,7 @@ import {
     clearForm,
     addNote,
     addCurrentNoteToHTMLList,
-    editCurrentNoteInHTMLList,
+    updateCurrentNoteInHTMLList,
     showNoteToEdit,
     saveFile,
     // showNoteToEdit
@@ -29,7 +29,7 @@ const evermik = _ => {
         notesArr[currentNoteIndex].title = formNoteTitleEl.value;
         notesArr[currentNoteIndex].content = formNoteContentEl.value;
         console.log(notesArr)
-        editCurrentNoteInHTMLList(currentNoteIndex);
+        updateCurrentNoteInHTMLList(currentNoteIndex);
     })
 
     ///////////// ADD NOTE    
