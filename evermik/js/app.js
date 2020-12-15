@@ -17,7 +17,9 @@ import {
     buttonSaveEl,
     formEL,
     buttonEditEl,
-    buttonDeleteEl
+    buttonDeleteEl,
+    buttonAttachEl,
+    divAttachEl
 } from './dom.js'
 
 
@@ -63,6 +65,37 @@ const evermik = _ => {
         deleteCurrentNoteInArray(currentNoteIndex);
         updateCurrentNoteInHTMLList(currentNoteIndex);
     })
+
+    ///////////// ATTACH A FILE    
+
+    // divAttachEl.addEventListener("drop", event => {
+    //     // event.dataTransfer.files
+    //     event.
+    // })
+    divAttachEl.ondragenter = event => {
+        // event.preventDefault();
+        event.preventDefault();
+        // event.stopPropagation();
+        console.log('mikenter');
+    };
+
+    divAttachEl.ondragover = event => {
+        event.preventDefault();
+        // event.stopPropagation();
+        console.log('mikover');
+    };
+
+    divAttachEl.ondrop = event => {
+        event.preventDefault();
+        // event.stopPropagation();
+        console.log('mikdrop');
+    };
+
+    // divAttachEl.onclick = _ => console.log('miki')
+    // divAttachEl.addEventListener("click", _ => console.log('miki2'))
+    // divAttachEl.ondragenter = _ => console.log('mik');
+    // window.ondragend(console.log('mik'))
+
 
     ///////////// SAVE FILE    
 
