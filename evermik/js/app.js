@@ -73,7 +73,6 @@ const evermik = _ => {
     //     event.
     // })
     divAttachEl.ondragenter = event => {
-        // event.preventDefault();
         event.preventDefault();
         // event.stopPropagation();
         console.log('mikenter');
@@ -91,10 +90,7 @@ const evermik = _ => {
         console.log('mikdrop');
     };
 
-    // divAttachEl.onclick = _ => console.log('miki')
-    // divAttachEl.addEventListener("click", _ => console.log('miki2'))
-    // divAttachEl.ondragenter = _ => console.log('mik');
-    // window.ondragend(console.log('mik'))
+
 
 
     ///////////// SAVE FILE    
