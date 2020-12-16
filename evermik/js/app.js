@@ -8,6 +8,7 @@ import {
     deleteCurrentNoteInArray,
     showNoteToEdit,
     saveFile,
+    loadFile
     } from './declarations.js';
 import {
     buttonAddEl,
@@ -93,11 +94,6 @@ const evermik = _ => {
 
     ///////////// LOAD NOTES 
 
-    const loadFile = _ => {
-        fetch(notes.txt)
-        .then(response => response.text())
-        .then(response => console.log(response));
-    }
     buttonLoadEl.addEventListener('click', loadFile);
 
     ///////////// SAVE FILE    

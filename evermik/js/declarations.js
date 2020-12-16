@@ -6,7 +6,7 @@ import {
     buttonDeleteEl
 } from './dom.js'
 
-export const notesArr = [];
+export let notesArr = [];
 
 export class Note {
     constructor(title, content) {
@@ -72,11 +72,15 @@ export const updateCurrentNoteInHTMLList = noteIndex => {
     notesListUlEL.innerHTML = markup;
 };
 
-
-
-
-
-
+export const loadFile = _ => {
+    fetch('notes.txt')
+    .then(response => response.json())
+    .then(loadedArray => {
+        notesArr = loadedArray;
+        // console.log(notesArr);
+        updateCurrentNoteInHTMLList();
+    });
+}
 
 
 
