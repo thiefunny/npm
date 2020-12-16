@@ -8,7 +8,7 @@ import {
     deleteCurrentNoteInArray,
     showNoteToEdit,
     saveFile,
-} from './declarations.js';
+    } from './declarations.js';
 import {
     buttonAddEl,
     formNoteContentEl,
@@ -19,7 +19,8 @@ import {
     buttonEditEl,
     buttonDeleteEl,
     buttonAttachEl,
-    divAttachEl
+    divAttachEl,
+    buttonLoadEl
 } from './dom.js'
 
 
@@ -90,8 +91,14 @@ const evermik = _ => {
         console.log('mikdrop');
     };
 
+    ///////////// LOAD NOTES 
 
-
+    const loadFile = _ => {
+        fetch(notes.txt)
+        .then(response => response.text())
+        .then(response => console.log(response));
+    }
+    buttonLoadEl.addEventListener('click', loadFile);
 
     ///////////// SAVE FILE    
 

@@ -4,10 +4,11 @@ export const buttonAttachEl = document.querySelector(".attach-to-note");
 
 export const divAttachEl = document.querySelector(".dragto");
 
-
 export const buttonEditEl = document.querySelector(".edit-note");
 
 export const buttonDeleteEl = document.querySelector(".delete-note");
+
+export const buttonLoadEl = document.querySelector(".load-notes");
 
 export const buttonSaveEl = document.querySelector(".save-notes");
 
