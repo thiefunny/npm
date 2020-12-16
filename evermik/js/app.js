@@ -2,7 +2,7 @@ import {
     notesArr,
     clearForm,
     addNote,
-    updateCurrentNoteInHTMLList,
+    updateHTMLList,
     editCurrentNoteInArray,
     // deleteCurrentNoteInHTMLList,
     deleteCurrentNoteInArray,
@@ -58,14 +58,14 @@ const evermik = _ => {
 
     buttonEditEl.addEventListener("click", _ => {
         editCurrentNoteInArray(currentNoteIndex);
-        updateCurrentNoteInHTMLList(currentNoteIndex);
+        updateHTMLList(currentNoteIndex);
     })
 
     ///////////// DELETE NOTE    
 
     buttonDeleteEl.addEventListener("click", _ => {
         deleteCurrentNoteInArray(currentNoteIndex);
-        updateCurrentNoteInHTMLList(currentNoteIndex);
+        updateHTMLList(currentNoteIndex);
     })
 
     ///////////// ATTACH A FILE    
@@ -94,7 +94,8 @@ const evermik = _ => {
 
     ///////////// LOAD NOTES 
 
-    buttonLoadEl.addEventListener('click', loadFile);
+    // buttonLoadEl.addEventListener('click', loadFile);
+    window.onload = _ => loadFile();
 
     ///////////// SAVE FILE    
 

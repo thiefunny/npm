@@ -2,7 +2,7 @@ import {
     notesArr,
     clearForm,
     addNote,
-    updateCurrentNoteInHTMLList,
+    updateHTMLList,
     showNoteToEdit,
     saveFile,
     editCurrentNoteInArray
@@ -52,7 +52,7 @@ const evermik = _ => {
 
     buttonEditEl.addEventListener("click", _ => {
         editCurrentNoteInArray(currentNoteIndex);
-        updateCurrentNoteInHTMLList(currentNoteIndex);
+        updateHTMLList(currentNoteIndex);
     })
     
     ///////////// SAVE FILE    

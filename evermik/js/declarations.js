@@ -57,7 +57,7 @@ export const deleteCurrentNoteInArray = noteIndex => {
     
 }
 
-export const updateCurrentNoteInHTMLList = noteIndex => {
+export const updateHTMLList = noteIndex => {
     let markup = '';
     let partialMarkup = '';
     notesArr.forEach(note => {
@@ -73,16 +73,13 @@ export const updateCurrentNoteInHTMLList = noteIndex => {
 };
 
 export const loadFile = _ => {
-    fetch('notes.txt')
+    fetch('./notes/notes.txt')
     .then(response => response.json())
     .then(loadedArray => {
         notesArr = loadedArray;
-        // console.log(notesArr);
-        updateCurrentNoteInHTMLList();
+        updateHTMLList();
     });
 }
-
-
 
 export const saveFile = (filename, text) => {
     var element = document.createElement('a');

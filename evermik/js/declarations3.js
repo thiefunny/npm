@@ -50,7 +50,7 @@ export const editCurrentNoteInArray = noteIndex => {
     notesArr[noteIndex].content = formNoteContentEl.value;
 }
 
-export const updateCurrentNoteInHTMLList = noteIndex => {
+export const updateHTMLList = noteIndex => {
     let markup = '';
     let partialMarkup = '';
     notesArr.forEach(note => {
