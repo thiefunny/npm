@@ -22,26 +22,75 @@ const splines = _ => {
 
 }
 
+window.addEventListener("mousemove", mouse => {
 
-
-
+console.log(mouse.clientX);
+console.log(mouse.clientY);
 
 svgEl.innerHTML = `
 
 <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${wMax}" height="${hMax}" viewBox="0 0 ${wMax} ${hMax}">
 
+<circle r="10" cx="${mouse.clientX}" cy="${mouse.clientY}" fill="white"/>
 
-    <path id="my-path" stroke="black" d="M${wMax/2}, ${hMax/2}, ${splines()}"/>
 
-    <circle r="10" fill="blue" stroke="blue">
+    <!-- <path id="my-path" stroke="green" d="M${wMax/2}, ${hMax/2}, ${splines()}"/> -->
+
+    <!-- <circle r="10" fill="blue" stroke="blue">
         <animateMotion dur="10s" repeatCount="indefinite">
 
         <mpath xlink:href="#my-path" />
     
         </animateMotion>
 
-    </circle>
+    </circle> -->
 
 </svg>
 
 `
+
+
+
+    // return {
+    //     cx: mouse.clientX,
+    //     cy: mouse.clientY
+    // };
+
+})
+
+// const cxy = mouse => {
+
+//     let cx = 500,
+//         cy = 500;
+ 
+//         return {
+//         cx: cx,
+//         cy: cy
+//     };
+
+// }
+
+console.log(cxy())
+
+
+// svgEl.innerHTML = `
+
+// <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${wMax}" height="${hMax}" viewBox="0 0 ${wMax} ${hMax}">
+
+// <circle r="10" cx="${cxy().cx}" cy="${cxy().cy}" fill="white"/>
+
+
+//     <!-- <path id="my-path" stroke="green" d="M${wMax/2}, ${hMax/2}, ${splines()}"/> -->
+
+//     <!-- <circle r="10" fill="blue" stroke="blue">
+//         <animateMotion dur="10s" repeatCount="indefinite">
+
+//         <mpath xlink:href="#my-path" />
+    
+//         </animateMotion>
+
+//     </circle> -->
+
+// </svg>
+
+// `
