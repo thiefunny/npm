@@ -1,71 +1,59 @@
 const svgDivEl = document.querySelector('.svg')
 const wMax = window.innerWidth;
 const hMax = window.innerHeight;
-
-// const splines = _ => {
-
-//     let qArray = [],
-//         qdx, qdy, qx, qy, qTemp;
-
-//     for (i = 0; i < 100; i++) {
-
-//         qdx = Math.round(Math.random() * 50) - 25;
-//         qdy = Math.round(Math.random() * 50) - 25;
-//         qx = Math.round(Math.random() * 100) - 50
-//         qy = Math.round(Math.random() * 100) - 50
-//         qTemp = `s${qdx} ${qdy}, ${qx} ${qy}, `
-//         qArray.push(qTemp);
-//         // console.log(qArray.join(''))
-//     }
-
-//     return qArray.join('');
-
-// }
+let circleX, circleY;
+circleX = wMax / 2;
+circleY = hMax / 2;
 
 svgDivEl.innerHTML = `
-
 <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${wMax}" height="${hMax}" viewBox="0 0 ${wMax} ${hMax}">
-
-   
+<circle r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
 </svg>
 
 `
 const svgEl = document.querySelector('svg')
-
+let speed = 30
 
 window.addEventListener("mousemove", mouse => {
 
-// console.log(mouse.clientX);
-// console.log(mouse.clientY);
+    let distCursor, distCursorX, distCursorY;
 
 
+    const cx = _ => {
 
+        let distCursorX = Math.abs(mouse.clientX - circleX)
+        let distCursorY = Math.abs(mouse.clientY - circleY)
+        let circleSpeedX = 1 / distCursorX * speed
+        let circleSpeedY = 1 / distCursorY * speed
 
-svgEl.innerHTML = `
-<circle r="10" cx="${mouse.clientX}" cy="${mouse.clientY}" fill="white"/>
+        if (mouse.clientX > circleX) {
+            circleX -= circleSpeedX
+        } else {
+            circleX += circleSpeedX
+        }
 
-`
+        if (mouse.clientY > circleY) {
+            circleY -= circleSpeedY
+        } else {
+            circleY += circleSpeedY
+        }
 
-    // return {
-    //     cx: mouse.clientX,
-    //     cy: mouse.clientY
-    // };
+        return {
+            circleX,
+            circleY
+        };
+
+    }
+
+    // console.log(cx());
+
+    svgEl.innerHTML = `
+
+    <circle r="10" cx="${cx().circleX}" cy="${cx().circleY}" fill="white"/>
+
+    `
 
 })
-
-// const cxy = mouse => {
-
-//     let cx = 500,
-//         cy = 500;
- 
-//         return {
-//         cx: cx,
-//         cy: cy
-//     };
-
-// }
-
-// console.log(cxy())
 
 
 // svgEl.innerHTML = `
@@ -81,7 +69,7 @@ svgEl.innerHTML = `
 //         <animateMotion dur="10s" repeatCount="indefinite">
 
 //         <mpath xlink:href="#my-path" />
-    
+
 //         </animateMotion>
 
 //     </circle> -->
