@@ -10,15 +10,23 @@
 </head>
 
 <body>
-<div class="container">
-    <div class="svg">
-        
+    <div class="container">
+        <div class="svg">
+            <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000">
+                <circle id="my-circle" r="30" cx="50" cy="50" fill="orange" />
+
+                <animate xlink:href="#my-circle" attributeName="cx" from="50" to="450" dur="1s" 
+                    fill="freeze" />
+
+
+            </svg>
+        </div>
     </div>
-</div>
     <div class="aboutme">
         asdadasd
     </div>
-<script src="source/js/anim2.js"></script>
+    <script src="source/js/anim3.js"></script>
 
 
 </body>
