@@ -4,70 +4,163 @@ const hMax = window.innerHeight;
 let circleX, circleY;
 circleX = wMax / 2;
 circleY = hMax / 2;
-circleXprev = circleX
-circleYprev = circleY
+const wMin = 0;
+const hMin = 0;
+const distSteps = 100
+let fearDistance = 200
+const refreshRate = 10;
+let distStepsWobble = 10;
 
 svgDivEl.innerHTML = `
 <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${wMax}" height="${hMax}" viewBox="0 0 ${wMax} ${hMax}">
-<circle id="circle" r="10" cx="${circleXprev}" cy="${circleYprev}" fill="white"/>
+<circle id="circle" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
 </svg>
 
 `
 
 const svgEl = document.querySelector('svg')
 const svgCirEl = document.querySelector('circle')
-let speed = 30000
-let fear = 2
 
-const mouseRead = mouse => {
-    // let render;
+let targetCircleX, targetCircleY;
+let distNextStepY, distNextStepX;
 
-    // clearInterval(render)
+const getCirclePos = attribute => Number(svgCirEl.getAttribute(`${attribute}`));
 
-    let distCursorX = Math.abs(mouse.clientX - circleX)
-    let distCursorY = Math.abs(mouse.clientY - circleY)
-    let targetCircleX, targetCircleY;
-    const getCircleX = _ => svgCirEl.getAttribute("cx");
-    // console.log(getCircleX)
+const randomTarget = _ => {
+    targetCircleX = getCirclePos('cx') + Math.random() * 100 - 50;
+    targetCircleY = getCirclePos('cy') + Math.random() * 100 - 50;
+}
 
-    if ((mouse.clientX - getCircleX()) > 10) {
-
-        targetCircleX = mouse.clientX - 200
-    } else {
-        targetCircleX = mouse.clientX + 200;
-
-    }
-
-    // console.log(targetCircleX)
-
-    // if ((mouse.clientY - circleY) > 10) {
-
-    //     circleY = mouse.clientY - 200
-    // } else if ((mouse.clientY - circleY) < -10) {
-    //     circleY = mouse.clientY + 200
-    // }
-
-    circleX = Number(getCircleX());
-
-    let render = setInterval(_ => {
-
-        distNextStepX = Math.abs(targetCircleX - getCircleX());
-
-        if (distNextStepX > 1) {
-            if (targetCircleX > getCircleX()) {
-                circleX += distNextStepX / 20;
-            } else {
-                circleX -= distNextStepX / 20
-            }
-            svgCirEl.setAttribute("cx", `${circleX}`)
-
-        } else {
-            clearInterval(render)
-        }
-
-    }, 10)
+const wobble = _ => {
 
 }
 
-// window.addEventListener("click", mouseRead)
-window.addEventListener("click", mouseRead);
+let reqAnimID;
+
+const mouseRead = mouse => {
+
+    cancelAnimationFrame(reqAnimID);
+
+
+    let mouseX = mouse.clientX;
+    let mouseY = mouse.clientY;
+
+    console.log('mouseX')
+    console.log(mouseX)
+    // console.log(mouseY)
+
+    const distCursorX = _ => Math.abs(mouseX - getCirclePos('cx'))
+    const distCursorY = _ => Math.abs(mouseY - getCirclePos('cy'))
+    const distCursor = _ => Math.sqrt(Math.pow(distCursorX(), 2) + Math.pow(distCursorY(), 2))
+
+    if (distCursor() < fearDistance) {
+
+        targetCircleX = getCirclePos('cx') - (mouseX - getCirclePos('cx'))
+        targetCircleY = getCirclePos('cy') - (mouseY - getCirclePos('cy'))
+
+        circleX = getCirclePos('cx');
+        circleY = getCirclePos('cy');
+
+        // console.log('circleX')
+        // console.log(circleX)
+
+        // console.log('distCursor')
+        // console.log(distCursor())
+
+        const animToTarget = (targetCircleX, targetCircleY) => {
+
+            distNextStepY = Math.abs(targetCircleY - getCirclePos('cy'));
+            distNextStepX = Math.abs(targetCircleX - getCirclePos('cx'));
+
+            // console.log('targetCircleX')
+            // console.log(targetCircleX)
+
+            // console.log(`getCirclePos('cx')`)
+            // console.log(getCirclePos('cx'))
+
+            // if (distNextStepY > 1) {
+
+            //     if (targetCircleY > getCirclePos('cy')) {
+
+            //         circleY += distNextStepY / distSteps;
+
+            //         if (getCirclePos('cy') > hMax) {
+            //             circleY = hMin;
+            //             targetCircleY -= hMax;
+            //         }
+
+            //     } else {
+
+            //         circleY -= distNextStepY / distSteps;
+
+            //         if (getCirclePos('cy') < hMin) {
+            //             circleY = hMax;
+            //             targetCircleY += hMax;
+            //         }
+
+            //     }
+
+            //     svgCirEl.setAttribute("cy", `${circleY}`)
+
+            // }
+
+            // if (distNextStepX > 1) {
+
+            if (targetCircleX > getCirclePos('cx')) {
+
+                circleX += distNextStepX / distSteps;
+
+                if (getCirclePos('cx') > wMax) {
+                    circleX = wMin;
+                    targetCircleX -= wMax;
+                }
+
+            } else {
+
+                circleX -= distNextStepX / distSteps;
+
+                if (getCirclePos('cx') < wMin) {
+                    circleX = wMax;
+                    targetCircleX += wMax;
+                }
+
+            }
+
+            svgCirEl.setAttribute("cx", `${circleX}`)
+
+            // }
+
+            reqAnimID = requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY));
+            // console.log('Math.round(targetCircleX)')
+            // console.log(Math.round(targetCircleX))
+            // console.log('Math.round(circleX)')
+            // console.log(Math.round(circleX))
+        }
+
+        requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY));
+        // requestAnimationFrame(animToTarget);
+        // cancelAnimationFrame(reqAnimID)
+        // // if ((circleX - targetCircleX) > 1 || (circleX - targetCircleX) < 1) {
+
+
+        // if (Math.round(targetCircleX) === Math.round(circleX)) {
+        //     cancelAnimationFrame(reqAnimID);
+        //     console.log('cancelled')
+        // }
+
+        //     }
+
+    } else {
+
+        // cancelAnimationFrame(reqAnimID);
+
+        console.log('cancelled')
+    }
+
+}
+
+
+// wobble();
+
+
+window.addEventListener("mousemove", mouseRead);
