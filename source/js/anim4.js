@@ -19,72 +19,72 @@ svgDivEl.innerHTML = `
 <circle id="circle1" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
 <circle id="circle2" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
 <circle id="circle3" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
-<circle id="circle3" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
-<circle id="circle3" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
-<circle id="circle3" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
 </svg>
 
 `
 
 const svgEl = document.querySelector('svg')
 const svgCirEl = document.querySelector('circle')
-const svgCirclesEl = document.querySelectorAll('circle')
+const svgCirclesEl = [...document.querySelectorAll('circle')]
 
-console.log(svgCirclesEl)
+console.log(svgCirclesEl);
+
+
 
 let targetCircleX, targetCircleY;
 
-const getCirclePos = attribute => Number(svgCirEl.getAttribute(`${attribute}`));
+const getCirclePos = (attribute, elem) => Number(elem.getAttribute(`${attribute}`));
 
 let reqAnimID;
 let i;
 
-const animToTarget = (targetCircleX, targetCircleY, animSteps, animDeceleration) => {
+const animToTarget = (targetCircleX, targetCircleY, animSteps, animDeceleration, element) => {
 
     i++;
 
     if (i < animSteps) {
 
-        if (getCirclePos('cx') < wMin) {
-            svgCirEl.setAttribute("cx", `${wMax}`)
+        if (getCirclePos('cx', element) < wMin) {
+            element.setAttribute("cx", `${wMax}`)
             targetCircleX = wMax + targetCircleX
         }
 
-        if (getCirclePos('cx') > wMax) {
-            svgCirEl.setAttribute("cx", `${wMin}`)
+        if (getCirclePos('cx', element) > wMax) {
+            element.setAttribute("cx", `${wMin}`)
             targetCircleX = wMin + targetCircleX - wMax
 
         }
 
-        if (getCirclePos('cy') > hMax) {
-            svgCirEl.setAttribute("cy", `${hMin}`)
+        if (getCirclePos('cy', element) > hMax) {
+            element.setAttribute("cy", `${hMin}`)
             targetCircleY = hMin + targetCircleY - hMax
         }
 
-        if (getCirclePos('cy') < hMin) {
-            svgCirEl.setAttribute("cy", `${hMax}`)
+        if (getCirclePos('cy', element) < hMin) {
+            element.setAttribute("cy", `${hMax}`)
             targetCircleY = hMax + targetCircleY
         }
 
-        svgCirEl.setAttribute("cx", `${getCirclePos('cx') + (targetCircleX - getCirclePos('cx')) / animDeceleration}`);
-        svgCirEl.setAttribute("cy", `${getCirclePos('cy') + (targetCircleY - getCirclePos('cy')) / animDeceleration}`);
+        element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / animDeceleration}`);
+        element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / animDeceleration}`);
 
-        reqAnimID = requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY, wobbleAnimSteps, wobbleDeceleration))
+        reqAnimID = requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY, wobbleAnimSteps, wobbleDeceleration, element))
     } else {
         cancelAnimationFrame(reqAnimID)
     }
 
 }
 
-const wobble = _ => {
+const wobble = elem => {
 
-    let x = 50;
-    targetCircleX = getCirclePos('cx') + Math.random() * x - x/2;
-    targetCircleY = getCirclePos('cy') + Math.random() * x - x/2;
+    let x = 100;
+
+    let targetCircleX = getCirclePos('cx', elem) + Math.random() * x - x / 2;
+    let targetCircleY = getCirclePos('cy', elem) + Math.random() * x - x / 2;
 
     i = 0;
 
-    requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY, fearAnimSteps, fearDeceleration))
+    requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY, wobbleAnimSteps, wobbleDeceleration, elem))
 
 }
 
@@ -106,12 +106,16 @@ const mouseRead = mouse => {
         targetCircleX = getCirclePos('cx') + fearDistance * (getCirclePos('cx') - mouseX) / distCursor()
         targetCircleY = getCirclePos('cy') + fearDistance * (getCirclePos('cy') - mouseY) / distCursor()
 
-        requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY, fearAnimSteps, fearDeceleration))
+        requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY, fearAnimSteps, fearDeceleration, svgCirEl))
 
     }
 }
 
-setInterval(wobble, 2000)
+svgCirclesEl.forEach(elem => setInterval(_ => wobble(elem), 1000))
+
+// setInterval(_ => wobble(svgCirclesEl[0]), 1000)
+// setInterval(_ => wobble(svgCirclesEl[1]), 1000)
+// setInterval(_ => wobble(svgCirclesEl[2]), 1000)
 
 
 window.addEventListener("mousemove", mouseRead);
