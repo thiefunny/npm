@@ -1,15 +1,18 @@
 const svgDivEl = document.querySelector('.svg')
 const wMax = window.innerWidth;
 const hMax = window.innerHeight;
-let circleX, circleY;
-circleX = wMax / 2;
-circleY = hMax / 2;
+let circleX = wMax / 2;
+let circleY = hMax / 2;
 const wMin = 0;
 const hMin = 0;
-const distSteps = 100
-let fearDistance = 200
-const refreshRate = 10;
-let distStepsWobble = 10;
+
+const wobbleDeceleration = 20;
+const wobbleAnimSteps = 100;
+
+const fearDistance = 100
+const fearDeceleration = 10
+const fearAnimSteps = 50;
+
 
 svgDivEl.innerHTML = `
 <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${wMax}" height="${hMax}" viewBox="0 0 ${wMax} ${hMax}">
@@ -22,24 +25,62 @@ const svgEl = document.querySelector('svg')
 const svgCirEl = document.querySelector('circle')
 
 let targetCircleX, targetCircleY;
-let distNextStepY, distNextStepX;
 
 const getCirclePos = attribute => Number(svgCirEl.getAttribute(`${attribute}`));
 
-const randomTarget = _ => {
-    targetCircleX = getCirclePos('cx') + Math.random() * 100 - 50;
-    targetCircleY = getCirclePos('cy') + Math.random() * 100 - 50;
+let reqAnimID;
+let i;
+
+const animToTarget = (targetCircleX, targetCircleY, animSteps, animDeceleration) => {
+
+    i++;
+
+    if (i < animSteps) {
+
+        if (getCirclePos('cx') < wMin) {
+            svgCirEl.setAttribute("cx", `${wMax}`)
+            targetCircleX = wMax + targetCircleX
+        }
+
+        if (getCirclePos('cx') > wMax) {
+            svgCirEl.setAttribute("cx", `${wMin}`)
+            targetCircleX = wMin + targetCircleX - wMax
+
+        }
+
+        if (getCirclePos('cy') > hMax) {
+            svgCirEl.setAttribute("cy", `${hMin}`)
+            targetCircleY = hMin + targetCircleY - hMax
+        }
+
+        if (getCirclePos('cy') < hMin) {
+            svgCirEl.setAttribute("cy", `${hMax}`)
+            targetCircleY = hMax + targetCircleY
+        }
+
+        svgCirEl.setAttribute("cx", `${getCirclePos('cx') + (targetCircleX - getCirclePos('cx')) / animDeceleration}`);
+        svgCirEl.setAttribute("cy", `${getCirclePos('cy') + (targetCircleY - getCirclePos('cy')) / animDeceleration}`);
+
+        reqAnimID = requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY, wobbleAnimSteps, wobbleDeceleration))
+    } else {
+        cancelAnimationFrame(reqAnimID)
+    }
+
 }
 
 const wobble = _ => {
 
+    let x = 50;
+    targetCircleX = getCirclePos('cx') + Math.random() * x - x/2;
+    targetCircleY = getCirclePos('cy') + Math.random() * x - x/2;
+
+    i = 0;
+
+    requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY, fearAnimSteps, fearDeceleration))
+
 }
 
-let reqAnimID;
-
 const mouseRead = mouse => {
-
-    // cancelAnimationFrame(reqAnimID);
 
     let mouseX = mouse.clientX;
     let mouseY = mouse.clientY;
@@ -48,107 +89,22 @@ const mouseRead = mouse => {
     const distCursorX = _ => Math.abs(mouseX - getCirclePos('cx'))
     const distCursorY = _ => Math.abs(mouseY - getCirclePos('cy'))
     const distCursor = _ => Math.sqrt(Math.pow(distCursorX(), 2) + Math.pow(distCursorY(), 2))
-    let angle = _ => Math.tan(distCursorY/distCursorX)
 
     if (distCursor() < fearDistance) {
 
-        targetCircleX = getCirclePos('cx') + fearDistance*(-(getCirclePos('cx')-mouseX)/distCursor)
-        targetCircleY = getCirclePos('cy') + fearDistance*(-(getCirclePos('cy')-mouseY)/distCursor)
+        i = 0;
 
-        // circleX = getCirclePos('cx');
-        circleY = getCirclePos('cy');
+        cancelAnimationFrame(reqAnimID);
 
-        svgCirEl.setAttribute("cy", `${targetCircleY}`)
-        svgCirEl.setAttribute("cx", `${targetCircleX}`)
+        targetCircleX = getCirclePos('cx') + fearDistance * (getCirclePos('cx') - mouseX) / distCursor()
+        targetCircleY = getCirclePos('cy') + fearDistance * (getCirclePos('cy') - mouseY) / distCursor()
 
+        requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY, fearAnimSteps, fearDeceleration))
 
-        const animToTarget = (targetCircleX, targetCircleY) => {
-
-            distNextStepY = Math.abs(targetCircleY - getCirclePos('cy'));
-            distNextStepX = Math.abs(targetCircleX - getCirclePos('cx'));
-
-            // if (distNextStepY > 1) {
-
-                // if (targetCircleY > getCirclePos('cy')) {
-
-                //     circleY += distNextStepY / distSteps;
-
-                //     if (getCirclePos('cy') > hMax) {
-                //         circleY = hMin;
-                //         targetCircleY -= hMax;
-                //     }
-
-                // } else {
-
-                //     circleY -= distNextStepY / distSteps;
-
-                //     if (getCirclePos('cy') < hMin) {
-                //         circleY = hMax;
-                //         targetCircleY += hMax;
-                //     }
-
-                // }
-
-                
-
-            
-
-            // if (distNextStepX > 1) {
-
-            // if (targetCircleX > getCirclePos('cx')) {
-
-            //     circleX += distNextStepX / distSteps;
-
-            //     if (getCirclePos('cx') > wMax) {
-            //         circleX = wMin;
-            //         targetCircleX -= wMax;
-            //     }
-
-            // } else {
-
-            //     circleX -= distNextStepX / distSteps;
-
-            //     if (getCirclePos('cx') < wMin) {
-            //         circleX = wMax;
-            //         targetCircleX += wMax;
-            //     }
-
-            // }
-
-
-            // }
-
-            reqAnimID = requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY));
-            // console.log('Math.round(targetCircleX)')
-            // console.log(Math.round(targetCircleX))
-            // console.log('Math.round(circleX)')
-            // console.log(Math.round(circleX))
-        }
-
-        // requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY));
-        // requestAnimationFrame(animToTarget);
-        // cancelAnimationFrame(reqAnimID)
-        // // if ((circleX - targetCircleX) > 1 || (circleX - targetCircleX) < 1) {
-
-
-        // if (Math.round(targetCircleX) === Math.round(circleX)) {
-        //     cancelAnimationFrame(reqAnimID);
-        //     console.log('cancelled')
-        // }
-
-        //     }
-
-    } else {
-
-        // cancelAnimationFrame(reqAnimID);
-
-        console.log('cancelled')
     }
-
 }
 
-
-// wobble();
+setInterval(wobble, 2000)
 
 
 window.addEventListener("mousemove", mouseRead);
