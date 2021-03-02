@@ -17,11 +17,6 @@ const fearAnimSteps = 50;
 svgDivEl.innerHTML = `
 <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${wMax}" height="${hMax}" viewBox="0 0 ${wMax} ${hMax}">
 <circle id="circle1" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
-<circle id="circle2" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
-<circle id="circle3" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
-<circle id="circle3" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
-<circle id="circle3" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
-<circle id="circle3" r="10" cx="${circleX}" cy="${circleY}" fill="white"/>
 </svg>
 
 `
@@ -71,7 +66,7 @@ const animToTarget = (targetCircleX, targetCircleY, animSteps, animDeceleration)
 
         reqAnimID = requestAnimationFrame(_ => animToTarget(targetCircleX, targetCircleY, wobbleAnimSteps, wobbleDeceleration))
     } else {
-        cancelAnimationFrame(reqAnimID)
+        // cancelAnimationFrame(reqAnimID)
     }
 
 }
@@ -101,7 +96,7 @@ const mouseRead = mouse => {
 
         i = 0;
 
-        cancelAnimationFrame(reqAnimID);
+        // cancelAnimationFrame(reqAnimID);
 
         targetCircleX = getCirclePos('cx') + fearDistance * (getCirclePos('cx') - mouseX) / distCursor()
         targetCircleY = getCirclePos('cy') + fearDistance * (getCirclePos('cy') - mouseY) / distCursor()
@@ -111,7 +106,7 @@ const mouseRead = mouse => {
     }
 }
 
-setInterval(wobble, 2000)
+// setInterval(wobble, 2000)
 
 
 window.addEventListener("mousemove", mouseRead);

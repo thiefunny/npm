@@ -28,7 +28,7 @@ const svgCirclesEl = [...document.querySelectorAll('circle')]
 //     elem.setAttribute('id', i)
 // }
 
-// let targetCircleX, targetCircleY;
+let targetCircleX, targetCircleY;
 
 const getCirclePos = (attribute, elem) => Number(elem.getAttribute(`${attribute}`));
 
@@ -92,6 +92,7 @@ const wobble = (element) => {
 const fearDistance = 100
 const fearDeceleration = 10;
 const fearAnimSteps = 30;
+let reqAnimID;
 // let ar = new Array
 
 
@@ -200,50 +201,40 @@ const animToTarget = (element, targetCircleX, targetCircleY) => {
 
     element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / fearDeceleration}`);
     element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / fearDeceleration}`);
-    reqAnimID = requestAnimationFrame(_ => animToTarget(element, targetCircleX, targetCircleY))
 
+    requestAnimationFrame(_ => animToTarget(element, targetCircleX, targetCircleY))
 }
-// let miki
-window.addEventListener("click", mouse => {
+
+window.addEventListener("mousemove", mouse => {
 
     let mouseX = mouse.clientX;
     let mouseY = mouse.clientY;
 
-    svgCirclesEl.forEach(element => {
+    // console.log(svgCirclesEl)
+
+    for (let element of svgCirclesEl) {
+
+    // svgCirclesEl.forEach(element => {
 
         const distCursorX = _ => Math.abs(mouseX - getCirclePos('cx', element))
         const distCursorY = _ => Math.abs(mouseY - getCirclePos('cy', element))
         const distCursor = _ => Math.sqrt(Math.pow(distCursorX(), 2) + Math.pow(distCursorY(), 2))
 
-        let targetCircleX = getCirclePos('cx', element) + fearDistance * (getCirclePos('cx', element) - mouseX) / distCursor()
-        let targetCircleY = getCirclePos('cy', element) + fearDistance * (getCirclePos('cy', element) - mouseY) / distCursor()
+        if (distCursor() < fearDistance) {
+
+        targetCircleX = getCirclePos('cx', element) + fearDistance * (getCirclePos('cx', element) - mouseX) / distCursor()
+        targetCircleY = getCirclePos('cy', element) + fearDistance * (getCirclePos('cy', element) - mouseY) / distCursor()
+
+    //     requestAnimationFrame(_ => {
+    //     element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / fearDeceleration}`);
+    //     element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / fearDeceleration}`);
+        requestAnimationFrame(_ => animToTarget(element, targetCircleX, targetCircleY))
+        // })
+        }
 
 
-        // WSZYSKIT TARGETY ŁADOWAĆ DO ARRAYA A NASTĘPNIE BRAĆ JE KAŻDY Z OSOBNA DO SETATTRIBUTE
-        // let reqAnimId = requestAnimationFrame(_ => {
+    }
 
-
-        element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / fearDeceleration}`);
-        element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / fearDeceleration}`);
-        // requestAnimationFrame(reqAnimId)
-
-    // })
-
-
-        reqAnimID = requestAnimationFrame(_ => animToTarget(element, targetCircleX, targetCircleY))
-
-        
-
-    // reqAnimID = requestAnimationFrame(_ => animToTarget(element, targetCircleX, targetCircleY))
-// console.log(reqAnimID)
-
-    // requestAnimationFrame(_ => animToTarget(element, targetCircleX, targetCircleY))
-    // x = true;
-
-
-    })
-
-// animToTarget()
     // svgCirclesEl.forEach(element => {
 
     // requestAnimationFrame(_ => animToTarget(element, targetCircleX, targetCircleY))
