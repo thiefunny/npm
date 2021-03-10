@@ -3,52 +3,37 @@ const wMax = window.innerWidth;
 const hMax = window.innerHeight;
 let circleX = _ => Math.random() * wMax;
 let circleY = _ => Math.random() * hMax;
-let fillC = _ => `rgb(${Math.random()*20+20}, ${Math.random()*20+20}, ${Math.random()*100+50})`
-let circleR = _ => Math.random() * 5 + 2;
+let fillC = _ => `rgb(${Math.random()*2+10}, ${Math.random()*2+10}, ${Math.random()*1+250})`
+let circleR = _ => Math.random() * 3 + 1;
+let circleOpacity = transparency => Math.random()*transparency;
 const wMin = 0;
 const hMin = 0;
+const svgs = 200;
+const generateSVG = number => {
+    let markup = ''
+    for (let i = 0; i < number; i++) {
+        markup += `
+        <circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}" fill-opacity="${circleOpacity(0.9)}"/>
+        <line x1="0" y1="0" x2="0" y2="0" stroke="white" stroke-width="1" stroke-opacity="0.4"/>
+        `
+        // console.log(circleOpacity())
+    }
 
+
+    return markup;
+}
 
 svgDivEl.innerHTML = `
 <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${wMax}" height="${hMax}" viewBox="0 0 ${wMax} ${hMax}">
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
-<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+${generateSVG(svgs)}
 </svg>
 
 `
 
-const svgEl = document.querySelector('svg')
-const svgCirEl = document.querySelector('circle')
+// const svgEl = document.querySelector('svg')
+// const svgCirEl = document.querySelector('circle')
 const svgCirclesEl = [...document.querySelectorAll('circle')]
+const svgLinesEl = [...document.querySelectorAll('line')]
 
 const getCirclePos = (attribute, elem) => Number(elem.getAttribute(`${attribute}`));
 
@@ -57,12 +42,35 @@ let frameNumber = 0;
 const wobbleDeceleration = 20;
 const wobbleAnimSteps = 500;
 
+const line = (elem, indexOfCircle1, indexOfCircle2) => {
+
+    elem.setAttribute('x1', `${getCirclePos('cx', svgCirclesEl[indexOfCircle1])}`);
+    elem.setAttribute('y1', `${getCirclePos('cy', svgCirclesEl[indexOfCircle1])}`);
+    elem.setAttribute('x2', `${getCirclePos('cx', svgCirclesEl[indexOfCircle2])}`);
+    elem.setAttribute('y2', `${getCirclePos('cy', svgCirclesEl[indexOfCircle2])}`);
+
+}
+
+const lines = _ => {
+
+    for (let i = 0; i < svgs - 1; i++) {
+        line(svgLinesEl[i], i, i + 1)
+    }
+
+    //     for (let elem of svgLinesEl) {
+    //         if (svgLinesEl.indexOf(elem)+1) {
+    //     line(elem, svgLinesEl.indexOf(elem), svgLinesEl.indexOf(elem)+1);
+    // }
+    // }
+
+}
+
+
 const wobble = (element) => {
 
     let reqAnimID;
 
-    let x = 800;
-
+    let x = 1800;
     let targetCircleX = getCirclePos('cx', element) + Math.random() * x - x / 2;
     let targetCircleY = getCirclePos('cy', element) + Math.random() * x - x / 2;
 
@@ -93,6 +101,8 @@ const wobble = (element) => {
             element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / wobbleDeceleration / (wobbleAnimSteps / getCirclePos('r', element))}`);
             element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / wobbleDeceleration / (wobbleAnimSteps / getCirclePos('r', element))}`);
 
+            // lines();
+
             reqAnimID = requestAnimationFrame(anim)
 
             frameNumber++;
@@ -102,7 +112,7 @@ const wobble = (element) => {
             cancelAnimationFrame(reqAnimID)
             frameNumber = 0;
             wobble(element)
-            console.log('canceled')
+            // console.log('canceled')
 
         }
     }
@@ -118,7 +128,7 @@ let fearArr = []
 for (let elem of svgCirclesEl) {
     fearArr[svgCirclesEl.indexOf(elem)] = false;
 }
-console.log(fearArr)
+// console.log(fearArr)
 
 const mouseRead = mouse => {
 
@@ -138,9 +148,10 @@ const mouseRead = mouse => {
             let targetCircleY = Math.round(getCirclePos('cy', element) + fearDistance * (getCirclePos('cy', element) - mouseY) / distCursor())
 
             fearArr[svgCirclesEl.indexOf(element)] = true;
+            let x = circleOpacity(0.9);
+            let y = `rgb(255, 0,0)`
 
             const animToTarget = _ => {
-
                 if ((frameNumber < fearAnimSteps) && (fearArr[svgCirclesEl.indexOf(element)] === true)) {
 
                     if (getCirclePos('cx', element) < wMin) {
@@ -164,6 +175,9 @@ const mouseRead = mouse => {
                         targetCircleY = hMax + targetCircleY
                     }
 
+                    
+                    element.setAttribute("fill", `${y}`);
+                    element.setAttribute("fill-opacity", `${x+(fearAnimSteps-frameNumber)/fearAnimSteps}`);
                     element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / fearDeceleration}`);
                     element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / fearDeceleration}`);
 
