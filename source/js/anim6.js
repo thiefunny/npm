@@ -1,31 +1,47 @@
 const svgDivEl = document.querySelector('.svg')
 const wMax = window.innerWidth;
 const hMax = window.innerHeight;
-let circleX = _ => Math.random() * 1000;
-let circleY = hMax / 2;
-let fillC = _ => `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`
+let circleX = _ => Math.random() * wMax;
+let circleY = _ => Math.random() * hMax;
+let fillC = _ => `rgb(${Math.random()*20+20}, ${Math.random()*20+20}, ${Math.random()*100+50})`
+let circleR = _ => Math.random() * 5 + 2;
 const wMin = 0;
 const hMin = 0;
-
-const wobbleDeceleration = 100;
-const wobbleAnimSteps = 100;
-
-
 
 
 svgDivEl.innerHTML = `
 <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${wMax}" height="${hMax}" viewBox="0 0 ${wMax} ${hMax}">
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
-<circle r="10" cx="${circleX()}" cy="${circleY}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
+<circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="${fillC()}"/>
 </svg>
 
 `
@@ -33,30 +49,26 @@ svgDivEl.innerHTML = `
 const svgEl = document.querySelector('svg')
 const svgCirEl = document.querySelector('circle')
 const svgCirclesEl = [...document.querySelectorAll('circle')]
-// for (let i=0; ) {
-//     elem.setAttribute('id', i)
-// }
-
-// let targetCircleX, targetCircleY;
 
 const getCirclePos = (attribute, elem) => Number(elem.getAttribute(`${attribute}`));
 
 let frameNumber = 0;
 
-
+const wobbleDeceleration = 20;
+const wobbleAnimSteps = 500;
 
 const wobble = (element) => {
 
     let reqAnimID;
 
-    let x = 100;
+    let x = 800;
 
     let targetCircleX = getCirclePos('cx', element) + Math.random() * x - x / 2;
     let targetCircleY = getCirclePos('cy', element) + Math.random() * x - x / 2;
 
     const anim = _ => {
 
-        if (frameNumber < wobbleAnimSteps) {
+        if ((frameNumber < wobbleAnimSteps) && (fearArr[svgCirclesEl.indexOf(element)] === false)) {
 
             if (getCirclePos('cx', element) < wMin) {
                 element.setAttribute("cx", `${wMax}`)
@@ -78,8 +90,8 @@ const wobble = (element) => {
                 targetCircleY = hMax + targetCircleY
             }
 
-            element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / wobbleDeceleration}`);
-            element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / wobbleDeceleration}`);
+            element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / wobbleDeceleration / (wobbleAnimSteps / getCirclePos('r', element))}`);
+            element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / wobbleDeceleration / (wobbleAnimSteps / getCirclePos('r', element))}`);
 
             reqAnimID = requestAnimationFrame(anim)
 
