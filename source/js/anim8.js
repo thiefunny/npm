@@ -193,58 +193,52 @@ const attractionDeceleration = 200;
 
 const attraction = (element, mouse) => {
 
-    let mouseX = mouse.clientX;
-    let mouseY = mouse.clientY;
-    let startTime = Date.now();
+        let mouseX = mouse.clientX;
+        let mouseY = mouse.clientY;
+        let startTime = Date.now();
 
-    let targetCircleX = mouseX
-    let targetCircleY = mouseY
-    let reqAnimID
+        let targetCircleX;
+        let targetCircleY;
+        let reqAnimID
 
-    const anim = _ => {
+        const anim = _ => {
 
-        let now = Date.now();
-        let elapsed = now - startTime;
+            // requestAnimationFrame(anim)
 
-        if ((fearArr[svgCirclesEl.indexOf(element)] === false) && (elapsed > 100)) {
+            targetCircleX = mouseX
+            targetCircleY = mouseY
 
-            element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element))/10}`);
-            element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element))/10}`);
-            startTime = now;
-            attractionArr[svgCirclesEl.indexOf(element)] = true;
+            let now = Date.now();
+            let elapsed = now - startTime;
 
+            // if (elapsed > 300) {
+
+                element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / 100}`);
+                element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / 100}`);
+                startTime = now;
+
+            // }
+            
         }
-
-        reqAnimID = requestAnimationFrame(anim)
-
-    }
-
-    if (attractionArr[svgCirclesEl.indexOf(element)] === false) {
-        cancelAnimationFrame(reqAnimID)
-console.log('miki')
-    // requestAnimationFrame(anim)
 
         anim();
 
-        // attractionArr[svgCirclesEl.indexOf(element)] = true;
+            // requestAnimationFrame(anim)
 
-    } else {
-        // cancelAnimationFrame(anim)
+
     }
 
-    // requestAnimationFrame(anim)
-
-}
 
 
 
-// svgCirclesEl.forEach(elem => wobble(elem))
-window.addEventListener("click", mouse => {
-    // mouseRead(mouse)
-    // attraction(mouse)
-    svgCirclesEl.forEach(elem => {
-        attractionArr[svgCirclesEl.indexOf(elem)] = false;
-        attraction(elem, mouse);
-    })
 
-});
+        // svgCirclesEl.forEach(elem => wobble(elem))
+        window.addEventListener("mousemove", mouse => {
+            mouseRead(mouse)
+            // attraction(mouse)
+            svgCirclesEl.forEach(elem => {
+                // attractionArr[svgCirclesEl.indexOf(elem)] = false;
+                attraction(elem, mouse);
+            })
+
+        });
