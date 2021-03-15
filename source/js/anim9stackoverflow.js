@@ -1,19 +1,27 @@
 const circle = document.querySelector("circle")
 
-window.addEventListener("click", mouse => {
+let reqAnimID;
+
+window.addEventListener("mousemove", mouse => {
 
     const animation = _ => {
 
-        let getCx = Number(circle.getAttribute('cx'))
-        let getCy = Number(circle.getAttribute('cy'))
+        const getCy = Number(circle.getAttribute('cy'))
+        const getCx = Number(circle.getAttribute('cx'))
+        const setCy =  getCy + (mouse.clientY - getCy)/10
+        const setCx =  getCx + (mouse.clientX - getCx)/10
 
-        circle.setAttribute("cx", `${getCx + (mouse.clientX - getCx)/10}`);
-        circle.setAttribute("cy", `${getCy + (mouse.clientY - getCy)/10}`);
+        circle.setAttribute("cx", `${setCx}`);
+        circle.setAttribute("cy", `${setCy}`);
 
-        requestAnimationFrame(animation)
+        if (Math.floor(setCy) !== mouse.clientY && Math.floor(setCx) !== mouse.clientX)
+        {
+        reqAnimID = requestAnimationFrame(animation)
+    }
 
     }
 
-    requestAnimationFrame(animation)
+    cancelAnimationFrame(reqAnimID);
+    reqAnimID = requestAnimationFrame(animation)
 
 });

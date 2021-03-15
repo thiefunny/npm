@@ -9,7 +9,7 @@ let circleR = _ => Math.random() * 3 + 1;
 let circleOpacity = transparency => Math.random() * transparency;
 const wMin = 0;
 const hMin = 0;
-const svgs = 50;
+const svgs = 100;
 const generateSVG = number => {
     let markup = ''
     for (let i = 0; i < number; i++) {
@@ -18,7 +18,6 @@ const generateSVG = number => {
         <line x1="0" y1="0" x2="0" y2="0" stroke="white" stroke-width="1" stroke-opacity="0.4"/>
         `
     }
-
     return markup;
 }
 
@@ -26,7 +25,6 @@ svgDivEl.innerHTML = `
 <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${wMax}" height="${hMax}" viewBox="0 0 ${wMax} ${hMax}">
 ${generateSVG(svgs)}
 </svg>
-
 `
 
 const svgCirclesEl = [...document.querySelectorAll('circle')]
@@ -89,7 +87,6 @@ const wobble = (element) => {
                 targetCircleY = hMin - targetCircleY
             }
 
-            // lines()
 
             element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / wobbleDeceleration / (wobbleAnimSteps / getCirclePos('r', element))}`);
             element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / wobbleDeceleration / (wobbleAnimSteps / getCirclePos('r', element))}`);
@@ -187,58 +184,63 @@ const mouseRead = mouse => {
 }
 
 
-const attractionDeceleration = 200;
-// const attractionAnimSteps = 10000;
+const attractionDeceleration = 400;
 
+let attractionAnimIdArray = []
+for (let i = 0; i < svgCirclesEl.length; i++) {
+    attractionAnimIdArray[i] = true;
+}
+
+// console.log(attractionAnimIdArray)
 
 const attraction = (element, mouse) => {
 
-        let mouseX = mouse.clientX;
-        let mouseY = mouse.clientY;
-        let startTime = Date.now();
+    let mouseX = mouse.clientX;
+    let mouseY = mouse.clientY;
+    let startTime = Date.now();
 
-        let targetCircleX;
-        let targetCircleY;
-        let reqAnimID
+    let targetCircleX;
+    let targetCircleY;
 
-        const anim = _ => {
+    const anim = _ => {
+        
 
-            // requestAnimationFrame(anim)
+        targetCircleX = mouseX
+        targetCircleY = mouseY
+            // lines()
 
-            targetCircleX = mouseX
-            targetCircleY = mouseY
+        let now = Date.now();
+        let elapsed = now - startTime;
 
-            let now = Date.now();
-            let elapsed = now - startTime;
+        // const setCx = getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element));
+        // const setCy = getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element));
+        const setCx = getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / attractionDeceleration;
+        const setCy = getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / attractionDeceleration;
 
-            // if (elapsed > 300) {
+        if (elapsed > 1000/60) {
 
-                element.setAttribute("cx", `${getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / 100}`);
-                element.setAttribute("cy", `${getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / 100}`);
-                startTime = now;
-
-            // }
-            
+        element.setAttribute("cx", `${setCx}`);
+        element.setAttribute("cy", `${setCy}`);
+        startTime = now;
         }
 
-        anim();
-
-            // requestAnimationFrame(anim)
-
+        if (Math.floor(setCx) !== targetCircleX && Math.floor(setCy) !== targetCircleY) {
+            attractionAnimIdArray[svgCirclesEl.indexOf(element)] = requestAnimationFrame(anim)
+        }
 
     }
 
+    cancelAnimationFrame(attractionAnimIdArray[svgCirclesEl.indexOf(element)])
+    // reqAnimIDattraction = requestAnimationFrame(anim)
+    attractionAnimIdArray[svgCirclesEl.indexOf(element)] = requestAnimationFrame(anim)
 
+}
 
-
-
-        // svgCirclesEl.forEach(elem => wobble(elem))
-        window.addEventListener("mousemove", mouse => {
-            mouseRead(mouse)
-            // attraction(mouse)
-            svgCirclesEl.forEach(elem => {
-                // attractionArr[svgCirclesEl.indexOf(elem)] = false;
-                // attraction(elem, mouse);
-            })
-
-        });
+// svgCirclesEl.forEach(elem => wobble(elem))
+window.addEventListener("mousemove", mouse => {
+    mouseRead(mouse)
+    // attraction(mouse)
+    svgCirclesEl.forEach(elem => {
+        attraction(elem, mouse);
+    })
+});
