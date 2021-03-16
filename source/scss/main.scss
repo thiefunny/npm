@@ -1,9 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+$background-color: #000018;
+$color-aboutme: #e31b70;
+$color-projects: #2278e3;
+$color-skills: #e86618;
+$color-contact: #58aa34;
+$left-margin: 2rem;
+$text-color: white;
+$top-bar-bottom-margin: 2.5rem;
+
+
+:root {
+    font-size: 18px;
+}
+
 * {
     margin: 0;
+    padding: 0;
 }
 
 body {
-    overflow: hidden;
+    font-family: Montserrat;
+    background: $background-color;
+    color: $text-color
 }
 
 .container {
@@ -13,15 +32,73 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: black;
+    background: #000011
 }
 
 .svg {
-    // position: fixed
     text-align: center;
 }
 
-#my-path {
-    // stroke: #0a0;
-    // fill: red
+.portfolio {}
+
+.top {
+    background: $color-aboutme;
+    width: 10rem;
+    height: 0.6rem;
+    margin-bottom: $top-bar-bottom-margin;
 }
+
+.menu {
+    margin: 0 0 3rem $left-margin;
+}
+
+li {
+    list-style-type: none;
+    line-height: 1.8rem;
+    text-transform: uppercase;
+    // display: inline-block;
+}
+
+.menu-element span {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-about span:hover {
+color: $color-aboutme
+}
+
+.menu-projects span:hover {
+    color: $color-projects;
+}
+
+.menu-skills span:hover {
+    color: $color-skills
+}
+
+.menu-contact span:hover {
+    color: $color-contact
+}
+
+.content {
+    margin: 0 0 0 $left-margin;
+}
+
+.footer {
+    position: fixed;
+    background-color: $color-aboutme;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    bottom: 0;
+    right: 0;
+    font-size: 0.8rem;
+}
+
+p {
+    line-height: 2rem;
+}
+
+a {
+    color: white
+}
+
+/*# sourceMappingURL=main.css.map */

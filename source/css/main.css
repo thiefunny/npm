@@ -1,9 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+:root {
+  font-size: 18px;
+}
+
 * {
   margin: 0;
+  padding: 0;
 }
 
 body {
-  overflow: hidden;
+  font-family: Montserrat;
+  background: #000018;
+  color: white;
 }
 
 .container {
@@ -13,11 +21,72 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000011
+  background: #000011;
 }
 
 .svg {
   text-align: center;
 }
+
+.top {
+  background: #e31b70;
+  width: 10rem;
+  height: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.menu {
+  margin: 0 0 3rem 2rem;
+}
+
+li {
+  list-style-type: none;
+  line-height: 1.8rem;
+  text-transform: uppercase;
+}
+
+.menu-element span {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-about span:hover {
+  color: #e31b70;
+}
+
+.menu-projects span:hover {
+  color: #2278e3;
+}
+
+.menu-skills span:hover {
+  color: #e86618;
+}
+
+.menu-contact span:hover {
+  color: #58aa34;
+}
+
+.content {
+  margin: 0 0 0 2rem;
+}
+
+.footer {
+  position: fixed;
+  background-color: #e31b70;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  bottom: 0;
+  right: 0;
+  font-size: 0.8rem;
+}
+
+p {
+  line-height: 2rem;
+}
+
+a {
+  color: white;
+}
+
+/*# sourceMappingURL=main.css.map */
 
 /*# sourceMappingURL=main.css.map */
