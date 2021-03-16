@@ -1,0 +1,47 @@
+I live in Katowice, Silesia.
+
+----
+
+metafoodie
+
+Compare scores of restaurants and companies
+in Google, Facebook, Zomato, Yelp i Foursquare!
+My input: I wrote about 95% of code.
+Technologies used: HTML, CSS, SASS, Vanilla JavaScript, Webpack, npm, Git
+Solutions used: Geolocalization, Google Searchbox API,  Google ...
+
+Currently I’m working on: 
+- Jasmine automatic tests for metafoodie 
+- Angular version of code
+
+
+violin / guitar tuner
+Simple and effective instruments tuner.
+
+Notebook
+Draft of notebook app.
+
+Spirals
+Just for fun.
+
+Many other experiments made during learning
+Learning.
+
+
+-----
+
+
+Programming
+HTML, CSS, SASS, Vanilla JavaScript
+
+Tools
+Webpack, npm, Git
+
+Learned solutions
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+
+Graphic design
+Adobe Creative Cloud Profficient:
+Photoshop, Illustrator, Indesign, Lightroom, Premiere, AfterEffects, Acrobat, Bridge and more...
+
+You can check my works here.
