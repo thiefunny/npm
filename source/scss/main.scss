@@ -8,7 +8,7 @@ $color-contact: #58aa34;
 $left-margin: 2rem;
 $text-color: white;
 $top-bar-bottom-margin: 2.5rem;
-
+$bold: 700;
 
 :root {
     font-size: 18px;
@@ -65,7 +65,7 @@ li {
 }
 
 .menu-about span:hover {
-color: $color-aboutme
+    color: $color-aboutme
 }
 
 .menu-projects span:hover {
@@ -99,6 +99,11 @@ p {
 
 a {
     color: white
+}
+
+.heading {
+    font-weight: 700;
+    // font-size: 4rem;
 }
 
 /*# sourceMappingURL=main.css.map */
