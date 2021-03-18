@@ -1,0 +1,10 @@
+.container-svg {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: #000018;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=svg.css.map */

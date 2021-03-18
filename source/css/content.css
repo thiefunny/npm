@@ -1,0 +1,109 @@
+.portfolio {
+  overflow: auto;
+}
+
+.content div:last-child {
+  margin-bottom: 4rem;
+}
+
+.content-about a {
+  color: white;
+}
+
+.content-about a:hover {
+  color: #58aa34;
+}
+
+.content {
+  margin: 0 0 0 2rem;
+}
+
+div.content-skills h2 {
+  color: #e86618;
+}
+
+div.content-projects h2,
+div.content-projects h2 a {
+  color: #2278e3;
+}
+
+div.content-projects h2 a:hover {
+  color: #58aa34;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: inherit;
+  margin-top: 3rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+h2::before {
+  content: "_";
+  position: absolute;
+  top: -5rem;
+  font-size: 4rem;
+}
+
+h2 a {
+  text-decoration: none;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: inherit;
+  margin-top: 3rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.content-contact h3::before {
+  content: "_";
+  position: absolute;
+  top: -5rem;
+  font-size: 4rem;
+  color: #58aa34;
+}
+
+.content-contact a {
+  font-weight: 400;
+  color: white;
+  font-size: 1.7rem;
+}
+
+.content-contact a:hover {
+  color: #58aa34;
+}
+
+img.link-icon {
+  width: 1rem;
+}
+
+.avatar {
+  padding-bottom: 1rem;
+}
+
+ul.p-list {
+  margin: 0.7rem 0 0 2rem;
+}
+
+ul.p-list li {
+  list-style-type: circle;
+}
+
+.metafoodie-logo {
+  width: 10rem;
+  display: block;
+  margin-top: 1rem;
+}
+
+.content-skills a:hover {
+  color: #58aa34;
+}
+
+.content-skills a {
+  color: white;
+}
+
+/*# sourceMappingURL=content.css.map */

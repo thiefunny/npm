@@ -1,0 +1,16 @@
+@use "variables.scss";
+
+
+.footer {
+    position: fixed;
+    background-color: variables.$color-about;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    bottom: 0;
+    right: 0;
+    font-size: 0.8rem;
+}
+
+.footer img {
+    position: relative;
+    top: 0.35rem
+}

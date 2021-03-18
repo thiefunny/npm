@@ -1,0 +1,30 @@
+@use "variables.scss";
+
+.menu {
+    margin: 0 0 3rem variables.$left-margin;
+}
+
+li.menu-element {
+    text-transform: uppercase;
+}
+
+.menu-element span {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-about span:hover {
+    color: variables.$color-about
+}
+
+.menu-projects span:hover {
+    color: variables.$color-projects;
+}
+
+.menu-skills span:hover {
+    color: variables.$color-skills
+}
+
+.menu-contact span:hover {
+    color: variables.$color-contact
+}

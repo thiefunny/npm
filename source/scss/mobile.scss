@@ -1,0 +1,19 @@
+@use "variables.scss";
+
+@media (max-width: 700px) {
+
+    .menu {
+        margin: 0 0 3rem variables.$left-margin-mobile;
+    }
+
+    .content {
+        margin: 0 0 0 variables.$left-margin-mobile;
+    }
+
+    .top {
+        margin-bottom: variables.$top-bar-bottom-margin-mobile;
+        width: 10rem;
+        height: 0.6rem;
+    }
+
+}

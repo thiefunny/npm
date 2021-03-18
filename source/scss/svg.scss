@@ -1,0 +1,20 @@
+@use "variables.scss";
+
+
+.container-svg {
+    // position: absolute;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    background: variables.$background-color;
+    z-index: -1;
+    overflow: hidden;
+
+}
+
+.svg {
+    // text-align: center;
+}

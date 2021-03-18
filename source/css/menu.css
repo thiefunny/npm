@@ -1,0 +1,30 @@
+.menu {
+  margin: 0 0 3rem 2rem;
+}
+
+li.menu-element {
+  text-transform: uppercase;
+}
+
+.menu-element span {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-about span:hover {
+  color: #e31b70;
+}
+
+.menu-projects span:hover {
+  color: #2278e3;
+}
+
+.menu-skills span:hover {
+  color: #e86618;
+}
+
+.menu-contact span:hover {
+  color: #58aa34;
+}
+
+/*# sourceMappingURL=menu.css.map */

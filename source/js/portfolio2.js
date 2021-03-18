@@ -25,12 +25,12 @@ const contentArr = [contentAboutMeEl, contentProjectsEl, contentSkillsEl, conten
 const menuArr = [menuAboutMeEl, menuProjectsEl, menuSkillsEl, menuContactEl];
 
 for (elem of contentArr) {
-    console.log(elem)
     elem.classList.add("hidden")
 }
 
 contentAboutMeEl.classList.remove("hidden");
 topEl.style.backgroundColor = colors.about;
+menuAboutMeEl.style.color = colors.about;
 
 menuEl.addEventListener('click', element => {
     const clickedEl = element.target.parentNode;
