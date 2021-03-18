@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 $background-color: #000018;
-$color-aboutme: #e31b70;
+$color-about: #e31b70;
 $color-projects: #2278e3;
 $color-skills: #e86618;
 $color-contact: #58aa34;
@@ -9,6 +9,7 @@ $left-margin: 2rem;
 $text-color: white;
 $top-bar-bottom-margin: 2.5rem;
 $bold: 700;
+$normal: 400;
 
 :root {
     font-size: 18px;
@@ -19,30 +20,69 @@ $bold: 700;
     padding: 0;
 }
 
-body {
-    font-family: Montserrat;
-    background: $background-color;
-    color: $text-color
-}
-
-.container {
-    position: absolute;
+.container-svg {
+    // position: absolute;
+    position: fixed;
     height: 100%;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000011
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    background: $background-color;
+    z-index: -1;
+    overflow: hidden;
+
 }
 
 .svg {
-    text-align: center;
+    // text-align: center;
 }
 
-.portfolio {}
+.portfolio {
+    overflow: auto;
+}
+
+.content div:last-child {
+    margin-bottom: 4rem;
+}
+
+.hidden {display: none;}
+
+body {
+    font-family: Montserrat;
+    background: $background-color;
+    color: $text-color;
+}
+
+.color-about {
+    color: $color-about
+}
+
+.color-projects {
+    color: $color-projects
+}
+
+.color-skills {
+    color: $color-skills
+}
+
+.color-contact {
+    color: $color-contact
+}
+
+.content-about a {
+    // line-height: 2rem;
+    color: white;
+}
+
+
+
+.content-about a:hover {
+    color: $color-contact
+}
 
 .top {
-    background: $color-aboutme;
+    // background: $color-about;
     width: 10rem;
     height: 0.6rem;
     margin-bottom: $top-bar-bottom-margin;
@@ -55,6 +95,10 @@ body {
 li {
     list-style-type: none;
     line-height: 1.8rem;
+}
+
+li.menu-element {
+
     text-transform: uppercase;
     // display: inline-block;
 }
@@ -65,7 +109,7 @@ li {
 }
 
 .menu-about span:hover {
-    color: $color-aboutme
+    color: $color-about
 }
 
 .menu-projects span:hover {
@@ -84,26 +128,114 @@ li {
     margin: 0 0 0 $left-margin;
 }
 
+p {
+    line-height: 1.4rem;
+    margin-top: 1rem;
+    max-width: 30rem
+}
+
+div.content-skills h2 {
+    color: $color-skills;
+    // $background-color: red
+}
+
+div.content-projects h2,
+div.content-projects h2 a {
+    color: $color-projects
+}
+
+div.content-projects h2 a:hover {
+    color: $color-contact
+}
+
+h2 {
+    font-weight: 700;
+    font-size: inherit;
+    margin-top: 3rem;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+h2::before {
+    content: "_";
+    position: absolute;
+    top: -5rem;
+    font-size: 4rem;
+}
+
+h2 a {
+    text-decoration: none;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: inherit;
+    margin-top: 3rem;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.content-contact h3::before {
+    content: "_";
+    position: absolute;
+    top: -5rem;
+    font-size: 4rem;
+    color: $color-contact
+}
+
+.content-contact a {
+    font-weight: $normal;
+    color: white;
+    font-size: 1.7rem;
+}
+
+.content-contact a:hover {
+    color: $color-contact
+}
+
+img.link-icon {
+    width: 1rem;
+}
+
+.avatar {
+    padding-bottom: 1rem;
+}
+
+ul.p-list {
+    margin: 0.7rem 0 0 2rem;
+}
+
+ul.p-list li {
+    list-style-type: circle;
+}
+
+.metafoodie-logo {
+    width: 10rem;
+    display: block;
+    margin-top: 1rem;
+}
+
+.content-skills a:hover {
+    color: $color-contact;
+}
+
+.content-skills a {
+    color: white;
+}
+
 .footer {
     position: fixed;
-    background-color: $color-aboutme;
+    background-color: $color-about;
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     bottom: 0;
     right: 0;
     font-size: 0.8rem;
 }
 
-p {
-    line-height: 2rem;
-}
+.footer img {
+    position: relative;
+    top: 0.35rem
 
-a {
-    color: white
-}
-
-.heading {
-    font-weight: 700;
-    // font-size: 4rem;
 }
 
 /*# sourceMappingURL=main.css.map */

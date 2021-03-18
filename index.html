@@ -10,22 +10,14 @@
 </head>
 
 <body>
-    <!-- <div id="mydiv" style="position: relative; height: 30px; width: 30px; background-color: red;"></div> -->
 
 
-    <!-- <div class="container">
+
+    <div class="container-svg">
         <div class="svg">
-            <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000">
-                <circle id="my-circle" r="30" cx="50" cy="50" fill="orange" />
 
-                <animate xlink:href="#my-circle" attributeName="cx" from="50" to="450" dur="1s" 
-                    fill="freeze" />
-
-
-            </svg>
         </div>
-    </div> -->
+    </div>
 
     <div class="portfolio">
         <div class="top"></div>
@@ -39,23 +31,93 @@
         </div>
         <div class="content">
             <div class="content-about">
-                <img src="images/avatar.png" alt="Picture of Mikołaj Walanus">
+                <img class="avatar" src="images/avatar.png" alt="Picture of Mikołaj Walanus">
                 <p>My name is Mikołaj Walanus.</p>
-                <p>I'm a <strong>front-end developer</strong>,</p>
-                <p>with very strong <a href="https://behance.net/walanus" target="_blank">graphic design background</a>.</p>
+                <p>I'm a </br><strong class="color-about">FRONT-END DEVELOPER</strong>,</br>
+                    with a very strong <a href="https://behance.net/walanus" target="_blank">graphic design
+                        background</a>.</p>
                 <p>I live in Katowice, Silesia.</p>
             </div>
+
             <div class="content-projects">
-                <p class="heading">metafoodie</p>
-                <p>I'm a <strong>front-end developer</strong>,</p>
-                <p>with very strong <a href="https://behance.net/walanus" target="_blank">graphic design background</a>.</p>
+
+                <div class="project-metafoodie">
+                    <h2><a href="walanus.pl/metafoodie" target="_blank">Metafoodie <img class="link-icon"
+                                src="images/website-link-projects.svg" alt=""><img class="metafoodie-logo"
+                                src="images/logo-light.svg" alt="logo metafoodie"></a></h2>
+
+                    <p class="text">Compare scores of restaurants and companies
+                        in Google, Facebook, Zomato, Yelp i Foursquare!</p>
+                    <p><strong>My input</strong>: I wrote about 95% of code.</p>
+                    <p><strong>Technologies used</strong>: HTML, CSS, SASS, Vanilla JavaScript, Webpack, npm, Git</p>
+                    <p><strong>Solutions used</strong>: Geolocalization, Google Searchbox API, Google ...</p>
+
+                    <p>
+                        <strong>Currently I’m working on</strong>:
+                        <ul class="p-list">
+                            <li>Jasmine automatic tests for metafoodie</li>
+                            <li>Angular version of code</li>
+                        </ul>
+                    </p>
+                </div>
+
+                <div class="project-tuner">
+                    <h2><a href="walanus.pl/metafoodie" target="_blank">Violin / guitar tuner <img class="link-icon"
+                                src="images/website-link-projects.svg" alt=""></a></h2>
+                    <p>Simple and effective instruments tuner.</p>
+                </div>
+
+                <div class="project-notebook">
+                    <h2><a href="walanus.pl/metafoodie" target="_blank">Notebook draft <img class="link-icon"
+                                src="images/website-link-projects.svg" alt=""></a></h2>
+                    <p>Draft of notebook app.</p>
+                </div>
+
+                <div class="project-spirals">
+                    <h2><a href="walanus.pl/metafoodie" target="_blank">Spirals <img class="link-icon"
+                                src="images/website-link-projects.svg" alt=""></a></h2>
+                    <p>Just for fun.</p>
+                </div>
+
+                <div class="project-other">
+                    <h2><a href="walanus.pl/metafoodie" target="_blank">Other experiments made during learning <img
+                                class="link-icon" src="images/website-link-projects.svg" alt=""></a></h2>
+                    <p>Learning.</p>
+                </div>
+
             </div>
+
+            <div class="content-skills">
+
+                <h2>Programming</h2>
+                <p>HTML, CSS, SASS, Vanilla JavaScript</p>
+
+                <h2>Tools</h2>
+                <p>Webpack, npm, Git</p>
+
+                <h2>Learned solutions</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    al</p>
+
+                <h2>Graphic design</h2>
+                <p>Adobe Creative Cloud Profficient:
+                    Photoshop, Illustrator, Indesign, Lightroom, Premiere, AfterEffects, Acrobat, Bridge and more...</p>
+                <p>You can check my works <a href="https://behance.net/walanus" target="_blank">here.</a></p>
+            </div>
+
+            <div class="content-contact">
+
+                <h3><a href="mailto:mikolaj@walanus.com" class="mail">mikolaj@walanus.com</a></h3>
+            </div>
+
+
         </div>
     </div>
-    <div class="footer">&copy <img src="" alt="" class="avatar-small">Mikołaj Walanus</div>
+    <div class="footer">&copy 2021 <img src="images/avatar-small.png" alt="" class="avatar-small"> Mikołaj Walanus</div>
 
 
-    <!-- <script src="source/js/anim10.js"></script> -->
+    <script src="source/js/animation.js"></script>
     <script src="source/js/portfolio2.js"></script>
 
 

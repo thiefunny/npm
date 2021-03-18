@@ -1,110 +1,82 @@
 const menuEl = document.querySelector(".menu-list");
 
-const contentEl = document.querySelector(".content");
+const topEl = document.querySelector(".top");
+const footerEl = document.querySelector(".footer");
+const hEl = document.querySelectorAll("h2")
 
-const contentObj = {
-    about: [{
-        content: `
-        <p>My name is Mikołaj Walanus.</p>
-        <p>I'm a <strong>front-end developer</strong>,</p>
-        <p>with very strong <a href="https://behance.net/walanus" target="_blank">graphic design background</a></p>
+const menuAboutMeEl = document.querySelector(".menu-about")
+const menuProjectsEl = document.querySelector(".menu-projects")
+const menuSkillsEl = document.querySelector(".menu-skills")
+const menuContactEl = document.querySelector(".menu-contact")
 
-        `
-    }],
-    projects: [{
-            heading: null,
-            link: null,
-            content: `project1`
-        },
-        {
-            heading: null,
-            link: null,
-            content: `project2`
-        },
-        {
-            heading: null,
-            link: 123,
-            content: ``
-        },
-        {
-            heading: null,
-            link: null,
-            content: ``
-        },
-        {
-            heading: null,
-            link: null,
-            content: ``
-        }
-    ],
-    skills: [{
-            picture: null,
-            heading: null,
-            link: null,
-            content: `skills`
-        },
-        {
-            picture: null,
-            heading: null,
-            link: null,
-            content: `skills2`
-        },
-        {
-            picture: null,
-            heading: null,
-            link: null,
-            content: ``
-        },
-        {
-            picture: null,
-            heading: null,
-            link: null,
-            content: ``
-        }
-    ],
-    contact: [{
-        picture: null,
-        heading: null,
-        link: null,
-        content: `contact`
-    }]
+const contentAboutMeEl = document.querySelector(".content-about")
+const contentProjectsEl = document.querySelector(".content-projects")
+const contentSkillsEl = document.querySelector(".content-skills")
+const contentContactEl = document.querySelector(".content-contact")
 
-
+const colors = {
+    about: '#e31b70',
+    projects: '#2278e3',
+    skills: '#e86618',
+    contact: '#58aa34'
 }
 
-const generateContent = content => {
+const contentArr = [contentAboutMeEl, contentProjectsEl, contentSkillsEl, contentContactEl];
+const menuArr = [menuAboutMeEl, menuProjectsEl, menuSkillsEl, menuContactEl];
 
-    let markup = '';
-    contentElements = contentObj[content];
-
-    for (let elem of contentElements) {
-
-        const keys = Object.keys(elem);
-        keys.forEach(key => {
-            if (elem[key]) {
-                markup += elem[key];
-            }
-        })
-
-    }
-    return markup;
+for (elem of contentArr) {
+    console.log(elem)
+    elem.classList.add("hidden")
 }
 
-// menuAboutMeEl.addEventListener('click', _ => {
-//     contentEl.innerHTML = `
-
-//     ${generateContent(`projects`)}
-//     `
-// })
+contentAboutMeEl.classList.remove("hidden");
+topEl.style.backgroundColor = colors.about;
 
 menuEl.addEventListener('click', element => {
     const clickedEl = element.target.parentNode;
     const clickedElclasses = clickedEl.getAttribute('class')
     const removedRegEx = /.{18}/
     const clickedElName = clickedElclasses.replace(removedRegEx, '')
+    const contentToShowClass = `content-${clickedElName}`
+    const contentToShowEl = document.querySelector(`.${contentToShowClass}`)
+
+    for (elem of contentArr) {
+        elem.classList.add("hidden")
+    }
+
+    for (elem of menuArr) {
+        elem.setAttribute('style', '')
+    }
     
-    contentEl.innerHTML = `
-    ${generateContent(clickedElName)}
-    `
-    // console.log(newclasses);
+    topEl.style.backgroundColor = colors[clickedElName];
+    footerEl.style.backgroundColor = colors[clickedElName];
+    clickedEl.style.color = colors[clickedElName];
+    contentToShowEl.classList.remove('hidden');
+
 })
+
+// const mouseOver = (elementClass, srcOver, srcOut) => {
+//     let image = document.querySelector(`${elementClass}`);
+//     image.addEventListener("mouseover", _ => {
+//         image.setAttribute('src', `${srcOver}`)
+//     });
+//     image.addEventListener("mouseout", _ => {
+//         image.setAttribute('src', `${srcOut}`)
+//     });
+//     image.addEventListener("touchstart", _ => {
+//         image.setAttribute('src', `${srcOver}`)
+//     });
+//     image.addEventListener("touchend", _ => {
+//         image.setAttribute('src', `${srcOut}`)
+//     });
+//     image.addEventListener("touchmove", _ => {
+//         image.setAttribute('src', `${srcOut}`)
+//     });
+// }
+
+// // [...hEl].forEach(el => {mouseOver('img.link-icon', 'images/website-link-green.svg', 'images/website-link-projects.svg')})
+
+// mouseOver('img.link-icon', 'images/website-link-green.svg', 'images/website-link-projects.svg')
+
+// // mouseOver('#website-link', 'img/website-link-green.svg', 'img/website-link-grey.svg');
+
