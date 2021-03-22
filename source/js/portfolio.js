@@ -14,7 +14,7 @@ const contentProjectsEl = document.querySelector(".content-projects")
 const contentSkillsEl = document.querySelector(".content-skills")
 const contentContactEl = document.querySelector(".content-contact")
 
-const colors = {
+export const colors = {
     about: '#e31b70',
     projects: '#2278e3',
     skills: '#e86618',
