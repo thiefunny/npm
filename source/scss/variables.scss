@@ -1,3 +1,8 @@
+@mixin h-before {
+    position: absolute;
+    top: $svg-before;
+}
+
 $background-color: #000018;
 $color-about: #e31b70;
 $color-projects: #2278e3;
@@ -10,3 +15,4 @@ $top-bar-bottom-margin: 2.5rem;
 $top-bar-bottom-margin-mobile: 1rem;
 $bold: 700;
 $normal: 400;
+$svg-before: -1.5rem;

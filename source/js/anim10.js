@@ -43,8 +43,8 @@ const line = (elem, indexOfCircle1, indexOfCircle2) => {
     elem.setAttribute('y1', `${getCirclePos('cy', svgCirclesEl[indexOfCircle1])}`);
     elem.setAttribute('x2', `${getCirclePos('cx', svgCirclesEl[indexOfCircle2])}`);
     elem.setAttribute('y2', `${getCirclePos('cy', svgCirclesEl[indexOfCircle2])}`);
-    elem.setAttribute('stroke-opacity', `0.1`);
-    elem.setAttribute('fill', `red`);
+    // elem.setAttribute('stroke-opacity', `0.1`);
+    // elem.setAttribute('fill', `red`);
 
 }
 

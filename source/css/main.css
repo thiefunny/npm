@@ -46,39 +46,34 @@ div.content-projects h2 a:hover {
   color: #58aa34;
 }
 
-h2 {
+h2, h3 {
   font-weight: 700;
   font-size: inherit;
-  margin-top: 3rem;
+  margin-top: 3.5rem;
   position: relative;
   margin-bottom: 1rem;
 }
 
-h2::before {
-  content: "_";
+div.content-projects h2::before {
+  content: url(../../images/heading-separator-projects.svg);
   position: absolute;
-  top: -5rem;
-  font-size: 4rem;
+  top: -1.5rem;
+}
+
+div.content-skills h2::before {
+  content: url(../../images/heading-separator-skills.svg);
+  position: absolute;
+  top: -1.5rem;
+}
+
+div.content-contact h3::before {
+  content: url(../../images/heading-separator-contact.svg);
+  position: absolute;
+  top: -1.5rem;
 }
 
 h2 a {
   text-decoration: none;
-}
-
-h3 {
-  font-weight: 700;
-  font-size: inherit;
-  margin-top: 3rem;
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-.content-contact h3::before {
-  content: "_";
-  position: absolute;
-  top: -5rem;
-  font-size: 4rem;
-  color: #58aa34;
 }
 
 .content-contact a {
@@ -224,6 +219,10 @@ p {
   line-height: 1.4rem;
   margin-top: 1rem;
   max-width: 30rem;
+}
+
+.svg-color {
+  fill: yellow;
 }
 
 /*# sourceMappingURL=main.css.map */
