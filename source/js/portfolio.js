@@ -2,7 +2,7 @@ const menuEl = document.querySelector(".menu-list");
 
 const topEl = document.querySelector(".top");
 const footerEl = document.querySelector(".footer");
-const hEl = document.querySelectorAll("h2")
+const hEl = document.querySelectorAll(".link-icon")
 
 const menuAboutMeEl = document.querySelector(".menu-about")
 const menuProjectsEl = document.querySelector(".menu-projects")
@@ -14,7 +14,7 @@ const contentProjectsEl = document.querySelector(".content-projects")
 const contentSkillsEl = document.querySelector(".content-skills")
 const contentContactEl = document.querySelector(".content-contact")
 
-export const colors = {
+const colors = {
     about: '#e31b70',
     projects: '#2278e3',
     skills: '#e86618',
@@ -40,14 +40,6 @@ menuEl.addEventListener('click', element => {
     const contentToShowClass = `content-${clickedElName}`
     const contentToShowEl = document.querySelector(`.${contentToShowClass}`)
     
-    // console.log(element)
-    // console.log(clickedEl)
-
-    // console.log('contentToShowEl')
-    // console.log(contentToShowEl)
-// let x = 'menu-element'
-    // console.log(element.matches('.menu-element'))
-
     if (clickedEl.matches('.menu-element')) {
 
     for (elem of contentArr) {
@@ -62,31 +54,30 @@ menuEl.addEventListener('click', element => {
     footerEl.style.backgroundColor = colors[clickedElName];
     clickedEl.style.color = colors[clickedElName];
     contentToShowEl.classList.remove('hidden');
+
+    svgCirclesEl.forEach(elem => elem.setAttribute('fill', `${colors[clickedElName]}`))
+    svgLinesEl.forEach(elem => elem.setAttribute('stroke', `${colors[clickedElName]}`))
+
 }
 })
 
-// const mouseOver = (elementClass, srcOver, srcOut) => {
-//     let image = document.querySelector(`${elementClass}`);
-//     image.addEventListener("mouseover", _ => {
-//         image.setAttribute('src', `${srcOver}`)
-//     });
-//     image.addEventListener("mouseout", _ => {
-//         image.setAttribute('src', `${srcOut}`)
-//     });
-//     image.addEventListener("touchstart", _ => {
-//         image.setAttribute('src', `${srcOver}`)
-//     });
-//     image.addEventListener("touchend", _ => {
-//         image.setAttribute('src', `${srcOut}`)
-//     });
-//     image.addEventListener("touchmove", _ => {
-//         image.setAttribute('src', `${srcOut}`)
-//     });
-// }
+const srcOver = 'images/website-link-green.svg'
+const srcOut = 'images/website-link-projects.svg'
 
-// // [...hEl].forEach(el => {mouseOver('img.link-icon', 'images/website-link-green.svg', 'images/website-link-projects.svg')})
-
-// mouseOver('img.link-icon', 'images/website-link-green.svg', 'images/website-link-projects.svg')
-
-// // mouseOver('#website-link', 'img/website-link-green.svg', 'img/website-link-grey.svg');
-
+hEl.forEach(el => {
+    el.addEventListener("mouseover", _ => {
+        el.setAttribute('src', `${srcOver}`)
+    });
+    el.addEventListener("mouseout", _ => {
+        el.setAttribute('src', `${srcOut}`)
+    });
+    el.addEventListener("touchstart", _ => {
+        el.setAttribute('src', `${srcOver}`)
+    });
+    el.addEventListener("touchend", _ => {
+        el.setAttribute('src', `${srcOut}`)
+    });
+    el.addEventListener("touchmove", _ => {
+        el.setAttribute('src', `${srcOut}`)
+    });
+})

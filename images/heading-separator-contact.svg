@@ -3,10 +3,12 @@
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg">
-    <rect class="svg-color"
-       width="2.7rem"
-       height="0.5rem"
+   xmlns="http://www.w3.org/2000/svg"
+        width="45px"
+       height="8px" >
+    <rect
+       width="45px"
+       height="8px"
        fill="#58aa34"
         />
 </svg>

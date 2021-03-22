@@ -42,19 +42,19 @@ h2, h3 {
 div.content-projects h2::before {
   content: url(../../images/heading-separator-projects.svg);
   position: absolute;
-  top: -1.5rem;
+  top: -2rem;
 }
 
 div.content-skills h2::before {
   content: url(../../images/heading-separator-skills.svg);
   position: absolute;
-  top: -1.5rem;
+  top: -2rem;
 }
 
 div.content-contact h3::before {
   content: url(../../images/heading-separator-contact.svg);
   position: absolute;
-  top: -1.5rem;
+  top: -2rem;
 }
 
 h2 a {
