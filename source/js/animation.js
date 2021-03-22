@@ -10,7 +10,7 @@ let circleOpacity = transparency => Math.random() * transparency;
 const wMin = 0;
 const hMin = 0;
 const svgs = 100;
-const linesQuantity = 10;
+const linesQuantity = 100;
 const generateSVG = number => {
     let markup = ''
     for (let i = 0; i < number; i++) {
@@ -54,38 +54,48 @@ const line = (elem, indexOfCircle1, indexOfCircle2) => {
 
 const polygons = [];
 
-const triangleVertices = new Array(3);
 
-polygons[0] = triangleVertices;
-polygons[1] = triangleVertices;
-polygons[2] = triangleVertices;
 
-console.log(polygons)
+// console.log(polygons)
+const triangleQuantity = 3;
 
-const generateTriangle = _ => {
+const generateTriangles = _ => {
 
-    for (let i = 0; i < 3; i++) {
-        polygon[i].triangleVertices[i] = Math.round(Math.random() * (svgs - 1));
+
+    for (let i = 0; i < triangleQuantity; i++) {
+        const trianglesCircles = [];
+
+        for (let i = 0; i < 3; i++) {
+            trianglesCircles[i] = Math.round(Math.random() * (svgs - 1));
+        }
+
+        polygons.push(trianglesCircles);
     }
 
-return triangleVertices;
+    return polygons;
 
 }
 
-generateTriangle();
-console.log(triangleVertices);
+generateTriangles();
+console.log(polygons)
 
 const lines = _ => {
 
-    for (let i = 0; i < 2; i++) {
-    line(svgLinesEl[i], triangleVertices[i], triangleVertices[i+1])
+    for (let i = 0; i < triangleQuantity; i++) {
+console.log(svgLinesEl)
+        for (let j = 0; j < 3; j++) {
+            // console.log(j+3*i)
+            console.log(svgLinesEl[j+3*i])
 
+            // line(svgLinesEl[j+3*i], polygons[i][j], polygons[i][j + 1])
+            
+        }
+        // line(svgLinesEl[i*3+2], polygons[i][2], polygons[i][0])
+
+        // line(svgLinesEl[i + 2], trianglesCircles[i + 2], trianglesCircles[i])
+    }
 }
-
-    line(svgLinesEl[2], triangleVertices[2], triangleVertices[0])
-
-}
-
+// console.log(polygons)
 lines();
 
 const wobble = (element) => {
