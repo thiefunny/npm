@@ -6,23 +6,23 @@ let circleY = _ => Math.random() * hMax;
 // let fillC = _ => `white`
 // let fillC = _ => `rgb(${Math.random()*1+10}, ${Math.random()*1+170}, ${Math.random()*1+254})`
 // let fillC = _ => `${colors.aboutme}`
-let circleR = _ => Math.random() + 0.6;
-let circleOpacity = transparency => Math.random() * transparency + 0.2;
+let circleR = _ => Math.random() + 300.6;
+let circleOpacity = transparency => Math.random() * transparency;
 const wMin = 0;
 const hMin = 0;
-const svgs = 100;
-const linesQuantity = 100;
+const svgs = 10;
+const linesQuantity = 20;
 const generateSVG = number => {
     let markup = ''
     for (let i = 0; i < number; i++) {
         markup += `
-        <circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="#e31b70" fill-opacity="${circleOpacity(0.5)}"/>
+        <circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="#e31b70" fill-opacity="${circleOpacity(0.05)}"/>
         `
     }
 
     for (let i = 0; i < linesQuantity; i++) {
         markup += `
-        <line x1="0" y1="0" x2="0" y2="0" stroke="#e31b70" stroke-width="1" stroke-opacity="${circleOpacity(0.2)}"/>
+        <line x1="0" y1="0" x2="0" y2="0" stroke="#e31b70" stroke-width="1" stroke-opacity="${circleOpacity(0)}"/>
         `
     }
     return markup;
@@ -74,78 +74,65 @@ const lines = _ => {
     }
 }
 
-let frameNumber = 0;
-const wobbleDeceleration = 100;
-const wobbleAnimSteps = 400;
 
-const wobble = (element) => {
+let flowAnimIdArray = []
+for (let i = 0; i < svgCirclesEl.length; i++) {
+    flowAnimIdArray[i] = true;
+}
 
-    let reqAnimID;
 
-    let r = Number(element.getAttribute('r'));
-    let f = Number(element.getAttribute('fill-opacity'));
+const flow = (element) => {
 
-    let x = 20000;
-    let targetCircleX = getCirclePos('cx', element) + Math.random() * x - x / 2;
-    let targetCircleY = getCirclePos('cy', element) + Math.random() * x - x / 2;
+    let alpha = Math.random() * 2 * Math.PI;
+    const speed = 0.4;
 
-    const anim = _ => {
+    const flowAnim = _ => {
 
-        if (frameNumber < wobbleAnimSteps) {
-
-            if (getCirclePos('cx', element) < wMin) {
-                element.setAttribute("cx", `${wMin}`)
-                targetCircleX = wMin - targetCircleX
-            }
-
-            if (getCirclePos('cx', element) > wMax) {
-                element.setAttribute("cx", `${wMax}`)
-                targetCircleX = wMax - (targetCircleX - wMax)
-            }
-
-            if (getCirclePos('cy', element) > hMax) {
-                element.setAttribute("cy", `${hMax}`)
-                targetCircleY = hMax - (targetCircleY - hMax)
-            }
-
-            if (getCirclePos('cy', element) < hMin) {
-                element.setAttribute("cy", `${hMin}`)
-                targetCircleY = hMin - targetCircleY
-            }
-
-            lines();
-
-            let setCx = getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / wobbleDeceleration / (wobbleAnimSteps / getCirclePos('r', element))
-            let setCy = getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / wobbleDeceleration / (wobbleAnimSteps / getCirclePos('r', element))
-
-            element.setAttribute("cx", `${setCx}`);
-            element.setAttribute("cy", `${setCy}`);
-
-            reqAnimID = requestAnimationFrame(anim)
-            frameNumber++;
-
-        } else {
-            cancelAnimationFrame(reqAnimID)
-            frameNumber = 0;
-            wobble(element)
+        if (getCirclePos('cx', element) < wMin || getCirclePos('cx', element) > wMax) {
+            alpha = Math.PI - alpha
         }
+
+        if (getCirclePos('cy', element) > hMax || getCirclePos('cy', element) < hMin) {
+            alpha = -alpha
+        }
+
+        let newX = getCirclePos('cx', element) + Math.cos(alpha) * speed;
+        let newY = getCirclePos('cy', element) + Math.sin(alpha) * speed;
+
+        element.setAttribute("cx", `${newX}`);
+        element.setAttribute("cy", `${newY}`);
+
+        lines()
+
+            flowAnimIdArray[svgCirclesEl.indexOf(element)] = requestAnimationFrame(flowAnim)
     }
 
-    requestAnimationFrame(anim)
+    flowAnimIdArray[svgCirclesEl.indexOf(element)] = requestAnimationFrame(flowAnim)
 
 }
+
+
+
+let fearArr = []
+for (let elem of svgCirclesEl) {
+    fearArr[svgCirclesEl.indexOf(elem)] = false;
+}
+
 
 const fearDistance = 200;
 const fearRun = 200;
 const fearDeceleration = 20;
+const fearAnimSteps = 100;
+
+
 const fearAnimIdArray = []
+
 
 for (let i = 0; i < svgCirclesEl.length; i++) {
     fearAnimIdArray[i] = true;
 }
 
 const mouseRead = mouse => {
-
     let mouseX = mouse.clientX;
     let mouseY = mouse.clientY;
 
@@ -157,18 +144,14 @@ const mouseRead = mouse => {
 
         if ((distCursor() < fearDistance)) {
 
-            let targetCircleX = Math.round(getCirclePos('cx', element) + fearRun * (getCirclePos('cx', element) - mouseX) / distCursor())
-            let targetCircleY = Math.round(getCirclePos('cy', element) + fearRun * (getCirclePos('cy', element) - mouseY) / distCursor())
+            let frameNumber = 0;
 
-            let x = 1;
-            // let y = `rgb(255, 0,0)`
-
-            // element.setAttribute("fill", `${y}`);
-            element.setAttribute("fill-opacity", `${x}`);
+            let targetCircleX = getCirclePos('cx', element) + fearRun * (getCirclePos('cx', element) - mouseX) / distCursor()
+            let targetCircleY = getCirclePos('cy', element) + fearRun * (getCirclePos('cy', element) - mouseY) / distCursor()
 
             const animToTarget = _ => {
 
-                x = x - .007;
+                // x = x - .007;
 
                 if (getCirclePos('cx', element) < wMin) {
                     element.setAttribute("cx", `${wMin}`)
@@ -196,87 +179,21 @@ const mouseRead = mouse => {
                 element.setAttribute("cx", `${setCx}`);
                 element.setAttribute("cy", `${setCy}`);
 
-                element.setAttribute("fill-opacity", `${x}`);
+                // lines()
 
-                if (Math.floor(setCx) !== targetCircleX && Math.floor(setCy) !== targetCircleY) {
+                if (frameNumber < fearAnimSteps) {
                     fearAnimIdArray[svgCirclesEl.indexOf(element)] = requestAnimationFrame(animToTarget)
+                    frameNumber ++;
                 }
-
             }
             cancelAnimationFrame(fearAnimIdArray[svgCirclesEl.indexOf(element)])
-            requestAnimationFrame(animToTarget)
+            fearAnimIdArray[svgCirclesEl.indexOf(element)] = requestAnimationFrame(animToTarget)
         }
     })
 }
 
-svgCirclesEl.forEach(elem => wobble(elem))
+svgCirclesEl.forEach(elem => flow(elem))
 window.addEventListener("mousemove", mouse => {
     mouseRead(mouse)
 
 });
-
-
-// let attractionArr = []
-// for (let elem of svgCirclesEl) {
-//     attractionArr[svgCirclesEl.indexOf(elem)] = false;
-// }
-
-// attraction(mouse)
-// svgCirclesEl.forEach(elem => {
-//     attraction(elem, mouse);
-// })
-
-
-
-// const attractionDeceleration = 400;
-
-
-// let attractionAnimIdArray = []
-// for (let i = 0; i < svgCirclesEl.length; i++) {
-//     attractionAnimIdArray[i] = true;
-// }
-
-// console.log(attractionAnimIdArray)
-
-// const attraction = (element, mouse) => {
-
-//     let mouseX = mouse.clientX;
-//     let mouseY = mouse.clientY;
-//     let startTime = Date.now();
-
-//     let targetCircleX;
-//     let targetCircleY;
-
-//     const anim = _ => {
-
-
-//         targetCircleX = mouseX
-//         targetCircleY = mouseY
-//         // lines()
-
-//         let now = Date.now();
-//         let elapsed = now - startTime;
-
-//         // const setCx = getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element));
-//         // const setCy = getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element));
-//         const setCx = getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / attractionDeceleration;
-//         const setCy = getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / attractionDeceleration;
-
-//         if (elapsed > 1000 / 60) {
-
-//             element.setAttribute("cx", `${setCx}`);
-//             element.setAttribute("cy", `${setCy}`);
-//             startTime = now;
-//         }
-
-//         if (Math.floor(setCx) !== targetCircleX && Math.floor(setCy) !== targetCircleY) {
-//             attractionAnimIdArray[svgCirclesEl.indexOf(element)] = requestAnimationFrame(anim)
-//         }
-
-//     }
-
-//     cancelAnimationFrame(attractionAnimIdArray[svgCirclesEl.indexOf(element)])
-//     // reqAnimIDattraction = requestAnimationFrame(anim)
-//     attractionAnimIdArray[svgCirclesEl.indexOf(element)] = requestAnimationFrame(anim)
-
-// }
