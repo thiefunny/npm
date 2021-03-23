@@ -2,7 +2,7 @@
 .footer {
   position: fixed;
   background-color: #e31b70;
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
   bottom: 0;
   right: 0;
   font-size: 0.8rem;
@@ -11,6 +11,10 @@
 .footer img {
   position: relative;
   top: 0.35rem;
+}
+
+.avatar-small {
+  padding: 0 0.3rem 0 0.3rem;
 }
 
 .portfolio {

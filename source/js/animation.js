@@ -3,26 +3,24 @@ const wMax = window.innerWidth;
 const hMax = window.innerHeight;
 let circleX = _ => Math.random() * wMax;
 let circleY = _ => Math.random() * hMax;
-// let fillC = _ => `white`
-// let fillC = _ => `rgb(${Math.random()*1+10}, ${Math.random()*1+170}, ${Math.random()*1+254})`
-// let fillC = _ => `${colors.aboutme}`
-let circleR = _ => Math.random() + 300.6;
-let circleOpacity = transparency => Math.random() * transparency;
+let circleR = _ => Math.random() + 1.5;
+let circleOpacity = transparency => Math.random() * transparency + 0.1;
+let lineOpacity = transparency => Math.random() * transparency + 0.1;
 const wMin = 0;
 const hMin = 0;
-const svgs = 10;
+const svgs = 100;
 const linesQuantity = 20;
 const generateSVG = number => {
     let markup = ''
     for (let i = 0; i < number; i++) {
         markup += `
-        <circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="#e31b70" fill-opacity="${circleOpacity(0.05)}"/>
+        <circle r="${circleR()}" cx="${circleX()}" cy="${circleY()}" fill="#e31b70" fill-opacity="${circleOpacity(0.4)}"/>
         `
     }
 
     for (let i = 0; i < linesQuantity; i++) {
         markup += `
-        <line x1="0" y1="0" x2="0" y2="0" stroke="#e31b70" stroke-width="1" stroke-opacity="${circleOpacity(0)}"/>
+        <line x1="0" y1="0" x2="0" y2="0" stroke="#e31b70" stroke-width="1" stroke-opacity="${lineOpacity(0.3)}"/>
         `
     }
     return markup;
@@ -37,13 +35,13 @@ ${generateSVG(svgs)}
 const svgCirclesEl = [...document.querySelectorAll('circle')]
 const svgLinesEl = [...document.querySelectorAll('line')]
 
-const getCirclePos = (attribute, elem) => Number(elem.getAttribute(`${attribute}`));
+const getAttribute = (attribute, elem) => Number(elem.getAttribute(`${attribute}`));
 
 const line = (elem, indexOfCircle1, indexOfCircle2) => {
-    elem.setAttribute('x1', `${getCirclePos('cx', svgCirclesEl[indexOfCircle1])}`);
-    elem.setAttribute('y1', `${getCirclePos('cy', svgCirclesEl[indexOfCircle1])}`);
-    elem.setAttribute('x2', `${getCirclePos('cx', svgCirclesEl[indexOfCircle2])}`);
-    elem.setAttribute('y2', `${getCirclePos('cy', svgCirclesEl[indexOfCircle2])}`);
+    elem.setAttribute('x1', `${getAttribute('cx', svgCirclesEl[indexOfCircle1])}`);
+    elem.setAttribute('y1', `${getAttribute('cy', svgCirclesEl[indexOfCircle1])}`);
+    elem.setAttribute('x2', `${getAttribute('cx', svgCirclesEl[indexOfCircle2])}`);
+    elem.setAttribute('y2', `${getAttribute('cy', svgCirclesEl[indexOfCircle2])}`);
 }
 
 const polygons = [];
@@ -84,20 +82,21 @@ for (let i = 0; i < svgCirclesEl.length; i++) {
 const flow = (element) => {
 
     let alpha = Math.random() * 2 * Math.PI;
-    const speed = 0.4;
+    // const speed = 0.4;
+    const speed = Math.pow(getAttribute('fill-opacity', element)+0.7,5)-1;
 
     const flowAnim = _ => {
 
-        if (getCirclePos('cx', element) < wMin || getCirclePos('cx', element) > wMax) {
+        if (getAttribute('cx', element) < wMin || getAttribute('cx', element) > wMax) {
             alpha = Math.PI - alpha
         }
 
-        if (getCirclePos('cy', element) > hMax || getCirclePos('cy', element) < hMin) {
+        if (getAttribute('cy', element) > hMax || getAttribute('cy', element) < hMin) {
             alpha = -alpha
         }
 
-        let newX = getCirclePos('cx', element) + Math.cos(alpha) * speed;
-        let newY = getCirclePos('cy', element) + Math.sin(alpha) * speed;
+        let newX = getAttribute('cx', element) + Math.cos(alpha) * speed;
+        let newY = getAttribute('cy', element) + Math.sin(alpha) * speed;
 
         element.setAttribute("cx", `${newX}`);
         element.setAttribute("cy", `${newY}`);
@@ -111,25 +110,19 @@ const flow = (element) => {
 
 }
 
-
-
-let fearArr = []
-for (let elem of svgCirclesEl) {
-    fearArr[svgCirclesEl.indexOf(elem)] = false;
-}
-
-
 const fearDistance = 200;
 const fearRun = 200;
 const fearDeceleration = 20;
 const fearAnimSteps = 100;
 
-
 const fearAnimIdArray = []
-
-
 for (let i = 0; i < svgCirclesEl.length; i++) {
     fearAnimIdArray[i] = true;
+}
+
+const rArr = []
+for (let i = 0; i < svgCirclesEl.length; i++) {
+rArr.push(getAttribute('r', svgCirclesEl[i]));
 }
 
 const mouseRead = mouse => {
@@ -138,48 +131,55 @@ const mouseRead = mouse => {
 
     svgCirclesEl.forEach(element => {
 
-        const distCursorX = _ => Math.abs(mouseX - getCirclePos('cx', element))
-        const distCursorY = _ => Math.abs(mouseY - getCirclePos('cy', element))
+        let rStart = rArr[svgCirclesEl.indexOf(element)];
+
+        const distCursorX = _ => Math.abs(mouseX - getAttribute('cx', element))
+        const distCursorY = _ => Math.abs(mouseY - getAttribute('cy', element))
         const distCursor = _ => Math.sqrt(Math.pow(distCursorX(), 2) + Math.pow(distCursorY(), 2))
+
 
         if ((distCursor() < fearDistance)) {
 
+            let r = rArr[svgCirclesEl.indexOf(element)]*2;
+
             let frameNumber = 0;
 
-            let targetCircleX = getCirclePos('cx', element) + fearRun * (getCirclePos('cx', element) - mouseX) / distCursor()
-            let targetCircleY = getCirclePos('cy', element) + fearRun * (getCirclePos('cy', element) - mouseY) / distCursor()
+            let targetCircleX = getAttribute('cx', element) + fearRun * (getAttribute('cx', element) - mouseX) / distCursor()
+            let targetCircleY = getAttribute('cy', element) + fearRun * (getAttribute('cy', element) - mouseY) / distCursor()
 
             const animToTarget = _ => {
 
-                // x = x - .007;
+                if (r > rStart) {
+                    r = r*(1-1/fearAnimSteps*2)
+                }
 
-                if (getCirclePos('cx', element) < wMin) {
+                if (getAttribute('cx', element) < wMin) {
                     element.setAttribute("cx", `${wMin}`)
                     targetCircleX = wMin - targetCircleX
                 }
 
-                if (getCirclePos('cx', element) > wMax) {
+                if (getAttribute('cx', element) > wMax) {
                     element.setAttribute("cx", `${wMax}`)
                     targetCircleX = wMax - (targetCircleX - wMax)
                 }
 
-                if (getCirclePos('cy', element) > hMax) {
+                if (getAttribute('cy', element) > hMax) {
                     element.setAttribute("cy", `${hMax}`)
                     targetCircleY = hMax - (targetCircleY - hMax)
                 }
 
-                if (getCirclePos('cy', element) < hMin) {
+                if (getAttribute('cy', element) < hMin) {
                     element.setAttribute("cy", `${hMin}`)
                     targetCircleY = hMin - targetCircleY
                 }
 
-                let setCx = getCirclePos('cx', element) + (targetCircleX - getCirclePos('cx', element)) / fearDeceleration
-                let setCy = getCirclePos('cy', element) + (targetCircleY - getCirclePos('cy', element)) / fearDeceleration
+                let setCx = getAttribute('cx', element) + (targetCircleX - getAttribute('cx', element)) / fearDeceleration
+                let setCy = getAttribute('cy', element) + (targetCircleY - getAttribute('cy', element)) / fearDeceleration
+
+                element.setAttribute("r", r);
 
                 element.setAttribute("cx", `${setCx}`);
                 element.setAttribute("cy", `${setCy}`);
-
-                // lines()
 
                 if (frameNumber < fearAnimSteps) {
                     fearAnimIdArray[svgCirclesEl.indexOf(element)] = requestAnimationFrame(animToTarget)
