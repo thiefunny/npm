@@ -121,26 +121,29 @@ menuEl.addEventListener('click', element => {
 const srcOver = 'images/website-link-green.svg'
 const srcOut = 'images/website-link-projects.svg'
 
+h2El[0].addEventListener('mouseover', _ => {
+    metafoodieLogoEl[0].setAttribute('src', 'portfolio/images/metafoodie-logo-light-hover.svg')
+})
+
 h2El.forEach(el => {
 
     el.addEventListener('mouseover', _ => {
         console.log(el.children[0].children[0])
         el.children[0].style.color = `${colors.contact}`;
-        el.children[0].children[0].setAttribute('src', 'images/website-link-green.svg')
-        metafoodieLogoEl[0].setAttribute('src', 'images/metafoodie-logo-light-hover.svg')
+        el.children[0].children[0].setAttribute('src', 'portfolio/images/website-link-green.svg')
     })
 
     el.addEventListener('mouseout', _ => {
         el.children[0].style.color = `${colors.projects}`;
-        el.children[0].children[0].setAttribute('src', 'images/website-link-projects.svg')
-        metafoodieLogoEl[0].setAttribute('src', 'images/metafoodie-logo-light.svg')
+        el.children[0].children[0].setAttribute('src', 'portfolio/images/website-link-projects.svg')
+        metafoodieLogoEl[0].setAttribute('src', 'portfolio/images/metafoodie-logo-light.svg')
     })
 })
 
 metafoodieLogoEl[0].addEventListener('mouseover', _ => {
-    metafoodieLogoEl[0].setAttribute('src', 'images/metafoodie-logo-light-hover.svg')
+    metafoodieLogoEl[0].setAttribute('src', 'portfolio/images/metafoodie-logo-light-hover.svg')
 })
 
 metafoodieLogoEl[0].addEventListener('mouseout', _ => {
-    metafoodieLogoEl[0].setAttribute('src', 'images/metafoodie-logo-light.svg')
+    metafoodieLogoEl[0].setAttribute('src', 'portfolio/images/metafoodie-logo-light.svg')
 })
