@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+.footer {
+  position: fixed;
+  background-color: #e31b70;
+  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
+  bottom: 0;
+  right: 0;
+  font-size: 0.8rem;
+}
+
+.footer img {
+  position: relative;
+  top: 0.35rem;
+}
+
+.avatar-small {
+  padding: 0 0.3rem 0 0.3rem;
+}
+
+.portfolio {
+  overflow: auto;
+}
+
+.content div:last-child {
+  margin-bottom: 4rem;
+}
+
+.content-about a {
+  color: white;
+}
+
+.content-about a:hover {
+  color: #58aa34;
+}
+
+.content {
+  margin: 0 0 0 2rem;
+}
+
+div.content-skills h2 {
+  color: #e86618;
+}
+
+div.content-projects h2,
+div.content-projects h2 a {
+  color: #2278e3;
+}
+
+h2, h3 {
+  font-weight: 700;
+  font-size: inherit;
+  margin-top: 3.5rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+div.content-projects h2::before {
+  content: url(../../images/heading-separator-projects.svg);
+  position: absolute;
+  top: -2rem;
+}
+
+div.content-skills h2::before {
+  content: url(../../images/heading-separator-skills.svg);
+  position: absolute;
+  top: -2rem;
+}
+
+div.content-contact h3::before {
+  content: url(../../images/heading-separator-contact.svg);
+  position: absolute;
+  top: -2rem;
+}
+
+h2 a {
+  text-decoration: none;
+}
+
+.content-contact a {
+  font-weight: 400;
+  color: white;
+  font-size: 1.7rem;
+}
+
+.content-contact a:hover {
+  color: #58aa34;
+}
+
+img.link-icon {
+  width: 1rem;
+}
+
+.avatar {
+  padding-bottom: 1rem;
+}
+
+ul.p-list {
+  margin: 0.7rem 0 0 2rem;
+}
+
+ul.p-list li {
+  list-style-type: circle;
+}
+
+.metafoodie-logo {
+  width: 10rem;
+  display: block;
+  margin-top: 1rem;
+}
+
+.content-skills a:hover {
+  color: #58aa34;
+}
+
+.content-skills a {
+  color: white;
+}
+
+.menu {
+  margin: 0 0 3rem 2rem;
+}
+
+li.menu-element {
+  text-transform: uppercase;
+}
+
+.menu-element span {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-about span:hover {
+  color: #e31b70;
+}
+
+.menu-projects span:hover {
+  color: #2278e3;
+}
+
+.menu-skills span:hover {
+  color: #e86618;
+}
+
+.menu-contact span:hover {
+  color: #58aa34;
+}
+
+.container-svg {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: #000018;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.top {
+  width: 10rem;
+  height: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 700px) {
+  .menu {
+    margin: 0 0 3rem 1rem;
+  }
+
+  .content {
+    margin: 0 0 0 1rem;
+  }
+
+  .top {
+    margin-bottom: 1rem;
+    width: 10rem;
+    height: 0.6rem;
+  }
+}
+:root {
+  font-size: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  font-family: Montserrat;
+  background: #000018;
+  color: white;
+}
+
+.color-about {
+  color: #e31b70;
+}
+
+.color-projects {
+  color: #2278e3;
+}
+
+.color-skills {
+  color: #e86618;
+}
+
+.color-contact {
+  color: #58aa34;
+}
+
+li {
+  list-style-type: none;
+  line-height: 1.8rem;
+}
+
+p {
+  line-height: 1.4rem;
+  margin-top: 1rem;
+  max-width: 30rem;
+}
+
+/*# sourceMappingURL=main.css.map */
+
+/*# sourceMappingURL=main.css.map */
