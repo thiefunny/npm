@@ -1,0 +1,18 @@
+nav {
+  margin: 2rem;
+}
+
+.notes-list-title {
+  float: left;
+  width: 20rem;
+}
+
+nav button {
+  float: left;
+  margin: 0 1rem 0 0;
+  padding: 0.5rem;
+  position: relative;
+  top: -0.5rem;
+}
+
+/*# sourceMappingURL=nav.css.map */

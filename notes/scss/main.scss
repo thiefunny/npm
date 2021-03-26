@@ -1,13 +1,21 @@
+@use 'variables.scss';
+@use 'top.scss';
+@use 'nav.scss';
+@use 'list.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;600&display=swap');
+
+:root {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 $hover: rgba(230, 230, 230, 1);
-
-input {
-    border: 1px dashed grey;
-}
-
-textarea {
-    border: 1px dashed grey;
-    resize: none
-}
 
 button,
 label,
@@ -19,8 +27,15 @@ textarea {
 
 .notes-list-element:hover {
     background: $hover;
+    cursor: pointer;
 }
 
-.hidden {display: none;}
+.hidden {
+    display: none;
+}
 
-.dragto {width: 200px; height: 200px; background: greenyellow;}
+// .dragto {
+//     width: 200px;
+//     height: 200px;
+//     background: greenyellow;
+// }

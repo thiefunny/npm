@@ -5,13 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title></title>
+    <title>Draft of a notes app.</title>
 </head>
 
 <body>
 
-    <button class="add-note">dodaj notatkę</button>
-    <button class="edit-note hidden">edytuj notatkę</button>
+    <p class="top">This a draft of an app made for Objects / Arrays / Classes training puproses only.</p>
+
+    
+    <nav>
+        <div class="notes-list-title">Notes list</div>
+        <!-- <div class="nav-buttons"> -->
+            <button class="add-note">Add a note</button>
+            <button class="load-notes">Reload notes from server</button>
+        <!-- </div> -->
+    </nav>
+
+    <section class="notes-list-wrapper">
+        <ul class="notes-list-ul">
+
+        </ul>
+    </section>
+
+    <button class="edit-note hidden">save changes</button>
     <button class="delete-note hidden">skasuj notatkę</button>
     <!-- wyświetlanie godziny zrobić -->
     <!-- <form> -->
@@ -23,18 +39,12 @@
     <!-- </form> -->
 
     <button class="save-notes">zapisz plik z notatkami</button>
-    <button class="attach-to-note">dodaj załącznik</button>
+    <!-- <button class="attach-to-note">dodaj załącznik</button> -->
     
-    <div class="dragto"></div>
-
-    <!-- <button class="load-notes">wczytaj notatki z serwera</button> -->
+    <!-- <div class="dragto"></div> -->
 
 
-    <section class="notes-list-wrapper">
-        <ul class="notes-list-ul">
 
-        </ul>
-    </section>
 
     <script src="js/app.js" type="module"></script>
     <!-- <script src="js/app2.js" type="module"></script> -->

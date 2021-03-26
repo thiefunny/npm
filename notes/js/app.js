@@ -74,27 +74,27 @@ const evermik = _ => {
     //     // event.dataTransfer.files
     //     event.
     // })
-    divAttachEl.ondragenter = event => {
-        event.preventDefault();
-        // event.stopPropagation();
-        console.log('mikenter');
-    };
+    // divAttachEl.ondragenter = event => {
+    //     event.preventDefault();
+    //     // event.stopPropagation();
+    //     console.log('mikenter');
+    // };
 
-    divAttachEl.ondragover = event => {
-        event.preventDefault();
-        // event.stopPropagation();
-        console.log('mikover');
-    };
+    // divAttachEl.ondragover = event => {
+    //     event.preventDefault();
+    //     // event.stopPropagation();
+    //     console.log('mikover');
+    // };
 
-    divAttachEl.ondrop = event => {
-        event.preventDefault();
-        // event.stopPropagation();
-        console.log('mikdrop');
-    };
+    // divAttachEl.ondrop = event => {
+    //     event.preventDefault();
+    //     // event.stopPropagation();
+    //     console.log('mikdrop');
+    // };
 
     ///////////// LOAD NOTES 
 
-    // buttonLoadEl.addEventListener('click', loadFile);
+    buttonLoadEl.addEventListener('click', loadFile);
     window.onload = _ => loadFile();
 
     ///////////// SAVE FILE    

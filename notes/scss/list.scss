@@ -1,0 +1,14 @@
+@use 'variables.scss';
+
+section {
+    clear: both;
+}
+
+.notes-list-note-title {
+// font-size: 1.5rem
+font-weight: variables.$bold;
+}
+
+.notes-list-note-content {
+    font-weight: variables.$regular;
+}

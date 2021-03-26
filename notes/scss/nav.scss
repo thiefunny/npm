@@ -1,0 +1,20 @@
+@use 'variables.scss';
+
+nav {
+    margin: variables.$left-margin;
+    // margin-bottom: 4rem;
+}
+
+.notes-list-title {
+    float: left;
+    width: variables.$left-column-width;
+}
+
+nav button {
+    float: left;
+    margin: 0 1rem 0 0;
+    padding: 0.5rem;
+    position: relative;
+    top: -0.5rem;
+}
+

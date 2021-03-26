@@ -1,0 +1,10 @@
+@use 'variables.scss';
+
+input {
+    border: 1px dashed grey;
+}
+
+textarea {
+    border: 1px dashed grey;
+    resize: none
+}
