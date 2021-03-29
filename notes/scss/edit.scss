@@ -1,5 +1,10 @@
 @use 'variables.scss';
 
+.section-edit {
+    // float: left;
+    // display: block;
+}
+
 input {
     border: 1px dashed grey;
 }
@@ -7,4 +12,57 @@ input {
 textarea {
     border: 1px dashed grey;
     resize: none
+}
+
+input,
+textarea {
+    display: block;
+    margin: 0.5rem 0 1rem 0;
+}
+
+input {
+    height: 2rem;
+    @include variables.input-text();
+}
+
+textarea {
+    height: 15rem;
+    @include variables.input-text();
+}
+
+label {
+    font-weight: variables.$bold;
+}
+
+.form-wrapper {
+    // float:left;
+}
+
+.button-edit-wrapper {
+    // margin-left: 2rem;
+    // display: inline-block;
+    margin-left: variables.$left-column-width + variables.$left-margin;
+    margin-top: 2rem;
+}
+
+.edit-note {
+    
+    background-color: green;
+    color: white;
+    width: 11rem;
+    
+    // border-color: orangered;
+    // border-style:solid;
+    // // border-width: 3px;
+    // background-color: orangered;
+    // color: white;
+}
+
+.edit-note-saved {
+    background-color: darkgreen;
+}
+
+.delete-note:hover {
+    // margin-left: 10rem;
+    background-color: red;
 }

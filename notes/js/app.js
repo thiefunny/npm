@@ -8,8 +8,10 @@ import {
     deleteCurrentNoteInArray,
     showNoteToEdit,
     saveFile,
-    loadFile
-    } from './declarations.js';
+    loadFile,
+    blinkInfo,
+    highlightActiveNote
+} from './declarations.js';
 import {
     buttonAddEl,
     formNoteContentEl,
@@ -35,6 +37,8 @@ const evermik = _ => {
         addNote(formNoteTitleEl.value, formNoteContentEl.value);
         buttonAddEl.blur();
         formNoteTitleEl.focus();
+        currentNoteIndex = notesArr.length - 1;
+        highlightActiveNote(currentNoteIndex)
         // clearForm(formNoteContentEl, formNoteTitleEl);
     });
 
@@ -51,6 +55,7 @@ const evermik = _ => {
         }
         let arr = [...parent.children]
         currentNoteIndex = arr.indexOf(eventtarget);
+        highlightActiveNote(currentNoteIndex)
         showNoteToEdit(currentNoteIndex);
     })
 
@@ -59,6 +64,11 @@ const evermik = _ => {
     buttonEditEl.addEventListener("click", _ => {
         editCurrentNoteInArray(currentNoteIndex);
         updateHTMLList(currentNoteIndex);
+        highlightActiveNote(currentNoteIndex)
+
+        if (currentNoteIndex || currentNoteIndex === 0) {
+            blinkInfo();
+        }
     })
 
     ///////////// DELETE NOTE    
@@ -66,6 +76,13 @@ const evermik = _ => {
     buttonDeleteEl.addEventListener("click", _ => {
         deleteCurrentNoteInArray(currentNoteIndex);
         updateHTMLList(currentNoteIndex);
+        clearForm(formNoteContentEl, formNoteTitleEl);
+        currentNoteIndex = notesArr.length-1;
+        highlightActiveNote(currentNoteIndex);
+        showNoteToEdit(currentNoteIndex);
+
+        // editCurrentNoteInArray(currentNoteIndex);
+
     })
 
     ///////////// ATTACH A FILE    
@@ -94,14 +111,19 @@ const evermik = _ => {
 
     ///////////// LOAD NOTES 
 
-    buttonLoadEl.addEventListener('click', loadFile);
+    buttonLoadEl.addEventListener('click', _ => {
+        loadFile();
+        clearForm(formNoteContentEl, formNoteTitleEl);
+    });
     window.onload = _ => loadFile();
+
 
     ///////////// SAVE FILE    
 
     buttonSaveEl.addEventListener("click",
         _ => {
-            saveFile(`${notesArr[notesArr.length - 1]['time'].getTime()}.txt`, JSON.stringify(notesArr));
+            let now = new Date;
+            saveFile(`Downloading works, what did you think.txt`, JSON.stringify(notesArr));
         }
     )
 

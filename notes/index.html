@@ -10,37 +10,46 @@
 
 <body>
 
-    <p class="top">This a draft of an app made for Objects / Arrays / Classes training puproses only.</p>
+    <p class="media-warning">Please visit desktop version.<br>
+        At this moment mobile is not available.</p>
 
-    
+    <p class="top">This a draft of an app made for Objects / Arrays / Classes training purposes only.</p>
+
     <nav>
         <div class="notes-list-title">Notes list</div>
-        <!-- <div class="nav-buttons"> -->
-            <button class="add-note">Add a note</button>
-            <button class="load-notes">Reload notes from server</button>
-        <!-- </div> -->
+        <button class="load-notes">Reload notes from server</button>
+        <button class="save-notes">Download JSON with notes</button>
     </nav>
 
-    <section class="notes-list-wrapper">
-        <ul class="notes-list-ul">
 
-        </ul>
+    <section class="notes-list-wrapper">
+        <ol class="notes-list-ul">
+
+        </ol>
     </section>
 
-    <button class="edit-note hidden">save changes</button>
-    <button class="delete-note hidden">skasuj notatkę</button>
-    <!-- wyświetlanie godziny zrobić -->
-    <!-- <form> -->
 
-        <label for="note-title">Tytuł<input type="text" name="note-title" id="form-note-title"></label>
-        <label for="note-content">Treść<textarea name="note-content" id="form-note-content" cols="30"
-                rows="10"></textarea></label>
+    <section class="section-edit">
+        <!-- wyświetlanie godziny zrobić -->
+        <!-- <form> -->
+        <div class="form-wrapper">
+            <label for="note-title">Tytuł<input type="text" name="note-title" id="form-note-title"></label>
+            <label for="note-content">Treść<textarea name="note-content" id="form-note-content" cols="30"
+                    rows="10"></textarea></label>
+        </div>
+
+        <div class="button-edit-wrapper">
+            <button class="add-note">Save a new note</button>
+
+            <button class="edit-note">Save changes to current</button>
+            <button class="delete-note">Delete note</button>
+        </div>
+    </section>
 
     <!-- </form> -->
 
-    <button class="save-notes">zapisz plik z notatkami</button>
     <!-- <button class="attach-to-note">dodaj załącznik</button> -->
-    
+
     <!-- <div class="dragto"></div> -->
 
 

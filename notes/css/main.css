@@ -13,18 +13,19 @@ nav {
 .notes-list-title {
   float: left;
   width: 20rem;
+  font-weight: 400;
 }
 
-nav button {
+.add-note {
+  background-color: green;
+  color: white;
+}
+
+.notes-list-wrapper {
+  margin-left: 2rem;
   float: left;
-  margin: 0 1rem 0 0;
-  padding: 0.5rem;
-  position: relative;
-  top: -0.5rem;
-}
-
-section {
-  clear: both;
+  width: 20rem;
+  height: 30rem;
 }
 
 .notes-list-note-title {
@@ -33,6 +34,69 @@ section {
 
 .notes-list-note-content {
   font-weight: 400;
+}
+
+.notes-list-wrapper li {
+  margin-bottom: 0.5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.notes-list-element:hover {
+  background: #e6e6e6;
+  cursor: pointer;
+}
+
+input {
+  border: 1px dashed grey;
+}
+
+textarea {
+  border: 1px dashed grey;
+  resize: none;
+}
+
+input,
+textarea {
+  display: block;
+  margin: 0.5rem 0 1rem 0;
+}
+
+input {
+  height: 2rem;
+  width: 30rem;
+  font-size: 1rem;
+  font-family: "Roboto Mono", monospace;
+}
+
+textarea {
+  height: 15rem;
+  width: 30rem;
+  font-size: 1rem;
+  font-family: "Roboto Mono", monospace;
+}
+
+label {
+  font-weight: 600;
+}
+
+.button-edit-wrapper {
+  margin-left: 22rem;
+  margin-top: 2rem;
+}
+
+.edit-note {
+  background-color: green;
+  color: white;
+  width: 11rem;
+}
+
+.edit-note-saved {
+  background-color: darkgreen;
+}
+
+.delete-note:hover {
+  background-color: red;
 }
 
 :root {
@@ -45,21 +109,50 @@ section {
   padding: 0;
 }
 
-button,
-label,
-input,
-textarea {
-  display: block;
-  margin: 10px;
-}
-
-.notes-list-element:hover {
-  background: #e6e6e6;
-  cursor: pointer;
-}
-
 .hidden {
   display: none;
+}
+
+button {
+  margin: 0 1rem 0 0;
+  padding: 0.6rem;
+  position: relative;
+  top: -0.5rem;
+  border: 0;
+}
+
+button:hover {
+  background-color: midnightblue;
+  color: white;
+}
+
+button:active {
+  background-color: blue;
+  color: white;
+}
+
+.media-warning {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  body {
+    font-size: 1.3rem;
+  }
+
+  .top,
+section,
+nav {
+    display: none;
+  }
+
+  .media-warning {
+    display: block;
+    color: black;
+    text-align: center;
+    margin-top: 3rem;
+    line-height: 2.5rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

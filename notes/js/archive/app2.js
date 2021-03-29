@@ -18,7 +18,7 @@ import {
     formEL,
     buttonEditEl,
     
-} from './dom.js'
+} from '../dom.js'
 
 
 const evermik = _ => {

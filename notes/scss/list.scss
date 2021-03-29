@@ -1,7 +1,13 @@
 @use 'variables.scss';
 
-section {
-    clear: both;
+.notes-list-wrapper {
+    // clear: left;
+    margin-left: variables.$left-margin;
+    // padding: variables.$left-margin;
+    // background-color: crimson;
+    float: left;
+    width: variables.$left-column-width;
+    height: 30rem;
 }
 
 .notes-list-note-title {
@@ -11,4 +17,18 @@ font-weight: variables.$bold;
 
 .notes-list-note-content {
     font-weight: variables.$regular;
+    
 }
+
+.notes-list-wrapper li {
+    // list-style-type: none;
+    margin-bottom: 0.5rem;
+    margin-left: variables.$left-margin;
+    margin-right: 2rem;
+}
+
+.notes-list-element:hover {
+    background: variables.$hover;
+    cursor: pointer;
+}
+

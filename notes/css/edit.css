@@ -7,4 +7,47 @@ textarea {
   resize: none;
 }
 
+input,
+textarea {
+  display: block;
+  margin: 0.5rem 0 1rem 0;
+}
+
+input {
+  height: 2rem;
+  width: 30rem;
+  font-size: 1rem;
+  font-family: "Roboto Mono", monospace;
+}
+
+textarea {
+  height: 15rem;
+  width: 30rem;
+  font-size: 1rem;
+  font-family: "Roboto Mono", monospace;
+}
+
+label {
+  font-weight: 600;
+}
+
+.button-edit-wrapper {
+  margin-left: 22rem;
+  margin-top: 2rem;
+}
+
+.edit-note {
+  background-color: green;
+  color: white;
+  width: 11rem;
+}
+
+.edit-note-saved {
+  background-color: darkgreen;
+}
+
+.delete-note:hover {
+  background-color: red;
+}
+
 /*# sourceMappingURL=edit.css.map */

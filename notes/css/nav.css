@@ -5,14 +5,12 @@ nav {
 .notes-list-title {
   float: left;
   width: 20rem;
+  font-weight: 400;
 }
 
-nav button {
-  float: left;
-  margin: 0 1rem 0 0;
-  padding: 0.5rem;
-  position: relative;
-  top: -0.5rem;
+.add-note {
+  background-color: green;
+  color: white;
 }
 
 /*# sourceMappingURL=nav.css.map */

@@ -2,19 +2,18 @@
 
 nav {
     margin: variables.$left-margin;
-    // margin-bottom: 4rem;
 }
+
+.nav-buttons-wrapper {}
+
 
 .notes-list-title {
     float: left;
     width: variables.$left-column-width;
+    font-weight: variables.$regular;
 }
 
-nav button {
-    float: left;
-    margin: 0 1rem 0 0;
-    padding: 0.5rem;
-    position: relative;
-    top: -0.5rem;
+.add-note {
+    background-color: green;
+    color: white;
 }
-

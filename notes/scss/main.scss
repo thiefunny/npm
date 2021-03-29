@@ -2,8 +2,11 @@
 @use 'top.scss';
 @use 'nav.scss';
 @use 'list.scss';
+@use 'edit.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;600&display=swap');
+
+
 
 :root {
     font-family: 'Roboto Mono', monospace;
@@ -15,27 +18,55 @@
     padding: 0;
 }
 
-$hover: rgba(230, 230, 230, 1);
-
-button,
-label,
-input,
-textarea {
-    display: block;
-    margin: 10px;
-}
-
-.notes-list-element:hover {
-    background: $hover;
-    cursor: pointer;
-}
-
 .hidden {
     display: none;
 }
 
-// .dragto {
-//     width: 200px;
-//     height: 200px;
-//     background: greenyellow;
-// }
+button {
+    margin: 0 1rem 0 0;
+    padding: 0.6rem;
+    position: relative;
+    top: -0.5rem;
+    border: 0;
+}
+
+button:hover {
+    background-color: midnightblue;
+    color: white;
+}
+
+button:active {
+    background-color: blue;
+    color: white;
+
+}
+
+.media-warning {
+    display: none;
+}
+
+@media (max-width: 850px) {
+
+    body {
+        font-size: 1.3rem;
+    }
+
+    .top,
+    section,
+    nav {
+        display: none;
+    }
+
+    .media-warning {
+        display: block;
+        color: black;
+        text-align: center;
+        margin-top: 3rem;
+        line-height: 2.5rem;
+    }
+
+    strong {
+        // color: darkred
+    }
+
+}

@@ -3,6 +3,7 @@ import {
     formNoteContentEl,
     notesListUlEL,
     buttonEditEl,
+    buttonSaveEl,
     buttonDeleteEl
 } from './dom.js'
 
@@ -25,11 +26,37 @@ export const clearForm = (...formEls) => {
     }
 }
 
+export const blinkInfo = _ => {
+        buttonEditEl.classList.add("edit-note-saved");
+        buttonEditEl.innerHTML = "Changes saved"
+        setTimeout(_ => {
+            buttonEditEl.classList.remove("edit-note-saved");
+            buttonEditEl.innerHTML = "Save changes to current"
+        }, 2000)
+}
+
+const noteContentPreview = (noteIndex) => {
+    let preview = [];
+    let number = 20;
+    for (let i = 0; i < number; i++) {
+        preview.push(notesArr[noteIndex]['content'][i])
+    }
+    return preview.join('') + '...';
+}
+
+export const highlightActiveNote = noteIndex => {
+    let allNotes = [...document.querySelectorAll('.notes-list-element')];
+    allNotes.forEach(elem => {
+        elem.style.backgroundColor = ''
+    })
+    allNotes[noteIndex].style.backgroundColor = 'slategrey'
+}
+
 export const addCurrentNoteToHTMLList = (noteIndex) => {
     let markup =
         `<li class="notes-list-element">
     <p class="notes-list-note-title note-li-p">${notesArr[noteIndex]['title']}</p>
-    <p class="notes-list-note-content note-li-p">${notesArr[noteIndex]['content']}</p>
+    <p class="notes-list-note-content note-li-p">${noteContentPreview(noteIndex)}</p>
     </li>`;
     notesListUlEL.innerHTML += markup;
 }
@@ -48,13 +75,19 @@ export const showNoteToEdit = (noteIndex) => {
 }
 
 export const editCurrentNoteInArray = noteIndex => {
-    notesArr[noteIndex].title = formNoteTitleEl.value;
-    notesArr[noteIndex].content = formNoteContentEl.value;
+    if (notesArr[noteIndex]) {
+        notesArr[noteIndex].title = formNoteTitleEl.value;
+        notesArr[noteIndex].content = formNoteContentEl.value;
+    } else {
+        alert('Choose a note to edit')
+    }
 }
 
 export const deleteCurrentNoteInArray = noteIndex => {
-    notesArr.splice(noteIndex,1);
-    
+    if (notesArr[noteIndex]) {
+    notesArr.splice(noteIndex, 1);}
+    else {alert ('Choose a note to delete')}
+
 }
 
 export const updateHTMLList = noteIndex => {
@@ -64,8 +97,15 @@ export const updateHTMLList = noteIndex => {
         partialMarkup =
             `<li class="notes-list-element">
     <p class="notes-list-note-title note-li-p">${note['title']}</p>
-    <p class="notes-list-note-content note-li-p">${note['content']}</p>
+    <p class="notes-list-note-content note-li-p">${noteContentPreview(notesArr.indexOf(note))}</p>
     </li>`;
+
+
+        //     partialMarkup =
+        //     `<li class="notes-list-element">
+        // <p class="notes-list-note-title note-li-p">${note['title']}</p>
+        // <p class="notes-list-note-content note-li-p">${note['content']}</p>
+        // </li>`;
         markup += partialMarkup;
     })
     // console.log(markup);
@@ -74,11 +114,11 @@ export const updateHTMLList = noteIndex => {
 
 export const loadFile = _ => {
     fetch('./notes/notes.txt')
-    .then(response => response.json())
-    .then(loadedArray => {
-        notesArr = loadedArray;
-        updateHTMLList();
-    });
+        .then(response => response.json())
+        .then(loadedArray => {
+            notesArr = loadedArray;
+            updateHTMLList();
+        });
 }
 
 export const saveFile = (filename, text) => {

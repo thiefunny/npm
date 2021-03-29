@@ -1,5 +1,8 @@
-section {
-  clear: both;
+.notes-list-wrapper {
+  margin-left: 2rem;
+  float: left;
+  width: 20rem;
+  height: 30rem;
 }
 
 .notes-list-note-title {
@@ -8,6 +11,17 @@ section {
 
 .notes-list-note-content {
   font-weight: 400;
+}
+
+.notes-list-wrapper li {
+  margin-bottom: 0.5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.notes-list-element:hover {
+  background: #e6e6e6;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=list.css.map */
