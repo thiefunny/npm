@@ -1,22 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500&display=swap");
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.app {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  background: black;
-}
-
 nav {
   width: calc(100% - 80%);
   font-family: monospace;
+}
+
+.instrument-choice {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .hz {
@@ -58,15 +50,7 @@ nav {
   background: rgba(69, 105, 60, 0.25);
 }
 
-main {
-  width: 80%;
-}
-
-ul {
-  height: 100%;
-}
-
-li {
+ul.strings-violin li {
   font-size: 5em;
   list-style: none;
   height: 25%;
@@ -76,25 +60,87 @@ li {
   font-family: "Sansita Swashed";
 }
 
-li.e {
+li.violin-e {
   background: rgba(69, 105, 60, 0.9);
 }
 
-li.a {
+li.violin-a {
   background: rgba(69, 105, 60, 0.8);
 }
 
-li.d {
+li.violin-d {
   background: rgba(69, 105, 60, 0.7);
 }
 
-li.g {
+li.violin-g {
   background: rgba(69, 105, 60, 0.6);
 }
 
 li:hover {
   border: 10px solid #45693c;
   cursor: pointer;
+}
+
+ul.strings-guitar li {
+  font-size: 5em;
+  list-style: none;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Sansita Swashed";
+}
+
+li.guitar-e4 {
+  background: rgba(69, 105, 60, 0.9);
+}
+
+li.guitar-h {
+  background: rgba(69, 105, 60, 0.8);
+}
+
+li.guitar-g {
+  background: rgba(69, 105, 60, 0.7);
+}
+
+li.guitar-d {
+  background: rgba(69, 105, 60, 0.6);
+}
+
+li.guitar-a {
+  background: rgba(69, 105, 60, 0.6);
+}
+
+li.guitar-e2 {
+  background: rgba(69, 105, 60, 0.6);
+}
+
+li:hover {
+  border: 10px solid #45693c;
+  cursor: pointer;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.app {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: black;
+}
+
+ul {
+  height: 100%;
+}
+
+main {
+  width: 80%;
 }
 
 .up:hover,
@@ -107,6 +153,10 @@ li:hover {
 li.active {
   background: #300e25;
   transition: all ease 0.3s;
+}
+
+.hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */

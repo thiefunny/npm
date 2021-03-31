@@ -23,6 +23,8 @@ const upEl = document.querySelector(".up");
 const downEl = document.querySelector(".down");
 const resetEl = document.querySelector(".reset");
 const infoEl = document.querySelector(".info");
+const guitarEl = document.querySelector(".guitar-choice");
+const violinEl = document.querySelector(".violin-choice");
 
 infoEl.innerHTML = aFreq;
 
@@ -63,6 +65,7 @@ const action = _ => {
         }
 
     })
+    
     window.addEventListener("keypress", event => {
 
         if (event.key === "4" || event.key === "e" ) {

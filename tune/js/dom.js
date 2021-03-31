@@ -1,0 +1,10 @@
+export const mainEl = document.querySelector("main");
+export const upEl = document.querySelector(".up");
+export const downEl = document.querySelector(".down");
+export const resetEl = document.querySelector(".reset");
+export const infoEl = document.querySelector(".info");
+export const instrumentChoiceEl = document.querySelector(".instrument-choice");
+export const guitarEl = document.querySelector(".guitar-choice");
+export const violinEl = document.querySelector(".violin-choice");
+export const stringsViolinEl = document.querySelector(".strings-violin");
+export const stringsGuitarEl = document.querySelector(".strings-guitar");

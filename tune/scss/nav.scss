@@ -1,0 +1,63 @@
+@use 'variables.scss';
+
+nav {
+    width: calc(100% - #{variables.$proportions});
+    font-family: monospace;
+
+    // text-transform: uppercase;
+}
+
+.instrument-choice {
+padding: 1rem;
+display: flex;
+align-items: center;
+justify-content: space-around;
+
+}
+
+.guitar-choice {
+}
+
+.hz {
+    height: variables.$proportionsnav;
+    // background: rgba(variables.$r, variables.$g, variables.$b, 0.5);
+    background: rgba(variables.$r, variables.$g, variables.$b, 0.8);
+
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reset {
+    height: variables.$proportionsnav;
+    // background: rgba(variables.$r, variables.$g, variables.$b, 0.2);
+    font-size: 1.4em;
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tune {
+    height: calc(100% - #{variables.$proportionsnav}*2);
+    font-size: 4em;
+    display: flex;
+    flex-direction: column;
+    // flex-grow: 1;
+}
+
+.tune div {
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.up {
+    background: rgba(variables.$r, variables.$g, variables.$b, 0.3);
+}
+
+.down {
+    background: rgba(variables.$r, variables.$g, variables.$b, 0.25);
+}

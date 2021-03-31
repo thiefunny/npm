@@ -1,0 +1,36 @@
+@use 'variables.scss';
+
+
+ul.strings-violin {
+}
+
+ul.strings-violin li {
+    font-size: 5em;
+    list-style: none;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Sansita Swashed";
+}
+
+li.violin-e {
+    background: rgba(variables.$r, variables.$g, variables.$b, 0.9);
+}
+
+li.violin-a {
+    background: rgba(variables.$r, variables.$g, variables.$b, 0.8);
+}
+
+li.violin-d {
+    background: rgba(variables.$r, variables.$g, variables.$b, 0.7);
+}
+
+li.violin-g {
+    background: rgba(variables.$r, variables.$g, variables.$b, 0.6);
+}
+
+li:hover {
+    border: 10px solid rgba(variables.$r, variables.$g, variables.$b, 1);
+    cursor: pointer;
+}
