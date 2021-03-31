@@ -5,66 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title>Violin tuning</title>
+    <title>Simple violin and guitar tuner</title>
 </head>
 
 <body>
+    <!-- <p>text <sub>asd</sub></p> -->
     <div class="app">
 
         <main>
             <ul class="strings-violin">
                 <li class="violin-e">
-                    e
+                    <p>e<sub>4</sub></p>
+                    <span class="keyboard">(press "e" or use numbers)</span>
                 </li>
                 <li class="violin-a">
-                    a
+                    <p>a<sub>3</sub></p>
+                    <span class="keyboard">(press "a")</span>
                 </li>
                 <li class="violin-d">
-                    d
+                    <p>d<sub>3</sub></p>
+                    <span class="keyboard">(press "d")</span>
                 </li>
                 <li class="violin-g">
-                    g
+                    <p>g<sub>2</sub></p>
+                    <span class="keyboard">(press "g")</span>
                 </li>
             </ul>
             <ul class="strings-guitar hidden">
                 <li class="guitar-e4">
-                    e4
+                    <p>e<sub>4</sub></p>
+                    <span class="keyboard">(press "e")</span>
                 </li>
                 <li class="guitar-h">
-                    h
+                    <p>h<sub>3</sub></p>
+                    <span class="keyboard">(press "h")</span>
                 </li>
                 <li class="guitar-g">
-                    g
+                    <p>g<sub>3</sub></p>
+                    <span class="keyboard">(press "g")</span>
                 </li>
                 <li class="guitar-d">
-                    d
+                    <p>d<sub>3</sub></p>
+                    <span class="keyboard">(press "d")</span>
                 </li>
                 <li class="guitar-a">
-                    a
+                    <p>a<sub>2</sub></p>
+                    <span class="keyboard">(press "a")</span>
                 </li>
                 <li class="guitar-e2">
-                    e2
+                    <p>e<sub>2</sub></p>
+                    <span class="keyboard">(press "shift+e")</span>
                 </li>
             </ul>
         </main>
         <nav>
-            <div class="instrument-choice">
-                <div class="guitar-choice">guitar</div>
-                <div class="violin-choice">violin</div>
+            <div class="guitar-choice">Choose guitar</div>
+            <div class="violin-choice">You're tuning violin</div>
+            <div class="up">
+                1 Hz <span>&#8593;</span>
             </div>
-            <div class="tune">
-                <div class="up">
-                    &#8593; Hz
-                </div>
-                <div class="down">
-                    &#8595; Hz
-                
+            <div class="down">
+                1 Hz <span>&#8595;</span>
             </div>
+            <div class="reset">
+                &#8594; Reset strings (a = 440 Hz)</sub>
+            </div>
+            <div class="silence">
+                Silence!</sub>
             </div>
             <div class="hz">a =&nbsp;<p class="info"></p>&nbsp;Hz</div>
-            <div class="reset">
-                reset
-            </div>
 
         </nav>
     </div>

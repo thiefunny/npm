@@ -1,11 +1,8 @@
 @use 'variables.scss';
 
 
-ul.strings-guitar {
-}
-
 ul.strings-guitar li {
-    font-size: 5em;
+    font-size: variables.$fontsizenotes;
     list-style: none;
     height: 16.66666667%;
     display: flex;
@@ -15,30 +12,30 @@ ul.strings-guitar li {
 }
 
 li.guitar-e4 {
-    background: rgba(variables.$r, variables.$g, variables.$b, 0.9);
+    background: rgba(variables.$r-guitar, variables.$g-guitar, variables.$b-guitar, calc(#{variables.$opaque - variables.$partialopacity*1}));
 }
 
 li.guitar-h {
-    background: rgba(variables.$r, variables.$g, variables.$b, 0.8);
+    background: rgba(variables.$r-guitar, variables.$g-guitar, variables.$b-guitar, calc(#{variables.$opaque - variables.$partialopacity*2}));
 }
 
 li.guitar-g {
-    background: rgba(variables.$r, variables.$g, variables.$b, 0.7);
+    background: rgba(variables.$r-guitar, variables.$g-guitar, variables.$b-guitar, calc(#{variables.$opaque - variables.$partialopacity*3}));
 }
 
 li.guitar-d {
-    background: rgba(variables.$r, variables.$g, variables.$b, 0.6);
+    background: rgba(variables.$r-guitar, variables.$g-guitar, variables.$b-guitar, calc(#{variables.$opaque - variables.$partialopacity*4}));
 }
 
 li.guitar-a {
-    background: rgba(variables.$r, variables.$g, variables.$b, 0.6);
+    background: rgba(variables.$r-guitar, variables.$g-guitar, variables.$b-guitar, calc(#{variables.$opaque - variables.$partialopacity*5}));
 }
 
 li.guitar-e2 {
-    background: rgba(variables.$r, variables.$g, variables.$b, 0.6);
+    background: rgba(variables.$r-guitar, variables.$g-guitar, variables.$b-guitar, calc(#{variables.$opaque - variables.$partialopacity*6}));
 }
 
-li:hover {
-    border: 10px solid rgba(variables.$r, variables.$g, variables.$b, 1);
+ul.strings-guitar li:hover {
+    border: 10px solid rgba(variables.$r-guitar, variables.$g-guitar, variables.$b-guitar, variables.$opaque);
     cursor: pointer;
 }

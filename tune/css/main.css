@@ -1,88 +1,100 @@
 @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500&display=swap");
 nav {
-  width: calc(100% - 80%);
+  width: calc(100% - 70%);
   font-family: monospace;
 }
 
-.instrument-choice {
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.hz {
-  height: 25%;
-  background: rgba(69, 105, 60, 0.8);
-  font-size: 1.4em;
+nav div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.reset {
-  height: 25%;
-  font-size: 1.4em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+nav div:active {
+  background: rgba(140, 142, 100, 0.8);
 }
 
-.tune {
-  height: calc(100% - 25%*2);
-  font-size: 4em;
-  display: flex;
-  flex-direction: column;
+nav span {
+  font-size: 2rem;
+  padding-left: 0.5rem;
+  position: relative;
+  top: -0.3rem;
 }
 
-.tune div {
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.guitar-choice, .violin-choice {
+  height: 14%;
+  background-color: rgba(140, 142, 100, 0.2);
 }
 
 .up {
-  background: rgba(69, 105, 60, 0.3);
+  background: rgba(140, 142, 100, 0.6);
+  height: 15%;
 }
 
 .down {
-  background: rgba(69, 105, 60, 0.25);
+  background: rgba(140, 142, 100, 0.5);
+  height: 15%;
+}
+
+.reset {
+  background: rgba(140, 142, 100, 0.2);
+  height: 14%;
+}
+
+.silence {
+  background: rgba(140, 142, 100, 0.1);
+  height: 14%;
+}
+
+.hz {
+  height: 14%;
+  background: #cd4f18;
+}
+
+@keyframes tune-change-anim {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.tune-change-anim {
+  animation: tune-change-anim 0.3s;
 }
 
 ul.strings-violin li {
-  font-size: 5em;
+  font-size: 4rem;
   list-style: none;
   height: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Sansita Swashed";
 }
 
 li.violin-e {
-  background: rgba(69, 105, 60, 0.9);
+  background: rgba(67, 147, 40, calc(0.9));
 }
 
 li.violin-a {
-  background: rgba(69, 105, 60, 0.8);
+  background: rgba(67, 147, 40, calc(0.8));
 }
 
 li.violin-d {
-  background: rgba(69, 105, 60, 0.7);
+  background: rgba(67, 147, 40, calc(0.7));
 }
 
 li.violin-g {
-  background: rgba(69, 105, 60, 0.6);
+  background: rgba(67, 147, 40, calc(0.6));
 }
 
-li:hover {
-  border: 10px solid #45693c;
+ul.strings-violin li:hover {
+  border: 10px solid #439328;
   cursor: pointer;
 }
 
 ul.strings-guitar li {
-  font-size: 5em;
+  font-size: 4rem;
   list-style: none;
   height: 16.66666667%;
   display: flex;
@@ -92,31 +104,31 @@ ul.strings-guitar li {
 }
 
 li.guitar-e4 {
-  background: rgba(69, 105, 60, 0.9);
+  background: rgba(200, 165, 0, calc(0.9));
 }
 
 li.guitar-h {
-  background: rgba(69, 105, 60, 0.8);
+  background: rgba(200, 165, 0, calc(0.8));
 }
 
 li.guitar-g {
-  background: rgba(69, 105, 60, 0.7);
+  background: rgba(200, 165, 0, calc(0.7));
 }
 
 li.guitar-d {
-  background: rgba(69, 105, 60, 0.6);
+  background: rgba(200, 165, 0, calc(0.6));
 }
 
 li.guitar-a {
-  background: rgba(69, 105, 60, 0.6);
+  background: rgba(200, 165, 0, calc(0.5));
 }
 
 li.guitar-e2 {
-  background: rgba(69, 105, 60, 0.6);
+  background: rgba(200, 165, 0, calc(0.4));
 }
 
-li:hover {
-  border: 10px solid #45693c;
+ul.strings-guitar li:hover {
+  border: 10px solid #c8a500;
   cursor: pointer;
 }
 
@@ -124,7 +136,22 @@ li:hover {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  color: rgba(255, 255, 255, 0.6);
+  color: white;
+  font-family: sans-serif;
+}
+
+ul * {
+  font-family: "Sansita Swashed";
+}
+
+span.keyboard {
+  font-size: 1rem;
+  padding-left: 1rem;
+  font-family: sans-serif;
+}
+
+sub {
+  font-size: 2.4rem;
 }
 
 .app {
@@ -140,23 +167,30 @@ ul {
 }
 
 main {
-  width: 80%;
+  width: 70%;
 }
 
+.guitar-choice:hover,
+.violin-choice:hover,
+.silence:hover,
 .up:hover,
 .down:hover,
 .reset:hover {
-  border: 10px solid #45693c;
+  border: 10px solid #8c8e64;
   cursor: pointer;
 }
 
 li.active {
-  background: #300e25;
+  background: #cd4f18;
   transition: all ease 0.3s;
 }
 
 .hidden {
   display: none;
+}
+
+.activeinstrument {
+  background: #cd4f18;
 }
 
 /*# sourceMappingURL=main.css.map */

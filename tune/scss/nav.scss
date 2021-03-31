@@ -3,61 +3,67 @@
 nav {
     width: calc(100% - #{variables.$proportions});
     font-family: monospace;
-
-    // text-transform: uppercase;
 }
 
-.instrument-choice {
-padding: 1rem;
-display: flex;
-align-items: center;
-justify-content: space-around;
-
-}
-
-.guitar-choice {
-}
-
-.hz {
-    height: variables.$proportionsnav;
-    // background: rgba(variables.$r, variables.$g, variables.$b, 0.5);
-    background: rgba(variables.$r, variables.$g, variables.$b, 0.8);
-
-    font-size: 1.4em;
-    display: flex;
+nav div {
+    display:flex;
     align-items: center;
     justify-content: center;
 }
 
-.reset {
-    height: variables.$proportionsnav;
-    // background: rgba(variables.$r, variables.$g, variables.$b, 0.2);
-    font-size: 1.4em;
-    display: flex;
-    // flex-direction: column;
-    align-items: center;
-    justify-content: center;
+nav div:active {
+    background: rgba(variables.$r-panel, variables.$g-panel, variables.$b-panel, 0.8);
 }
 
-.tune {
-    height: calc(100% - #{variables.$proportionsnav}*2);
-    font-size: 4em;
-    display: flex;
-    flex-direction: column;
-    // flex-grow: 1;
+nav span {
+font-size: 2rem;
+padding-left: 0.5rem;
+position: relative;
+top: -0.3rem;
 }
 
-.tune div {
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.guitar-choice, .violin-choice {
+    height: 14%;
+    background-color: rgba(variables.$r-panel, variables.$g-panel, variables.$b-panel, 0.2);
 }
 
 .up {
-    background: rgba(variables.$r, variables.$g, variables.$b, 0.3);
+    background: rgba(variables.$r-panel, variables.$g-panel, variables.$b-panel, 0.6);
+    height: 15%;
 }
 
 .down {
-    background: rgba(variables.$r, variables.$g, variables.$b, 0.25);
+    background: rgba(variables.$r-panel, variables.$g-panel, variables.$b-panel, 0.5);
+    height: 15%;
+}
+
+.reset {
+    background: rgba(variables.$r-panel, variables.$g-panel, variables.$b-panel, 0.2);
+    height: 14%;
+}
+
+.silence {
+    background: rgba(variables.$r-panel, variables.$g-panel, variables.$b-panel, 0.1);
+    height: 14%;
+}
+
+.hz {
+    height: 14%;
+    background: rgba(variables.$r-active, variables.$g-active, variables.$b-active, 1);
+}
+
+@keyframes tune-change-anim {
+
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.tune-change-anim {
+animation: tune-change-anim 0.3s;
+// animation-fill-mode: forwards;
 }

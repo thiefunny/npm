@@ -9,7 +9,22 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: scale-color(variables.$fontcolor, variables.$alpha:-40%);
+    color: white;
+    font-family: sans-serif;
+}
+
+ul * {
+    font-family: "Sansita Swashed";
+}
+
+span.keyboard {
+    font-size: 1rem;
+    padding-left: 1rem;
+    font-family: sans-serif;
+}
+
+sub {
+    font-size: variables.$fontsizenotes*0.6;
 }
 
 .app {
@@ -28,19 +43,26 @@ main {
     width: variables.$proportions;
 }
 
+.guitar-choice:hover,
+.violin-choice:hover,
+.silence:hover,
 .up:hover,
 .down:hover,
 .reset:hover {
-    border: 10px solid rgba(variables.$r, variables.$g, variables.$b, 1);
+    border: 10px solid rgba(variables.$r-panel, variables.$g-panel, variables.$b-panel, 1);
     cursor: pointer;
 }
 
 li.active {
-    // border: 10px solid #222
-    background: rgb(48, 14, 37);
+    background: rgba(variables.$r-active, variables.$g-active, variables.$b-active, 1);
     transition: all ease 0.3s;
 }
 
 .hidden {
     display: none;
 }
+
+.activeinstrument {
+    background: rgba(variables.$r-active, variables.$g-active, variables.$b-active, 1);
+}
+

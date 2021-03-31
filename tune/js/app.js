@@ -8,7 +8,9 @@ import {
     violinEl,
     instrumentChoiceEl,
     stringsViolinEl,
-    stringsGuitarEl
+    stringsGuitarEl,
+    hzEl,
+    silenceEl
 }
 from './dom.js'
 
@@ -27,7 +29,8 @@ let violinE5Freq = violinA4Freq * perfectFifth;
 let violinD4Freq = violinA4Freq / perfectFifth;
 let violinG3Freq = violinA4Freq / perfectFifth / perfectFifth;
 
-let guitarD3Freq = 146.83*2;
+let guitarFreqMultiplier = 2;
+let guitarD3Freq = 146.83 * guitarFreqMultiplier;
 let guitarG3Freq = guitarD3Freq * perfectFourth;
 let guitarH3Freq = guitarD3Freq * majorSixth;
 let guitarE4Freq = guitarH3Freq * perfectFourth;
@@ -85,27 +88,42 @@ const off = _ => {
     gainNode.gain.linearRampToValueAtTime(0, ctx.currentTime);
 }
 
+const alert = _ => {
+    let i = 20;
+    const alert = setInterval(_ => {
+        if (i > 0) {
+            hzEl.style.backgroundColor = `rgb(${205+i*5}, ${79+i*5}, ${24+i*5})`
+            i--;
+        } else clearInterval(alert)
+    }, 10)
+}
+
+const infoHzUpdate = _ => {
+    infoEl.innerHTML = violinA4Freq;
+}
+
+const tuneFunctions = _ => {
+    reCalc();
+    infoHzUpdate();
+    alert();
+    setFreq();
+}
+
 export const tune = _ => {
     upEl.addEventListener("click", _ => {
         violinA4Freq += freqChange;
         guitarD3Freq += freqChange;
-        reCalc();
-        infoEl.innerHTML = violinA4Freq;
-        setFreq();
+        tuneFunctions()
     })
     downEl.addEventListener("click", _ => {
         violinA4Freq -= freqChange;
         guitarD3Freq -= freqChange;
-        reCalc();
-        infoEl.innerHTML = violinA4Freq;
-        setFreq();
+        tuneFunctions()
     })
     resetEl.addEventListener("click", _ => {
         violinA4Freq = 440;
-        guitarD3Freq = 146.83;
-        reCalc();
-        infoEl.innerHTML = 'popraw' + violinA4Freq;
-        setFreq();
+        guitarD3Freq = 146.83 * guitarFreqMultiplier;
+        tuneFunctions()
     })
 
 }
@@ -150,6 +168,8 @@ const action = _ => {
             if (currentInstrument === 'violin') {
 
                 if (event.key === "4" || event.key === "e") {
+    
+
                     playString(0);
                 }
                 if (event.key === "3" || event.key === "a") {
@@ -190,25 +210,64 @@ const action = _ => {
 
 }
 
-
-
-instrumentChoiceEl.addEventListener('click', event => {
-    console.log(event.target)
-    if (event.target.matches(".violin-choice")) {
-        off()
-        currentInstrument = 'violin';
-        oscillator.type = "triangle";
-        stringsViolinEl.classList.remove("hidden");
-        stringsGuitarEl.classList.add("hidden");
-
-    } else if (event.target.matches(".guitar-choice")) {
-        off()
-        currentInstrument = 'guitar';
-        oscillator.type = "sine";
-        stringsViolinEl.classList.add("hidden");
-        stringsGuitarEl.classList.remove("hidden");
-    }
+violinEl.addEventListener('click', _ => {
+    off()
+    currentInstrument = 'violin';
+    oscillator.type = "triangle";
+    stringsViolinEl.classList.remove("hidden");
+    stringsGuitarEl.classList.add("hidden");
+    violinEl.innerHTML = "You're tuning violin";
+    violinEl.classList.add("activeinstrument")
+    guitarEl.classList.remove("activeinstrument")
+    guitarEl.innerHTML = "Choose guitar";
+    [...document.querySelectorAll('li')].forEach(elem => elem.classList.remove('active'));
+    indexPlaying = null;
+    indexCurrent = null;
 })
+
+guitarEl.addEventListener('click', _ => {
+    off()
+    currentInstrument = 'guitar';
+    oscillator.type = "sine";
+    stringsViolinEl.classList.add("hidden");
+    stringsGuitarEl.classList.remove("hidden");
+    guitarEl.innerHTML = "You're tuning guitar";
+    guitarEl.classList.add("activeinstrument")
+    violinEl.classList.remove("activeinstrument")
+    violinEl.innerHTML = "Choose violin";
+    [...document.querySelectorAll('li')].forEach(elem => elem.classList.remove('active'));
+    indexPlaying = null;
+    indexCurrent = null;
+})
+
+silenceEl.addEventListener('click', _ => off())
+
+violinEl.innerHTML = "You're tuning violin";
+violinEl.classList.add("activeinstrument")
+guitarEl.classList.remove("activeinstrument")
+guitarEl.innerHTML = "Choose guitar";
 
 action();
 tune();
+
+
+
+
+
+// instrumentChoiceEl.addEventListener('click', event => {
+//     console.log(event.target)
+//     if (event.target.matches(".violin-choice")) {
+//         off()
+//         currentInstrument = 'violin';
+//         oscillator.type = "triangle";
+//         stringsViolinEl.classList.remove("hidden");
+//         stringsGuitarEl.classList.add("hidden");
+
+//     } else if (event.target.matches(".guitar-choice")) {
+//         off()
+//         currentInstrument = 'guitar';
+//         oscillator.type = "sine";
+//         stringsViolinEl.classList.add("hidden");
+//         stringsGuitarEl.classList.remove("hidden");
+//     }
+// })
