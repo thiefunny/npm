@@ -1,14 +1,4 @@
 import {
-    updateFrequencies
-}
-from './update-frequencies.js'
-
-import {
-    tune
-}
-from './tune.js'
-
-import {
     mainEl,
     upEl,
     downEl,
@@ -16,7 +6,9 @@ import {
     infoEl,
     guitarEl,
     violinEl,
-    instrumentChoiceEl
+    instrumentChoiceEl,
+    stringsViolinEl,
+    stringsGuitarEl
 }
 from './dom.js'
 
@@ -30,19 +22,19 @@ import {
 }
 from './intervals.js'
 
-export let violinA4Freq = 440;
+let violinA4Freq = 440;
 let violinE5Freq = violinA4Freq * perfectFifth;
 let violinD4Freq = violinA4Freq / perfectFifth;
 let violinG3Freq = violinA4Freq / perfectFifth / perfectFifth;
 
-export let guitarD3Freq = 146.83;
+let guitarD3Freq = 146.83*2;
 let guitarG3Freq = guitarD3Freq * perfectFourth;
-let guitarH3Freq = guitarG3Freq * majorThird;
+let guitarH3Freq = guitarD3Freq * majorSixth;
 let guitarE4Freq = guitarH3Freq * perfectFourth;
 let guitarA2Freq = guitarD3Freq / perfectFourth;
-let guitarE2Freq = guitarD3Freq / minorSeventh;
+let guitarE2Freq = guitarE4Freq / 2 / 2;
 
-let freqChange = 1;
+export let freqChange = 10;
 let indexPlaying;
 let indexCurrent;
 let currentInstrument = 'violin';
@@ -64,6 +56,17 @@ export const setFreq = _ => {
     oscillator.frequency.value = instruments[currentInstrument][indexCurrent];
 }
 
+const updateFrequencies = _ => {
+    violinE5Freq = violinA4Freq * perfectFifth;
+    violinD4Freq = violinA4Freq / perfectFifth;
+    violinG3Freq = violinA4Freq / perfectFifth / perfectFifth;
+    guitarG3Freq = guitarD3Freq * perfectFourth;
+    guitarH3Freq = guitarD3Freq * majorSixth;
+    guitarE4Freq = guitarH3Freq * perfectFourth;
+    guitarA2Freq = guitarD3Freq / perfectFourth;
+    guitarE2Freq = guitarE4Freq / 2 / 2;
+}
+
 infoEl.innerHTML = violinA4Freq;
 
 const ctx = new AudioContext();
@@ -80,6 +83,31 @@ const on = _ => {
 }
 const off = _ => {
     gainNode.gain.linearRampToValueAtTime(0, ctx.currentTime);
+}
+
+export const tune = _ => {
+    upEl.addEventListener("click", _ => {
+        violinA4Freq += freqChange;
+        guitarD3Freq += freqChange;
+        reCalc();
+        infoEl.innerHTML = violinA4Freq;
+        setFreq();
+    })
+    downEl.addEventListener("click", _ => {
+        violinA4Freq -= freqChange;
+        guitarD3Freq -= freqChange;
+        reCalc();
+        infoEl.innerHTML = violinA4Freq;
+        setFreq();
+    })
+    resetEl.addEventListener("click", _ => {
+        violinA4Freq = 440;
+        guitarD3Freq = 146.83;
+        reCalc();
+        infoEl.innerHTML = 'popraw' + violinA4Freq;
+        setFreq();
+    })
+
 }
 
 const action = _ => {
@@ -103,7 +131,7 @@ const action = _ => {
         }
     })
 
-    const reaction = indexArgument => {
+    const playString = indexArgument => {
         if (indexPlaying === indexArgument) {
             off();
             indexPlaying = null;
@@ -115,33 +143,70 @@ const action = _ => {
         }
     }
 
-    window.addEventListener("keypress", event => {
+    const pressedKeyListener = instrument => {
 
-        if (event.key === "4" || event.key === "e") {
-            reaction(0);
-        }
-        if (event.key === "3" || event.key === "a") {
-            reaction(1);
-        }
-        if (event.key === "2" || event.key === "d") {
-            reaction(2);
-        }
-        if (event.key === "1" || event.key === "g") {
-            reaction(3);
-        }
-    })
+        window.addEventListener("keypress", event => {
+
+            if (currentInstrument === 'violin') {
+
+                if (event.key === "4" || event.key === "e") {
+                    playString(0);
+                }
+                if (event.key === "3" || event.key === "a") {
+                    playString(1);
+                }
+                if (event.key === "2" || event.key === "d") {
+                    playString(2);
+                }
+                if (event.key === "1" || event.key === "g") {
+                    playString(3);
+                }
+
+            } else if (currentInstrument === 'guitar') {
+
+                if (event.key === "6" || event.key === "e") {
+                    playString(0);
+                }
+                if (event.key === "5" || event.key === "h") {
+                    playString(1);
+                }
+                if (event.key === "4" || event.key === "g") {
+                    playString(2);
+                }
+                if (event.key === "3" || event.key === "d") {
+                    playString(3);
+                }
+                if (event.key === "2" || event.key === "a") {
+                    playString(4);
+                }
+                if (event.key === "1" || (event.key === "E" && event.shiftKey)) {
+                    playString(5);
+                }
+            }
+        })
+    }
+
+    pressedKeyListener(currentInstrument);
+
 }
+
+
 
 instrumentChoiceEl.addEventListener('click', event => {
     console.log(event.target)
     if (event.target.matches(".violin-choice")) {
-        console.log('skrzypce')
+        off()
         currentInstrument = 'violin';
-        
+        oscillator.type = "triangle";
+        stringsViolinEl.classList.remove("hidden");
+        stringsGuitarEl.classList.add("hidden");
 
     } else if (event.target.matches(".guitar-choice")) {
+        off()
         currentInstrument = 'guitar';
-        console.log('gitara')
+        oscillator.type = "sine";
+        stringsViolinEl.classList.add("hidden");
+        stringsGuitarEl.classList.remove("hidden");
     }
 })
 
