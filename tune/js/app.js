@@ -37,7 +37,7 @@ let guitarE4Freq = guitarH3Freq * perfectFourth;
 let guitarA2Freq = guitarD3Freq / perfectFourth;
 let guitarE2Freq = guitarE4Freq / 2 / 2;
 
-export let freqChange = 10;
+export let freqChange = 1;
 let indexPlaying;
 let indexCurrent;
 let currentInstrument = 'violin';
@@ -130,13 +130,26 @@ export const tune = _ => {
 
 const action = _ => {
     mainEl.addEventListener("click", event => {
+        
         ctx.resume();
-        const list = [...event.target.parentNode.children];
+        let targetLi = event.target;
+        let list = [...event.target.parentNode.children];
         indexCurrent = list.indexOf(event.target);
+
+        if (event.target.matches('p') || event.target.matches('span')) {
+            targetLi = event.target.parentNode;
+            list = [...targetLi.parentNode.children];
+            indexCurrent = list.indexOf(targetLi);
+        }
+        if (event.target.matches('sub')) {
+            targetLi = event.target.parentNode.parentNode;
+            list = [...targetLi.parentNode.children];
+            indexCurrent = list.indexOf(targetLi);
+        }
 
         if (indexPlaying === indexCurrent) {
             off();
-            event.target.classList.remove("active");
+            targetLi.classList.remove("active");
             indexPlaying = null;
         } else {
             setFreq();
@@ -144,7 +157,7 @@ const action = _ => {
             for (let elem of list) {
                 elem.classList.remove("active");
             }
-            event.target.classList.add("active");
+            targetLi.classList.add("active");
             indexPlaying = indexCurrent;
         }
     })
@@ -168,8 +181,6 @@ const action = _ => {
             if (currentInstrument === 'violin') {
 
                 if (event.key === "4" || event.key === "e") {
-    
-
                     playString(0);
                 }
                 if (event.key === "3" || event.key === "a") {
@@ -210,6 +221,12 @@ const action = _ => {
 
 }
 
+const refreshInstrument = _ => {
+    [...document.querySelectorAll('li')].forEach(elem => elem.classList.remove('active'));
+    indexPlaying = null;
+    indexCurrent = null;
+}
+
 violinEl.addEventListener('click', _ => {
     off()
     currentInstrument = 'violin';
@@ -220,9 +237,7 @@ violinEl.addEventListener('click', _ => {
     violinEl.classList.add("activeinstrument")
     guitarEl.classList.remove("activeinstrument")
     guitarEl.innerHTML = "Choose guitar";
-    [...document.querySelectorAll('li')].forEach(elem => elem.classList.remove('active'));
-    indexPlaying = null;
-    indexCurrent = null;
+    refreshInstrument()
 })
 
 guitarEl.addEventListener('click', _ => {
@@ -235,9 +250,7 @@ guitarEl.addEventListener('click', _ => {
     guitarEl.classList.add("activeinstrument")
     violinEl.classList.remove("activeinstrument")
     violinEl.innerHTML = "Choose violin";
-    [...document.querySelectorAll('li')].forEach(elem => elem.classList.remove('active'));
-    indexPlaying = null;
-    indexCurrent = null;
+    refreshInstrument()
 })
 
 silenceEl.addEventListener('click', _ => off())
@@ -249,25 +262,3 @@ guitarEl.innerHTML = "Choose guitar";
 
 action();
 tune();
-
-
-
-
-
-// instrumentChoiceEl.addEventListener('click', event => {
-//     console.log(event.target)
-//     if (event.target.matches(".violin-choice")) {
-//         off()
-//         currentInstrument = 'violin';
-//         oscillator.type = "triangle";
-//         stringsViolinEl.classList.remove("hidden");
-//         stringsGuitarEl.classList.add("hidden");
-
-//     } else if (event.target.matches(".guitar-choice")) {
-//         off()
-//         currentInstrument = 'guitar';
-//         oscillator.type = "sine";
-//         stringsViolinEl.classList.add("hidden");
-//         stringsGuitarEl.classList.remove("hidden");
-//     }
-// })
