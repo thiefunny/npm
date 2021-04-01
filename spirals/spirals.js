@@ -1,51 +1,91 @@
 const canvasEl = document.querySelector("#drawing");
 const ctx = canvasEl.getContext('2d');
-const canvasWidth = window.innerWidth/1.2;
-const canvasHeight = window.innerHeight/1.5;
-const canvasBorder = canvasHeight / 2;
-const scoreEl = document.querySelector(".score");
-
-canvasEl.style.borderRadius = canvasBorder + "px";
+const canvasWidth = window.innerWidth / 1.1;
+const canvasHeight = window.innerHeight / 1.3;
 canvasEl.setAttribute("width", canvasWidth + "px");
 canvasEl.setAttribute("height", canvasHeight + "px");
 
-let x = canvasWidth / 2,
-    y = canvasHeight / 2,
-    r = 0,
-    a = 1,
-    cr = 200,
-    cg = 200,
-    cb = 200,
-    rstep = 0.1,
-    rdiv = 10,
-    // speed = document.querySelector("#speed").value,
-    speed = 30;
-    r2 = 1;
-    r3 = 0.1;
 
-function circle(x, y, r, cr, cg, cb, a) {
+const speed = 10;
+
+function circle(x, y, r, hue, saturation, lightness, alpha) {
 
     ctx.beginPath();
-    ctx.strokeStyle = 'hsla(' + cr + ', ' + cg + '%, ' + cb + '%, ' + a + ')';
+    ctx.strokeStyle = 'hsla(' + hue + ', ' + saturation + '%, ' + lightness + '%, ' + alpha + ')';
     ctx.arc(x, y, r, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.closePath();
-    
+
 }
 
-setInterval(function () {
-    if (r < 1000) {
-        a = document.getElementById("a").value;
-        rstep = document.querySelector("#rstep").value;
-        rdiv = document.querySelector("#rdiv").value;
-        r3 = document.querySelector("#r3").value;
-        r2 += Number(r3);
-        r += Number(rstep);
-        x += r / Number(rdiv) * Math.sin(r);
-        y += r / Number(rdiv) * Math.cos(r);
-        cr = r * 3.6;
-        cg = 100;
-        cb = 50;
-        circle(x, y, r2, cr, cg, cb, a);
+const drawing = _ => {
+
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+
+    // const quantity = Math.floor(Math.random() * 100);
+    const quantity = 25;
+    let spiralsArr = new Array(quantity);
+    let frame = 0;
+    const hueChoice = Math.floor(Math.random() * 255);
+
+
+    for (let i = 0; i < quantity; i++) {
+        let x = canvasWidth * Math.random(),
+            y = canvasHeight * Math.random(),
+            r = Math.random() * 20,
+            alpha = Math.random() * 0.13,
+            hue = Math.floor(Math.random() * 80) + hueChoice,
+            saturation = 100,
+            lightness = 50,
+            rstep = Math.random() * 0.3,
+            rdiv = Math.random() * 5 + 5,
+            r2 = Math.random() * 5,
+            r3 = Math.random() * 2 + 0.5,
+            direction = Math.round(Math.random());
+
+        spiralsArr[i] = {
+            x,
+            y,
+            r,
+            alpha,
+            hue,
+            saturation,
+            lightness,
+            rstep,
+            rdiv,
+            r2,
+            r3,
+            direction
+        }
     }
-}, speed);
+
+    const draw = setInterval(function () {
+
+        if (frame < 700) {
+
+            spiralsArr.forEach(elem => {
+                elem.r2 += Number(elem.r3);
+
+                if (elem.direction) {
+                    elem.r += Number(elem.rstep);
+                    elem.hue = elem.hue * 1.001;
+                } else {
+                    elem.r -= Number(elem.rstep);
+                    elem.hue = elem.hue * 0.999;
+                }
+
+                elem.x += elem.r / Number(elem.rdiv) * Math.sin(elem.r);
+                elem.y += elem.r / Number(elem.rdiv) * Math.cos(elem.r);
+                
+
+                circle(elem.x, elem.y, elem.r2, elem.hue, elem.saturation, elem.lightness, elem.alpha);
+            })
+            frame++
+        } else {
+            clearInterval(draw);
+            // drawing()
+        }
+    }, speed);
+}
+
+drawing()

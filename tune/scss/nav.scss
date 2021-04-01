@@ -6,9 +6,10 @@ nav {
 }
 
 nav div {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem
 }
 
 nav div:active {
@@ -16,13 +17,14 @@ nav div:active {
 }
 
 nav span {
-font-size: 2rem;
-padding-left: 0.5rem;
-position: relative;
-top: -0.3rem;
+    font-size: 2rem;
+    padding-left: 0.5rem;
+    position: relative;
+    top: -0.3rem;
 }
 
-.guitar-choice, .violin-choice {
+.guitar-choice,
+.violin-choice {
     height: 14%;
     background-color: rgba(variables.$r-panel, variables.$g-panel, variables.$b-panel, 0.2);
 }
@@ -64,6 +66,6 @@ top: -0.3rem;
 }
 
 .tune-change-anim {
-animation: tune-change-anim 0.3s;
-// animation-fill-mode: forwards;
+    animation: tune-change-anim 0.3s;
+    // animation-fill-mode: forwards;
 }

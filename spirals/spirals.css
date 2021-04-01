@@ -1,46 +1,37 @@
-body {
-    background: #222;
-    color: #fff;
-    position: relative;
-    /* text-align: center; */
-    }
-
-/* a {
-    color: #559;
-    display: inline-block;
-    padding: 0 1rem 2rem 0
-} */
-
 .canvas {
     position: absolute;
     left: 50vw;
     top: 50vh;
-    transform: translateY(-45%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
 }
 
 canvas {
-    background: #111;
+    border: 1px solid #ddd;
 }
 
-.inputs {
-    position: relative;
-    width: 100%;
+button {
+    position: absolute;
+    display: block;
     text-align: center;
+    left: 50%;
+    top: 3%;
+    transform: translateX(-50%);
+    padding: 1rem;
+    background-color: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    /* border:none; */
 }
 
-input#rstep, input#r2 {
-    width: 400px;
+button:hover {
+    background-color: #dddddd;
+    border: 1px solid #dddddd;
+
+    /* color: white; */
 }
 
-input {
-    margin: 0 20px;
-    top:6px;
-    position: relative;
-}
+button:active {
+    background-color: #aaaaaa;
+    border: 1px solid #aaaaaa;
 
-label {
-    position: relative;
-    /* top: 20px */
+    color: white;
 }
-
-/* #r3 {transform: rotate(90deg);} */
