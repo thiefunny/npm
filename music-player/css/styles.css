@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+    --main: #e3e3e3;
+
+    --temp: 65;
+    --text: var(--temp), var(--temp), var(--temp);
+    --halftext: #aaa;
+    font-family: 'Share Tech Mono', monospace;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgb(var(--text));
+
+
+}
+
+.container__app {
+
+    position: relative;
+}
+
+.app {
+    position: relative;
+    width: 100%;
+}
+
+.container__panels {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    background: var(--main);
+}
+
+.progress__bar {
+    height: 1rem;
+    width: 100%;
+    background: white;
+}
+
+.progress__bar__percentage {
+    background: orange;
+    width: 0%;
+    height: 100%;
+}
+
+.left__panel {
+    position: relative;
+    margin: 10px 0 0 0;
+    background: var(--main);
+    height: 100vh;
+    width: 35%;
+    text-align: center;
+}
+
+.cover {
+    margin-top: 10%;
+}
+
+.cover__image {
+    width: 50%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+.title__player {
+    margin-top: 2rem;
+    font-size: 1.7em
+}
+
+.songs__counter {
+    margin-top: 1rem;
+}
+
+.play__button {
+    display: inline;
+    margin-top: 1rem;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: larger;
+    font-family: 'Share Tech Mono', monospace;
+    border: 1px dashed var(--halftext);
+    padding: 0.5rem;
+}
+
+.play__button:hover {
+    background-color: var(--halftext);
+    cursor: pointer;
+}
+
+.play__button:active {
+    background-color: #51593a;
+    color: white;
+}
+
+.right__panel {
+    position: relative;
+    background: var(--main);
+    height: 100vh;
+    width: 55%;
+    margin: 3rem 1rem 0 0;
+}
+
+.play__module {
+    width: 100%;
+    background: var(--main);
+    display: flex;
+    border-bottom: 1px dashed var(--halftext);
+}
+
+.play__module__active {
+    background-color: rgba(var(--text), 0.2);
+}
+
+.play__module__content {
+    margin: 0.5rem;
+    height: 3rem;
+    background: var(--main);
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.progress__color {
+    /* position: absolute; */
+    /* z-index: 10; */
+    position: relative;
+    /* width: 100%; */
+    height: 4px;
+    /* background-color: rosybrown; */
+    top:-2px;
+}
+
+.play__button__right {
+    margin: 0 1em 0 0;
+    position: relative;
+    width: 5%;
+    background: var(--main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.play__button__right:hover {
+    background-color: white;
+    cursor: pointer
+}
+
+.title__area {
+    position: relative;
+    width: 80%;
+    background: var(--main);
+    display: flex;
+    align-items: center;
+}
+
+.title__song {
+    font-size: 0.9rem;
+    color: rgba(var(--text), 0.6);
+
+}
+
+.song__duration {
+    width: 20%;
+    font-size: 0.9rem;
+    color: rgba(var(--text), 0.6);
+    background: var(--main);
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-right: 0.7rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.playmodulemouseoverbackground {
+    background: #f00;
+}
+
+
+
+@media (max-width:600px) {
+
+    .cover__image {
+        display: none;
+    }
+
+    .container__panels {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .left__panel {
+        height: auto;
+        width: 100%;
+    }
+
+    .cover {
+        margin: 0;
+    }
+
+    .right__panel {
+        margin: 1rem 2rem 0 2rem;
+        width: calc(100vw - 4rem);
+    }
+
+    .play__button {
+        display: none;
+    }
+
+    .play__button__right {
+        font-size: xx-large;
+        padding: 0 5vw 0 5vw;
+    }
+
+    .play__button__right:hover {
+        background-color: white;
+        cursor: pointer
+    }
+
+    .title__player {
+        padding: 0;
+        margin: 1rem;
+    }
+
+    .progress__bar {
+        height: 15px;
+    }
+
+}
+
+@media (max-width:300px) {
+
+    .right__panel,
+    .left__panel,
+    .progress__bar {
+        display: none;
+    }
+
+    body {
+        background-color: #f00;
+    }
+
+    .easteregg p {
+        text-align: center;
+        color: white;
+        transform: rotate(270deg) translateX(-70%);
+        font-size: 4rem;
+    }
+}
