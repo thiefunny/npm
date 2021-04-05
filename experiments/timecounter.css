@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
-    background: #222;
-    color: white
+    background:IndianRed;
+    color: white;
+    font-family: 'Press Start 2P';
+    font-size: 2rem
 }
 
 .container {
@@ -10,10 +14,13 @@ body {
     width: 600px;
     margin: 0 auto;
     justify-content: space-evenly;
+    font-size: 3rem;
 }
 
 .target {
     text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
     /* width: 100%; */
     /* margin: 0 auto; */
 }

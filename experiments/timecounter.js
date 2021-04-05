@@ -5,15 +5,8 @@ const minEl = document.querySelector(".min");
 const secEl = document.querySelector(".sec");
 
 let teraz = new Date();
-let zaminute = new Date(1000*10);
-// const wtedy = teraz + zaminute;
-// const wtedy = new Date("2020-07-20 21:17:25");
+let zaminute = new Date(1000*21);
 let wtedy = new Date(teraz.getTime() + zaminute.getTime());
-// let roznica = new Date(wtedy - teraz);
-console.log("teraz " + teraz.getTime());
-console.log("zaminute " + zaminute);
-console.log("wtedy " + wtedy);
-// console.log("roznica " + roznica);
 
 function roznicaczasu() {
 
@@ -30,8 +23,6 @@ function roznicaczasu() {
     let minutesleft = minutes - days * 24 * 60 - hoursleft * 60;
     let secondsleft = seconds - days * 24 * 60 * 60 - hoursleft * 60 * 60 - minutesleft * 60;
 
-    // console.log("days " + days + ", hours " + hoursleft + ", minutes " + minutesleft + ", seconds " + secondsleft)
-
     return {
         rDays: days,
         rHours: hoursleft,
@@ -41,12 +32,12 @@ function roznicaczasu() {
 
 }
 
+targettimeEl.innerHTML = "Counting 20 seconds";
+
 let showTimer = setInterval(function () {
-    // console.log(Math.floor((wtedy - teraz)/1000));
     if (Math.floor(wtedy - teraz)/1000 < 1) {
-        clearInterval(showTimer); targettimeEl.innerHTML = "JUUUUUUUUŻ!!!!!!";
+        clearInterval(showTimer); targettimeEl.innerHTML = "PROMOTION BEGUN!";
     } else {
-        targettimeEl.innerHTML = "odliczamy 10 sekund";
         daysEl.innerHTML = roznicaczasu().rDays;
         hourEl.innerHTML = roznicaczasu().rHours;
         minEl.innerHTML = roznicaczasu().rMinutes;
@@ -54,7 +45,3 @@ let showTimer = setInterval(function () {
     }
 }, 1000);
 
-
-
-
-// daysEl.innerHTML = czas.rDays;

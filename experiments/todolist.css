@@ -5,7 +5,7 @@
 }
 
 body {
-    background: #222;
+    background: #ddd;
 }
 
 .container {
@@ -18,6 +18,7 @@ body {
     background-color: white;
     border-radius: 10px;
     padding: 20px;
+    box-shadow:  0px 5px 5px #888888;
 }
 
 .list__item {
@@ -60,4 +61,8 @@ span {
 
 .invisible {
     visibility: hidden; 
+}
+
+.close__button:hover {
+cursor: pointer
 }
