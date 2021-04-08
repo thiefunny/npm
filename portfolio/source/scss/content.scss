@@ -6,7 +6,7 @@
     overflow: auto;
 }
 
-.content div:last-child {
+.content div:last-child, .content div p:last-child {
     margin-bottom: 4rem;
 }
 
