@@ -114,6 +114,7 @@ const evermik = _ => {
     buttonLoadEl.addEventListener('click', _ => {
         loadFile();
         clearForm(formNoteContentEl, formNoteTitleEl);
+        currentNoteIndex = null;
     });
     window.onload = _ => loadFile();
 

@@ -26,8 +26,7 @@ const drawing = _ => {
     const quantity = 25;
     let spiralsArr = new Array(quantity);
     let frame = 0;
-    const hueChoice = Math.floor(Math.random() * 255);
-
+    const hueChoice = Math.floor(Math.random() * 50 + 180);
 
     for (let i = 0; i < quantity; i++) {
         let x = canvasWidth * Math.random(),
