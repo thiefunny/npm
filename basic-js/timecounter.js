@@ -5,7 +5,7 @@ const minEl = document.querySelector(".min");
 const secEl = document.querySelector(".sec");
 
 let teraz = new Date();
-let zaminute = new Date(1000*21);
+let zaminute = new Date(1000*60*60*24*100);
 let wtedy = new Date(teraz.getTime() + zaminute.getTime());
 
 function roznicaczasu() {
@@ -32,7 +32,9 @@ function roznicaczasu() {
 
 }
 
-targettimeEl.innerHTML = "Counting 20 seconds";
+targettimeEl.innerHTML = `Counting till ${wtedy.getFullYear()}.${wtedy.getMonth()+1}.${wtedy.getDate()}, ${wtedy.getHours()}:${wtedy.getMinutes()}:${wtedy.getSeconds()}}`;
+
+targettimeEl.innerHTML = `Counting 100 days since now`;
 
 let showTimer = setInterval(function () {
     if (Math.floor(wtedy - teraz)/1000 < 1) {

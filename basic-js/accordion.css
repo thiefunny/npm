@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
 
 body {
-    /* background: #222; */
-    /* color: white; */
     font-family: Caveat;
     font-weight: 400;
 }
@@ -11,20 +9,16 @@ h1 {
     font-size: 4rem;
     text-align: center;
     font-weight: 600;
-    /* border-bottom: 1px dashed; */
 }
 
 .container {
-    /* background: orange; */
     max-width: 600px;
     margin: 0 auto;
 }
 
 .question {
     position:relative;
-    /* background: blue; */
     padding: 1rem 0 1rem 0;
-    /* z-index:1; */
     border-bottom: 1px dashed;
     font-size: 2rem;
 }
@@ -38,15 +32,11 @@ h1 {
     max-height: 0px;
     overflow: hidden;
     font-size: 1.5rem;
-    /* padding: 1rem 1rem 1rem 1rem; */
-    /* padding: 1rem 1rem 1rem 1rem; */
-    /* box-sizing: border-box; */
 
 }
 
 .show {
     position: relative;
-    /* max-height: 100px; */
     overflow: auto;
     transition: 0.7s all ease;
 }
@@ -62,4 +52,10 @@ li {
 
 .question:hover {
     background-color: #eee;
+}
+
+@media (max-width:700px) {
+    ul, li {
+        padding: 0 0.5rem 0 0.5rem
+    }
 }

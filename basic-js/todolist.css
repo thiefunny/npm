@@ -66,3 +66,15 @@ span {
 .close__button:hover {
 cursor: pointer
 }
+
+@media (max-width:700px) {
+    .todo__app {
+     margin: 0 1rem 0 1rem;
+    }
+    .list__item {
+        font-size: 1.3rem;
+    }
+    .close__button {
+        font-size: 2rem;
+    }
+}

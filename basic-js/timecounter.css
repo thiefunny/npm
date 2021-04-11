@@ -24,3 +24,20 @@ body {
     /* width: 100%; */
     /* margin: 0 auto; */
 }
+
+@media (max-width: 700px) {
+    .container {
+        display: block;
+    width: 90%;
+    text-align: center;
+    top: 1rem;
+
+    
+
+        /* text-align: center; */
+    }
+
+    .container div {
+        padding-bottom: 1rem;
+    }
+}
