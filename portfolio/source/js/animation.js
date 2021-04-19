@@ -4,8 +4,8 @@ const hMax = window.innerHeight;
 let circleX = _ => Math.random() * wMax;
 let circleY = _ => Math.random() * hMax;
 let circleR = _ => Math.random() + 1.5;
-let circleOpacity = transparency => Math.random() * transparency + 0.1;
-let lineOpacity = transparency => Math.random() * transparency + 0.1;
+let circleOpacity = transparency => Math.random() * transparency + 0.2;
+let lineOpacity = transparency => Math.random() * transparency + 0.2;
 const wMin = 0;
 const hMin = 0;
 const svgs = 100;
@@ -83,7 +83,7 @@ const flow = (element) => {
 
     let alpha = Math.random() * 2 * Math.PI;
     // const speed = 0.4;
-    const speed = Math.pow(getAttribute('fill-opacity', element)+0.7,5)-1;
+    const speed = Math.pow(getAttribute('fill-opacity', element)+0.7,3)-1;
 
     const flowAnim = _ => {
 
