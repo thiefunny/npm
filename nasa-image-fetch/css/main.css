@@ -5,6 +5,7 @@
 :root {
     --accent-color: #e76d0b;
     --background-color: rgba(0, 0, 0, 0.7);
+    --ok-color: green;
 }
 
 * {
@@ -17,10 +18,15 @@
 }
 
 
+
 /* Body */
 
 body {
-    background-color: #151524;
+    background-color: #101037;
+    background-image: url('https://thiefunny.github.io/nasa-image-fetch/img/background-image.jpg');
+    background-repeat: no-repeat;
+    background-position:top;
+    
     font-family: Roboto, sans-serif;
     color: white;
     height: 100vh;
@@ -55,7 +61,6 @@ main {
 .nasa-wrapper {
     position: relative;
     text-align: center;
-    /* z-index: 2; */
 }
 
 .nasa-image-container img {
@@ -77,16 +82,23 @@ main {
 .button {
     position: absolute;
     text-align: center;
-    /* left: 50%; */
-    /* transform: translate(-50%, 2rem); */
     top: 2rem;
     left: 2rem;
     width: 10rem;
-
+    font-size: 0.8rem;;
 }
 
 button {
     margin-bottom: 1rem;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    border: 0px;
+}
+
+button:hover {
+    background-color: var(--accent-color);
+    color: white;
+    cursor: pointer;
 }
 
 /* Footer */

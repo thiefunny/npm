@@ -27,8 +27,8 @@ const preloader = {
 
     off() {
         postloaderContainerEl.innerHTML = `
-        <p>Image loaded</p>
-        <p>If you can't see it, please scroll down, the image is partially transparent</p>
+        <p class="postloader-info">Image loaded</p>
+        <p>If you can't see it, please scroll down, the image may be partially transparent</p>
         `
         errorContainerEl.classList.add("hidden");
         preloaderContainerEl.classList.add("hidden");
@@ -59,7 +59,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidGhpZWZ1bm55IiwiYSI6ImNraWl4Zjl4eDI5dDUycm81Z
 
 const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
-    types: 'country,region,place,postcode,locality,neighborhood,address',
+    types: 'country,region,place,postcode,locality,neighborhood,address,poi',
     placeholder: 'Enter location to load a picture'
 });
 

@@ -16,16 +16,17 @@ Github Pages: https://thiefunny.github.io/nasa-image-fetch/
 * CSS are split to few files, in bigger project I would use SASS and split SASS files, then merge them into one main.css.
 * I used VCS to write a code.
 * Website is responsive.
+* Check Github Issues for some insight regarding creation of the project.
 
 ## Try these locations
 
 ### Nice pictures
-* "Sopot, Pomeranian Voivodeship, Poland"
-* "Paris, France"
-* "Zadar, Zadar, Croatia"
+* "Sopot, Pomeranian Voivodeship, Poland" / "Sopot, województwo pomorskie, Polska"
+* "Paris, France" / "Paryż, Francja"
+* "Zadar, Zadar, Croatia" / "Zadar, Zadarska županija, Chorwacja"
 
 ### Catching error example
-* "Singapore, Central, Singapore"
+* "Singapore, Central, Singapore" / "Singapur, Region Centralny, Singapur"
 
 ## Warning
 * Secrets are exposed - I know they should be in the backend.
