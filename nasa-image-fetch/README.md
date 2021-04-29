@@ -4,7 +4,7 @@
 Displaying a satellite image fetched from NASA’s API for a location selected by the user.
 
 ## Project live on Github Pages
-Github Pages: https://thiefunny.github.io/nasa-image-fetch/
+Github Pages: https://walanus.com/nasa-image-fetch/
 
 ## Technologies
 * APIs used: Mapbox (geocoder), Google Maps Embed, NASA (Earth Imagery endpoint)
@@ -17,16 +17,6 @@ Github Pages: https://thiefunny.github.io/nasa-image-fetch/
 * I used VCS to write a code.
 * Website is responsive.
 * Check Github Issues for some insight regarding creation of the project.
-
-## Try these locations
-
-### Nice pictures
-* "Sopot, Pomeranian Voivodeship, Poland" / "Sopot, województwo pomorskie, Polska"
-* "Paris, France" / "Paryż, Francja"
-* "Zadar, Zadar, Croatia" / "Zadar, Zadarska županija, Chorwacja"
-
-### Catching error example
-* "Singapore, Central, Singapore" / "Singapur, Region Centralny, Singapur"
 
 ## Warning
 * Secrets are exposed - I know they should be in the backend.
