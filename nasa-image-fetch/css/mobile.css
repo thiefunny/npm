@@ -1,0 +1,38 @@
+/* Mobile version */
+
+@media screen and (max-width: 640px) {
+
+    body {
+        height: auto;
+    }
+
+    h1 {
+        font-size: 1rem;
+        width: 95%
+    }
+
+    .mapboxgl-ctrl-geocoder {
+        font-size: 1rem;
+        width: 90%;
+    }
+
+    nav {
+        position: relative;
+        padding: 5%;
+        width: 100%;
+        background-color: var(--background-color);
+        border-radius: 0;
+    }
+
+    main {
+        min-height: 10rem;
+    }
+
+    .google-embed-container,
+    .postloader-container,
+    .button {
+        display: none;
+    }
+
+
+}

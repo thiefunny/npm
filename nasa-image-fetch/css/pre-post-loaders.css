@@ -1,0 +1,49 @@
+/* Preloader and Postloader*/
+
+@keyframes rotation-preloader {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+.preloader-img {
+    animation: rotation-preloader 0.7s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    width: 30px;
+}
+
+.preloader-container,
+.postloader-container,
+.error-container {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, 2rem);
+}
+
+.preloader-container {
+    z-index: 1;
+}
+
+.preloader-container p,
+.postloader-container p, 
+.error-container p {
+    padding-bottom: 1rem;
+    width: 20rem
+}
+
+.postloader-container {
+    z-index: -1;
+    top: 0rem;
+}
+
+.error-info {
+    /* background-color: white; */
+    font-size: 2rem;
+    color: var(--accent-color);
+}

@@ -1,0 +1,130 @@
+/* Basic setup */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root {
+    --accent-color: #e76d0b;
+    --background-color: rgba(0, 0, 0, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Body */
+
+body {
+    background-color: #151524;
+    font-family: Roboto, sans-serif;
+    color: white;
+    height: 100vh;
+}
+
+
+/* Top navigation - geocoder */
+
+nav {
+    position: fixed;
+    z-index: 2;
+    min-width: 20rem;
+    padding: 1.5rem;
+    background-color: var(--background-color);
+    border-radius: 0 0 1rem 0;
+}
+
+h1 {
+    font-size: 1.2rem;
+    padding: 0 0 1rem 0;
+}
+
+
+/* NASA image and Google Maps wrapper*/
+
+main {
+    min-height: 30rem;
+}
+
+/* NASA image */
+
+.nasa-wrapper {
+    position: relative;
+    text-align: center;
+    /* z-index: 2; */
+}
+
+.nasa-image-container img {
+    width: 100%;
+    height: auto;
+}
+
+
+/* Google Maps */
+
+.google-embed-iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+}
+
+/* Button open in new window */
+
+.button {
+    position: absolute;
+    text-align: center;
+    /* left: 50%; */
+    /* transform: translate(-50%, 2rem); */
+    top: 2rem;
+    left: 2rem;
+    width: 10rem;
+
+}
+
+button {
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+
+footer {
+    --footer-color: rgba(255, 255, 255, 0.3);
+    position: relative;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--footer-color);
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--footer-color);
+}
+
+footer a,
+footer a:visited {
+    color: inherit;
+}
+
+footer a:hover,
+footer a:active {
+    color: white;
+}
+
+
+/* Mapbox geocoder */
+
+.mapboxgl-ctrl-geocoder--icon {
+    fill: var(--accent-color);
+}
+
+@media screen and (min-width: 640px) {
+
+    .mapboxgl-ctrl-geocoder {
+        width: 100%;
+        font-size: 15px;
+        line-height: 20px;
+        max-width: 360px;
+    }
+}
